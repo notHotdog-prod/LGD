@@ -377,6 +377,18 @@
   .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-bottom p { font-size: 0.8rem; color: var(--text-dim); }
 
+  /* ===== NEWSLETTER ===== */
+  .newsletter-section { background: linear-gradient(135deg, rgba(107,53,217,0.15) 0%, rgba(212,53,160,0.1) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+  .newsletter-section h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .newsletter-section p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .newsletter-form { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .newsletter-form input { flex: 1; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.85rem; transition: all 0.2s; }
+  .newsletter-form input:focus { outline: none; border-color: rgba(139,85,246,0.5); background: rgba(139,85,246,0.05); }
+  .newsletter-form input::placeholder { color: var(--text-dim); }
+  .newsletter-form button { padding: 0.75rem 1.5rem; background: var(--gradient); border: none; border-radius: 8px; color: var(--text); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .newsletter-form button:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(107,53,217,0.3); }
+  .newsletter-privacy { font-size: 0.7rem; color: var(--text-dim); }
+
   /* ===== GLOW DIVIDER ===== */
   .glow-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(107,53,217,0.5), rgba(212,53,160,0.5), transparent); margin: 0; }
 
@@ -1014,7 +1026,7 @@
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"LGD completely transformed our lead generation. Within 90 days we tripled our inbound inquiries and cut cost-per-lead in half. The AI-powered approach is something else."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">MR</div>
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcus R." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-right:8px;">
           <div>
             <div class="author-name">Marcus R.</div>
             <div class="author-title">CEO, Legal Services Firm</div>
@@ -1025,7 +1037,7 @@
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"Finally an agency that doesn't just report vanity metrics. They showed us exactly what was driving revenue and what wasn't. Our ROAS went from 1.8x to 4.2x in five months."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">SA</div>
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophia A." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-right:8px;">
           <div>
             <div class="author-name">Sophia A.</div>
             <div class="author-title">Founder, eCommerce Brand</div>
@@ -1036,7 +1048,7 @@
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"The content strategy alone was worth ten times what we paid. Our organic reach exploded and we're now ranking for search terms we never thought possible. Incredible team."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">JT</div>
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James T." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-right:8px;">
           <div>
             <div class="author-name">James T.</div>
             <div class="author-title">Director of Marketing, Med Spa</div>
@@ -1117,23 +1129,21 @@
         <div style="background:var(--dark-3); border:1px solid var(--border); border-radius:20px; padding:2.5rem;">
           <h3 style="font-size:1.25rem; font-weight:600; margin-bottom:1.75rem;">Request Your Free Audit</h3>
           <form class="contact-form" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input type="text" placeholder="John" required>
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" placeholder="Smith" required>
-              </div>
+            <div class="form-group">
+              <label>Name *</label>
+              <input type="text" placeholder="John Smith" required>
             </div>
             <div class="form-group">
-              <label>Business Email</label>
+              <label>Email *</label>
               <input type="email" placeholder="john@yourbusiness.com" required>
             </div>
             <div class="form-group">
+              <label>Phone *</label>
+              <input type="tel" placeholder="(555) 123-4567" required>
+            </div>
+            <div class="form-group">
               <label>Company Name</label>
-              <input type="text" placeholder="Acme Corp" required>
+              <input type="text" placeholder="Acme Corp">
             </div>
             <div class="form-group">
               <label>Primary Goal</label>
@@ -1178,6 +1188,15 @@
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
+    <div class="newsletter-section">
+      <h4>Stay Updated</h4>
+      <p>Get marketing tips and growth strategies delivered to your inbox.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-privacy">🔒 We respect your privacy. Unsubscribe anytime.</p>
+    </div>
     <div class="footer-grid">
       <div class="footer-brand">
         <svg width="120" height="36" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1197,10 +1216,8 @@
         </svg>
         <p>Full-service digital marketing built for ambitious businesses. AI-first. Results-focused. Obsessively transparent.</p>
         <div class="footer-social">
-          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">fb</a>
           <a href="#" class="social-icon">ig</a>
-          <a href="https://www.facebook.com/letsgrowsocialnow/" class="social-icon" target="_blank" rel="noopener">fb</a>
-          <a href="#" class="social-icon">tt</a>
         </div>
       </div>
 
@@ -1221,7 +1238,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <ul class="footer-links">
-          <li><a href="#home">About LGD</a></li>
+          <li><a href="about.html">About LGD</a></li>
           <li><a href="#who-we-help">Who We Help</a></li>
           <li><a href="#process">Our Process</a></li>
           <li><a href="#packages">Pricing</a></li>
@@ -1244,8 +1261,8 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Lets Grow Digital. letsgrowdigital.ai · All rights reserved.</p>
-      <p>Privacy Policy · Terms of Service</p>
+      <p>© 2026 Lets Grow Digital. letsgrowdigital.ai · All rights reserved.</p>
+      <p><a href="privacy.html" style="color:var(--text-muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--purple-light)'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a> · Terms of Service</p>
     </div>
   </div>
 </footer>
@@ -1260,13 +1277,119 @@
     event.target.classList.add('active');
   }
 
-  // Form submit mock
-  function handleSubmit(e) {
+  // Cloudflare Worker URL
+  const WORKER_URL = 'https://kb-leads-proxy.bryan-boutin.workers.dev';
+
+  // Form submit - POST to Cloudflare Worker
+  async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type=submit]');
-    btn.textContent = '✓ Request Sent! We\'ll be in touch within 24 hours.';
-    btn.style.background = 'linear-gradient(135deg, #1e7e34, #28a745)';
+    const originalText = btn.textContent;
+
+    btn.textContent = 'Sending...';
     btn.disabled = true;
+
+    // Find the Monthly Marketing Budget select by looking for the label that contains the text
+    let budgetValue = '';
+    const labels = e.target.querySelectorAll('label');
+    for (let label of labels) {
+      if (label.textContent.includes('Monthly Marketing Budget')) {
+        const select = label.nextElementSibling;
+        if (select?.tagName === 'SELECT') {
+          budgetValue = select.options[select.selectedIndex]?.text || '';
+        }
+        break;
+      }
+    }
+
+    const payload = {
+      name: e.target.querySelector('input[placeholder*="John Smith"]')?.value || '',
+      email: e.target.querySelector('input[type="email"]')?.value || '',
+      phone: e.target.querySelector('input[type="tel"]')?.value || '',
+      company: e.target.querySelector('input[placeholder*="Acme Corp"]')?.value || '',
+      message: e.target.querySelector('textarea')?.value || '',
+      budget: budgetValue,
+      source: 'LetsGrowDigital.ai',
+      entryPoint: 'Contact Form'
+    };
+
+    try {
+      const response = await fetch(`${WORKER_URL}/lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        btn.textContent = '✓ Request Sent! We\'ll be in touch within 24 hours.';
+        btn.style.background = 'linear-gradient(135deg, #1e7e34, #28a745)';
+        e.target.reset();
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      btn.textContent = '✗ Error. Please try again.';
+      btn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  }
+
+  // Newsletter form submit - POST to Cloudflare Worker
+  async function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    const input = e.target.querySelector('input[type=email]');
+    const originalText = btn.textContent;
+
+    btn.textContent = 'Subscribing...';
+    btn.disabled = true;
+
+    const payload = {
+      email: input.value,
+      source: 'LetsGrowDigital.ai - Newsletter'
+    };
+
+    try {
+      const response = await fetch(`${WORKER_URL}/newsletter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        btn.textContent = '✓ Subscribed!';
+        btn.style.background = 'linear-gradient(135deg, #1e7e34, #28a745)';
+        input.style.borderColor = 'rgba(30, 126, 52, 0.5)';
+        setTimeout(() => {
+          input.value = '';
+          btn.textContent = originalText;
+          btn.style.background = 'linear-gradient(135deg, #6B35D9, #D435A0)';
+          btn.disabled = false;
+          input.style.borderColor = 'rgba(255,255,255,0.08)';
+        }, 2000);
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (error) {
+      console.error('Newsletter submission error:', error);
+      btn.textContent = '✗ Error. Please try again.';
+      btn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
   }
 
   // Scroll animations
