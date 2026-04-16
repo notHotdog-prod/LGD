@@ -1,0 +1,704 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Marketing Agency Services — Lets Grow Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.jpg" type="image/jpeg">
+<meta name="description" content="Full-service digital marketing agency. SEO, paid media, social ads, email marketing, web design, CRM, and AI integration. AI-first strategies for business growth.">
+<style>
+  :root {
+    --purple: #6B35D9; --purple-light: #8B55F6; --purple-dark: #4A1FA8;
+    --magenta: #D435A0; --magenta-light: #F055C0;
+    --gradient: linear-gradient(135deg, #6B35D9 0%, #D435A0 100%);
+    --gradient-text: linear-gradient(90deg, #8B55F6 0%, #F055C0 100%);
+    --dark: #0A0A0F; --dark-2: #111118; --dark-3: #18181F; --dark-4: #22222C;
+    --border: rgba(255,255,255,0.08); --text: #FFFFFF;
+    --text-muted: rgba(255,255,255,0.55); --text-dim: rgba(255,255,255,0.35);
+    --font-sans: 'DM Sans', sans-serif; --font-serif: 'DM Serif Display', serif;
+  }
+  body.light-mode {
+    --dark: #FFFFFF; --dark-2: #F8F8FF; --dark-3: #F0F0F8; --dark-4: #E8E8F0;
+    --border: rgba(0,0,0,0.08); --text: #0A0A1A;
+    --text-muted: rgba(10,10,26,0.6); --text-dim: rgba(10,10,26,0.4);
+  }
+  body.light-mode nav { background: rgba(255,255,255,0.95) \!important; box-shadow: 0 1px 20px rgba(0,0,0,0.08); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--dark); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+  .display { font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .headline { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+  .subhead { font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.55; font-weight: 300; color: var(--text-muted); }
+  .overline { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--magenta-light); }
+  .gradient-text { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 100px 0; }
+  .section-sm { padding: 60px 0; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    padding: 1.25rem 0;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border); transition: all 0.3s;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .nav-logo-text span:first-child { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); }
+  .nav-logo-text span:last-child { font-size: 0.75rem; font-weight: 700; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; list-style: none; gap: 0.25rem; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.75rem; border-radius: 8px; transition: all 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.05); }
+  .nav-ai-link { color: var(--magenta-light) \!important; }
+  .nav-agency-link { color: var(--purple-light) \!important; font-weight: 600 \!important; }
+  .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-cta { background: var(--gradient); color: white; text-decoration: none; padding: 0.6rem 1.25rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+  .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 0.6rem; cursor: pointer; font-size: 0.85rem; color: var(--text); transition: all 0.2s; }
+  .theme-toggle:hover { border-color: var(--purple-light); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.3s; }
+  .hero { min-height: 75vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(107,53,217,0.25) 0%, transparent 60%); pointer-events: none; }
+  .hero-content { position: relative; max-width: 780px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(139,85,246,0.12); border: 1px solid rgba(139,85,246,0.25); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 600; color: var(--purple-light); margin-bottom: 1.5rem; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gradient); color: white; text-decoration: none; padding: 0.875rem 1.75rem; border-radius: 12px; font-weight: 600; font-size: 1rem; transition: all 0.2s; border: none; cursor: pointer; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(107,53,217,0.35); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--text); text-decoration: none; padding: 0.875rem 1.75rem; border-radius: 12px; font-weight: 600; font-size: 1rem; border: 1.5px solid var(--border); transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--purple-light); color: var(--purple-light); }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+  .hero-stat-num { font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+  .hero-stat-label { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .service-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: all 0.3s; }
+  .service-card:hover { border-color: rgba(139,85,246,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(107,53,217,0.12); }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  .service-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(139,85,246,0.12); color: var(--purple-light); border-radius: 6px; padding: 0.2rem 0.6rem; margin-top: 1rem; }
+  .ai-badge { background: linear-gradient(90deg, rgba(107,53,217,0.15), rgba(212,53,160,0.15)) \!important; color: var(--magenta-light) \!important; border: 1px solid rgba(212,53,160,0.2); }
+  .glow-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(139,85,246,0.3) 30%, rgba(240,85,192,0.3) 70%, transparent 100%); margin: 0; }
+  .metrics-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
+  .metric-val { font-size: 2.5rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .metric-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem; }
+  .who-tabs { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 3rem; }
+  .tab-btn { padding: 0.6rem 1.5rem; border-radius: 50px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); }
+  .tab-btn.active { background: var(--gradient); color: white; border-color: transparent; }
+  .tab-content { display: none; } .tab-content.active { display: block; }
+  .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+  .process-step { background: var(--dark-3); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 1.5rem; text-align: center; }
+  .process-num { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 1rem; }
+  .process-step h4 { font-weight: 700; margin-bottom: 0.5rem; }
+  .process-step p { font-size: 0.85rem; color: var(--text-muted); }
+  .packages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+  .pkg-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem 2rem; position: relative; }
+  .pkg-card.featured { border-color: var(--purple-light); background: linear-gradient(135deg, rgba(107,53,217,0.1), rgba(212,53,160,0.1)); }
+  .pkg-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gradient); color: white; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 1rem; border-radius: 50px; white-space: nowrap; letter-spacing: 0.05em; text-transform: uppercase; }
+  .pkg-name { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .pkg-price { font-size: 2.75rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+  .pkg-period { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+  .pkg-desc { font-size: 0.875rem; color: var(--text-muted); margin: 1rem 0 1.5rem; }
+  .pkg-features { list-style: none; margin-bottom: 2rem; }
+  .pkg-features li { font-size: 0.875rem; color: var(--text-muted); padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+  .pkg-features li::before { content: "✓"; color: var(--purple-light); font-weight: 700; flex-shrink: 0; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+  .testimonial-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
+  .testimonial-stars { color: var(--magenta-light); font-size: 1rem; margin-bottom: 1rem; }
+  .testimonial-card blockquote { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; font-style: italic; margin-bottom: 1.5rem; }
+  .testimonial-author { font-weight: 600; font-size: 0.875rem; }
+  .testimonial-role { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.15rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+  .contact-point { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+  .contact-point-icon { width: 40px; height: 40px; background: rgba(139,85,246,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--dark-4); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; color: var(--text); font-family: var(--font-sans); font-size: 0.925rem; transition: border-color 0.2s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--purple-light); }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  footer { background: var(--dark-2); border-top: 1px solid var(--border); padding: 60px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 0.875rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.6; max-width: 280px; }
+  .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 1rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a { text-decoration: none; color: var(--text-muted); font-size: 0.875rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--purple-light); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--text-dim); }
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .cta-section { background: linear-gradient(135deg, rgba(107,53,217,0.15), rgba(212,53,160,0.15)); border-top: 1px solid rgba(139,85,246,0.2); border-bottom: 1px solid rgba(139,85,246,0.2); }
+  @media (max-width: 1024px) { .grid-3 { grid-template-columns: repeat(2,1fr); } .packages-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark-2); padding: 1rem; border-bottom: 1px solid var(--border); }
+    .nav-hamburger { display: flex; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .metrics-strip { grid-template-columns: repeat(2,1fr); }
+    .process-grid { grid-template-columns: repeat(2,1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<\!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="lgd_website_v2.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ag-grad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#8B55F6"/>
+            <stop offset="100%" stop-color="#F055C0"/>
+          </linearGradient>
+        </defs>
+        <path d="M 29 13 A 13 13 0 1 0 31 17" stroke="url(#ag-grad)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M 29 13 L 37 4" stroke="url(#ag-grad)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 37 4 L 37 10" stroke="url(#ag-grad)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 37 4 L 31 5" stroke="url(#ag-grad)" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="7" y="28" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="url(#ag-grad)">grow.</text>
+      </svg>
+      <div class="nav-logo-text">
+        <span>lets grow digital</span>
+        <span>.ai</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="lgd_website_v2.html">Home</a></li>
+      <li><a href="ai.html" class="nav-ai-link">✦ AI Agent</a></li>
+      <li><a href="agency.html" class="nav-agency-link active">Agency</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+      <a href="#contact" class="nav-cta">Free Audit →</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<\!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Full-Service Digital Agency</div>
+      <h1 class="display">
+        Every touchpoint of<br>
+        the <span class="gradient-text">marketing funnel.</span>
+      </h1>
+      <p class="subhead" style="max-width:600px; margin-top:1.25rem;">
+        Comprehensive digital marketing for ambitious businesses. SEO to paid media, social to email — every strategy is AI-powered and custom-built for your goals.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Get a Free Audit →</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Businesses Grown</div></div>
+        <div><div class="hero-stat-num">3.8×</div><div class="hero-stat-label">Avg. ROAS</div></div>
+        <div><div class="hero-stat-num">94%</div><div class="hero-stat-label">Client Retention</div></div>
+        <div><div class="hero-stat-num">AI-First</div><div class="hero-stat-label">Strategy & Execution</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<\!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3.5rem;" class="fade-up">
+      <p class="overline">What We Do</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Every touchpoint of<br>the <span class="gradient-text">marketing funnel</span></h2>
+      <p class="subhead" style="font-size:1rem;">Our comprehensive suite of services ignites every phase of the customer journey — from first impression to loyal customer.</p>
+    </div>
+    <div class="grid-3">
+      <div class="service-card fade-up stagger-1">
+        <div class="service-icon">🔍</div>
+        <h3>SEO & Generative Engine Optimization</h3>
+        <p>Grow organic traffic and make your brand visible across both traditional search and AI-powered tools like ChatGPT, Gemini, and Perplexity.</p>
+        <span class="service-tag">Owned Media</span>
+      </div>
+      <div class="service-card fade-up stagger-2">
+        <div class="service-icon">💰</div>
+        <h3>Paid Media & PPC</h3>
+        <p>Capture high-intent traffic and eliminate wasted spend with data-driven Google, Bing, and programmatic campaigns engineered for ROI.</p>
+        <span class="service-tag">Paid Media</span>
+      </div>
+      <div class="service-card fade-up stagger-3">
+        <div class="service-icon">📱</div>
+        <h3>Paid Social & Meta Ads</h3>
+        <p>Convert new audiences on Facebook, Instagram, TikTok, and YouTube. We get your ads seen and your target audience to actually buy.</p>
+        <span class="service-tag">Paid Social</span>
+      </div>
+      <div class="service-card fade-up stagger-1">
+        <div class="service-icon">✉️</div>
+        <h3>Email & SMS Marketing</h3>
+        <p>Automated campaigns that nurture leads throughout the customer journey, maximize lifetime value, and keep your brand top of mind.</p>
+        <span class="service-tag">Retention</span>
+      </div>
+      <div class="service-card fade-up stagger-2">
+        <div class="service-icon">🎨</div>
+        <h3>Content Marketing & Creative</h3>
+        <p>Strategic content and creative services that engage customers at every journey stage. Videos, visuals, copy — all aligned to your brand.</p>
+        <span class="service-tag">Owned Media</span>
+      </div>
+      <div class="service-card fade-up stagger-3">
+        <div class="service-icon">🌐</div>
+        <h3>Web Design & CRO</h3>
+        <p>Beautiful websites engineered to convert. We solve the real problems: traffic not converting, no leads, poor ROI, Google invisibility.</p>
+        <span class="service-tag">Conversion</span>
+      </div>
+      <div class="service-card fade-up stagger-1" style="border-color: rgba(212,53,160,0.2); background: linear-gradient(135deg, rgba(107,53,217,0.08), rgba(212,53,160,0.08));">
+        <div class="service-icon">🤖</div>
+        <h3>AI Integration & Agents</h3>
+        <p>Our AI monitors campaigns 24/7, responds to customers with pre-defined triggers, automates time-consuming processes, and surfaces real-time insights.</p>
+        <span class="service-tag ai-badge">✦ AI-Native</span>
+        <p style="font-size:0.8rem; margin-top:0.75rem; color: var(--magenta-light);">→ <a href="ai.html" style="color:var(--magenta-light);">Looking for our AI Voice & Text product?</a></p>
+      </div>
+      <div class="service-card fade-up stagger-2">
+        <div class="service-icon">📊</div>
+        <h3>CRM & Lead Management</h3>
+        <p>AI-enabled lead management that replaces your spreadsheets. Manage your entire sales cycle from lead-to-close without adding headcount.</p>
+        <span class="service-tag">Growth Ops</span>
+      </div>
+      <div class="service-card fade-up stagger-3">
+        <div class="service-icon">⭐</div>
+        <h3>Reputation Management</h3>
+        <p>Protect and amplify your brand reputation. We monitor, respond, and build the social proof that turns prospects into confident buyers.</p>
+        <span class="service-tag">Brand Trust</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<\!-- METRICS -->
+<section class="section-sm">
+  <div class="container">
+    <div class="metrics-strip fade-up">
+      <div><div class="metric-val">3.8×</div><div class="metric-label">Average ROAS Delivered</div></div>
+      <div><div class="metric-val">500+</div><div class="metric-label">Businesses Scaled</div></div>
+      <div><div class="metric-val">94%</div><div class="metric-label">Client Retention Rate</div></div>
+      <div><div class="metric-val">24h</div><div class="metric-label">Avg. Response Time</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<\!-- WHO WE HELP -->
+<section class="section" id="who-we-help">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3rem;" class="fade-up">
+      <p class="overline">Who We Help</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Built for <span class="gradient-text">ambitious businesses</span></h2>
+      <p class="subhead" style="font-size:1rem;">Whether you're selling to businesses or consumers, we craft the strategy that drives real revenue — not just vanity metrics.</p>
+    </div>
+    <div class="who-tabs">
+      <button class="tab-btn active" onclick="showTab('b2b')">B2B Companies</button>
+      <button class="tab-btn" onclick="showTab('b2c')">B2C Brands</button>
+    </div>
+    <div class="tab-content active" id="tab-b2b">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; max-width:900px; margin:0 auto;">
+        <div class="fade-up">
+          <h3 style="font-size:1.5rem; margin-bottom:1rem;">B2B Companies</h3>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem;">We generate qualified pipeline for complex sales cycles — from lead gen to nurture to close.</p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Medical, Legal & Financial Services</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ B2B SaaS & Technology</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Professional Services & Consulting</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Manufacturing & Logistics</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Staffing & Recruiting</li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="margin-top:1.5rem;">Get Your Free B2B Audit →</a>
+        </div>
+        <div style="background:var(--dark-3); border:1px solid var(--border); border-radius:20px; padding:2rem;">
+          <div style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">
+            <strong style="color:var(--text);">B2B clients typically see:</strong><br><br>
+            📈 3-5× increase in qualified demo requests<br>
+            💼 40-60% reduction in cost-per-lead<br>
+            🎯 2× improvement in lead-to-close rate<br>
+            📊 Full funnel attribution & reporting
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-b2c">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; max-width:900px; margin:0 auto;">
+        <div class="fade-up">
+          <h3 style="font-size:1.5rem; margin-bottom:1rem;">B2C Brands</h3>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem;">We build brands consumers love and campaigns that convert at every step of the funnel.</p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Retail & eCommerce</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Restaurants & Food & Beverage</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Home Services & Contractors</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Health, Wellness & Fitness</li>
+            <li style="font-size:0.875rem; color:var(--text-muted);">✓ Real Estate & Property</li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="margin-top:1.5rem;">Get Your Free B2C Audit →</a>
+        </div>
+        <div style="background:var(--dark-3); border:1px solid var(--border); border-radius:20px; padding:2rem;">
+          <div style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">
+            <strong style="color:var(--text);">B2C clients typically see:</strong><br><br>
+            🛒 3.8× average return on ad spend<br>
+            📱 2-4× improvement in social engagement<br>
+            💌 35%+ email open rates<br>
+            🔄 Significant LTV increase through retention
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<\!-- PROCESS -->
+<section class="section" id="process" style="background:var(--dark-2);">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3rem;" class="fade-up">
+      <p class="overline">How We Work</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Your path to <span class="gradient-text">accelerated growth</span></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up stagger-1">
+        <div class="process-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>30-minute deep dive into your business, goals, current marketing, and competition.</p>
+      </div>
+      <div class="process-step fade-up stagger-2">
+        <div class="process-num">2</div>
+        <h4>Strategy & Roadmap</h4>
+        <p>Custom 90-day growth plan with channel strategy, budget allocation, and KPI targets.</p>
+      </div>
+      <div class="process-step fade-up stagger-3">
+        <div class="process-num">3</div>
+        <h4>Launch & Execute</h4>
+        <p>Campaigns live within 2 weeks. AI monitoring from day one. Daily optimizations.</p>
+      </div>
+      <div class="process-step fade-up" style="transition-delay:0.4s;">
+        <div class="process-num">4</div>
+        <h4>Optimize & Scale</h4>
+        <p>Monthly reporting, continuous testing, and strategic pivots to maximize ROI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<\!-- PACKAGES -->
+<section class="section" id="packages">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3.5rem;" class="fade-up">
+      <p class="overline">Pricing</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Simple, transparent <span class="gradient-text">pricing</span></h2>
+      <p class="subhead" style="font-size:1rem;">No long-term contracts. Cancel anytime. Every plan includes dedicated account management and AI-powered campaign monitoring.</p>
+    </div>
+    <div class="packages-grid">
+      <div class="pkg-card fade-up stagger-1">
+        <div class="pkg-name">Starter</div>
+        <div class="pkg-price">$1,497<span class="pkg-period">/mo</span></div>
+        <div class="pkg-desc">Perfect for businesses just getting serious about digital marketing.</div>
+        <ul class="pkg-features">
+          <li>1–2 marketing channels</li>
+          <li>Monthly strategy & reporting call</li>
+          <li>Dedicated account manager</li>
+          <li>AI campaign monitoring</li>
+          <li>Performance dashboard access</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+      <div class="pkg-card featured fade-up stagger-2">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-name">Growth</div>
+        <div class="pkg-price">$2,997<span class="pkg-period">/mo</span></div>
+        <div class="pkg-desc">For growth-stage businesses ready to scale aggressively.</div>
+        <ul class="pkg-features">
+          <li>3–4 marketing channels</li>
+          <li>Bi-weekly strategy calls</li>
+          <li>Creative assets included</li>
+          <li>Advanced analytics & attribution</li>
+          <li>A/B testing program</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%;justify-content:center;">Get Started →</a>
+      </div>
+      <div class="pkg-card fade-up stagger-3">
+        <div class="pkg-name">Scale</div>
+        <div class="pkg-price">$5,997<span class="pkg-period">/mo</span></div>
+        <div class="pkg-desc">Full-service partnership for ambitious businesses going all-in.</div>
+        <ul class="pkg-features">
+          <li>All channels, unlimited campaigns</li>
+          <li>Weekly strategy sessions</li>
+          <li>Full creative studio</li>
+          <li>Custom dashboards & reporting</li>
+          <li>Dedicated growth team</li>
+          <li>SLA performance guarantee</li>
+        </ul>
+        <a href="#contact" class="btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:0.8rem; color:var(--text-dim); margin-top:1.5rem;">All plans include a free 30-day onboarding period. No setup fees. No hidden costs.</p>
+  </div>
+</section>
+
+<\!-- TESTIMONIALS -->
+<section class="section" style="background:var(--dark-2);">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3rem;" class="fade-up">
+      <p class="overline">Client Results</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Real businesses. <span class="gradient-text">Real growth.</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up stagger-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"LGD transformed our Google Ads performance. We went from burning budget to a consistent 4.2× ROAS in just 60 days. Their AI monitoring caught issues I never would have seen."</blockquote>
+        <div class="testimonial-author">Sarah M.</div>
+        <div class="testimonial-role">eCommerce Brand, NJ</div>
+      </div>
+      <div class="testimonial-card fade-up stagger-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"Our SEO traffic doubled in 4 months. We're now ranking for terms I didn't even know existed. The GEO optimization for AI search tools was a game-changer for our firm."</blockquote>
+        <div class="testimonial-author">James R.</div>
+        <div class="testimonial-role">Legal Services, NYC</div>
+      </div>
+      <div class="testimonial-card fade-up stagger-3">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"We tried two other agencies before LGD. Nobody else put together this level of strategy and then actually executed it. Our lead volume is up 180% year-over-year."</blockquote>
+        <div class="testimonial-author">Mike T.</div>
+        <div class="testimonial-role">B2B SaaS, PA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<\!-- CTA -->
+<section class="section cta-section">
+  <div class="container" style="text-align:center; max-width:700px; margin:0 auto;">
+    <p class="overline">Ready to Grow?</p>
+    <h2 class="headline" style="margin:0.75rem 0 1.25rem;">Does your business pop when<br>prospects search for you?</h2>
+    <p style="color:var(--text-muted); margin-bottom:2rem; font-size:1rem;">Get a free, no-obligation marketing audit. We'll show you exactly what's working, what's not, and what the fastest path to growth looks like for your business.</p>
+    <a href="#contact" class="btn-primary">Request Free Audit →</a>
+  </div>
+</section>
+
+<\!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 3.5rem;" class="fade-up">
+      <p class="overline">Get In Touch</p>
+      <h2 class="headline" style="margin:0.75rem 0 1rem;">Let's build something <span class="gradient-text">great together</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <div class="contact-point">
+          <div class="contact-point-icon">📞</div>
+          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Phone</h4><p style="color:var(--text-muted); font-size:0.9rem;"><a href="tel:+17324843000" style="color:var(--purple-light); text-decoration:none;">732-484-3000</a></p></div>
+        </div>
+        <div class="contact-point">
+          <div class="contact-point-icon">✉️</div>
+          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Email</h4><p style="color:var(--text-muted); font-size:0.9rem;"><a href="mailto:hello@letsgrowdigital.ai" style="color:var(--purple-light); text-decoration:none;">hello@letsgrowdigital.ai</a></p></div>
+        </div>
+        <div class="contact-point">
+          <div class="contact-point-icon">📍</div>
+          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Location</h4><p style="color:var(--text-muted); font-size:0.9rem;">Point Pleasant, NJ</p></div>
+        </div>
+        <div class="contact-point">
+          <div class="contact-point-icon">⚡</div>
+          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Response Time</h4><p style="color:var(--text-muted); font-size:0.9rem;">We respond within 24 hours — usually sooner</p></div>
+        </div>
+      </div>
+      <div class="fade-up stagger-2">
+        <div style="background:var(--dark-3); border:1px solid var(--border); border-radius:20px; padding:2.5rem;">
+          <h3 style="font-size:1.25rem; font-weight:600; margin-bottom:1.75rem;">Request Your Free Audit</h3>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-group"><label>Name *</label><input type="text" placeholder="John Smith" required></div>
+            <div class="form-group"><label>Email *</label><input type="email" placeholder="john@yourbusiness.com" required></div>
+            <div class="form-group"><label>Phone *</label><input type="tel" placeholder="(555) 123-4567" required></div>
+            <div class="form-group"><label>Company Name</label><input type="text" placeholder="Acme Corp"></div>
+            <div class="form-group">
+              <label>Primary Goal</label>
+              <select>
+                <option value="">Select your biggest priority...</option>
+                <option>More leads / inquiries</option>
+                <option>Better ROAS on paid ads</option>
+                <option>Improve SEO rankings</option>
+                <option>Social media growth</option>
+                <option>Full-service agency partner</option>
+                <option>Website redesign & CRO</option>
+                <option>AI & automation integration</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Monthly Marketing Budget</label>
+              <select id="budget-select">
+                <option value="">Select your budget range...</option>
+                <option>Under $1,000/mo</option>
+                <option>$1,000 – $5,000/mo</option>
+                <option>$5,000 – $15,000/mo</option>
+                <option>$15,000+/mo</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Tell us about your business (optional)</label><textarea placeholder="What do you do, who are your customers, what's your biggest marketing challenge?"></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;border:none;padding:1rem 2rem;font-size:1rem;" id="submit-btn">Send Request →</button>
+            <p style="font-size:0.75rem; color:var(--text-dim); text-align:center; margin-top:0.75rem;">No commitment. We'll reach out within 24 hours. 🔒 Your info is secure.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<\!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg width="120" height="36" viewBox="0 0 180 40" fill="none">
+          <path d="M 28 12 A 13 13 0 1 0 30 16" stroke="url(#ft2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 28 12 L 36 4" stroke="url(#ft2)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 36 4 L 36 10" stroke="url(#ft2)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 36 4 L 30 5" stroke="url(#ft2)" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="9" y="26" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="url(#ft2)">grow.</text>
+          <text x="45" y="16" font-family="DM Sans, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.85)">lets grow</text>
+          <text x="45" y="32" font-family="DM Sans, sans-serif" font-size="13" font-weight="700" fill="url(#ft2)">digital.ai</text>
+          <defs><linearGradient id="ft2" x1="0" y1="0" x2="180" y2="40"><stop offset="0%" stop-color="#8B55F6"/><stop offset="100%" stop-color="#F055C0"/></linearGradient></defs>
+        </svg>
+        <p>Full-service digital marketing built for ambitious businesses. AI-first. Results-focused. Obsessively transparent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="ai.html">✦ AI Front Desk</a></li>
+          <li><a href="#services">SEO & GEO</a></li>
+          <li><a href="#services">Paid Media</a></li>
+          <li><a href="#services">Meta & Social Ads</a></li>
+          <li><a href="#services">Email & SMS</a></li>
+          <li><a href="#services">Web Design & CRO</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About LGD</a></li>
+          <li><a href="#who-we-help">Who We Help</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#packages">Pricing</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="lgd_website_v2.html">Home</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul class="footer-links">
+          <li><a href="ai.html">AI Front Desk</a></li>
+          <li><a href="agency.html">Agency Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Lets Grow Digital. letsgrowdigital.ai · All rights reserved.</p>
+      <p><a href="privacy.html" style="color:var(--text-dim); text-decoration:none;">Privacy Policy</a> · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+<\!-- Cal.com Floating Booking Button -->
+<script type="text/javascript">
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal; let ar = arguments;
+    if (\!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+    if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", { origin: "https://cal.com" });
+Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=Agency Page", buttonText: "Book a Free Audit", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
+Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
+</script>
+
+<script>
+  const WORKER_URL = 'https://kb-leads-proxy.bryan-boutin.workers.dev';
+
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const btn = document.getElementById('theme-toggle');
+    btn.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+    localStorage.setItem('lgd-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+  (function() {
+    if (localStorage.getItem('lgd-theme') === 'light') {
+      document.body.classList.add('light-mode');
+      document.addEventListener('DOMContentLoaded', () => { const b = document.getElementById('theme-toggle'); if(b) b.textContent = '🌙'; });
+    }
+  })();
+
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    const payload = {
+      name: e.target.querySelector('input[placeholder*="John Smith"]')?.value || '',
+      email: e.target.querySelector('input[type="email"]')?.value || '',
+      phone: e.target.querySelector('input[type="tel"]')?.value || '',
+      company: e.target.querySelector('input[placeholder*="Acme Corp"]')?.value || '',
+      message: e.target.querySelector('textarea')?.value || '',
+      budget: document.getElementById('budget-select')?.options[document.getElementById('budget-select').selectedIndex]?.text || '',
+      source: 'Lets Grow Digital Agency Page', entryPoint: 'Agency Contact Form'
+    };
+    try {
+      const r = await fetch(`${WORKER_URL}/lead`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      if (r.ok) { btn.textContent = "✓ Sent\! We'll reach out within 24 hours."; btn.style.background = 'linear-gradient(135deg,#1e7e34,#28a745)'; e.target.reset(); }
+      else throw new Error();
+    } catch { btn.textContent = '✗ Error. Please try again.'; btn.style.background = 'linear-gradient(135deg,#dc3545,#c82333)'; }
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('mobile-open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open'); navLinks.classList.remove('mobile-open');
+  }));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 60 ? 'rgba(10,10,15,0.97)' : 'rgba(10,10,15,0.85)';
+  });
+</script>
+</body>
+</html>

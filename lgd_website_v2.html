@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lets Grow Digital — Full-Service Digital Marketing Agency</title>
+<title>Lets Grow Digital — AI-Powered Growth for Small & Medium Businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.jpg" type="image/jpeg">
 <link rel="apple-touch-icon" href="favicon.jpg">
 <link rel="canonical" href="https://letsgrowdigital.ai/">
-<meta name="description" content="Lets Grow Digital is a full-service digital marketing agency. AI-first strategies for SEO, paid media, social ads, email marketing, web design, and CRM.">
+<meta name="description" content="LetsGrowDigital.ai brings AI and automation into small & medium businesses to improve operations, enhance customer engagement, and boost revenue.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://letsgrowdigital.ai/">
-<meta property="og:title" content="Lets Grow Digital — Full-Service Digital Marketing Agency">
-<meta property="og:description" content="AI-first digital marketing agency helping ambitious businesses grow. SEO, paid media, social ads, email marketing, web design, and CRM.">
+<meta property="og:title" content="Lets Grow Digital — AI-Powered Growth for Small & Medium Businesses">
+<meta property="og:description" content="LetsGrowDigital.ai brings AI and automation into small & medium businesses to improve operations, enhance customer engagement, and boost revenue.">
 <meta property="og:image" content="https://letsgrowdigital.ai/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lets Grow Digital — Full-Service Digital Marketing Agency">
-<meta name="twitter:description" content="AI-first digital marketing agency helping ambitious businesses grow.">
+<meta name="twitter:title" content="Lets Grow Digital — AI-Powered Growth for Small & Medium Businesses">
+<meta name="twitter:description" content="LetsGrowDigital.ai brings AI and automation into small & medium businesses to improve operations, enhance customer engagement, and boost revenue.">
 <meta name="twitter:image" content="https://letsgrowdigital.ai/og-image.jpg">
 <style>
   :root {
@@ -40,6 +40,27 @@
     --font-sans: 'DM Sans', sans-serif;
     --font-serif: 'DM Serif Display', serif;
   }
+body.light-mode {
+  --dark: #FFFFFF;
+  --dark-2: #F8F8FF;
+  --dark-3: #F0F0F8;
+  --dark-4: #E8E8F0;
+  --border: rgba(0,0,0,0.08);
+  --text: #0A0A1A;
+  --text-muted: rgba(10,10,26,0.6);
+  --text-dim: rgba(10,10,26,0.4);
+}
+body.light-mode nav {
+  background: rgba(255,255,255,0.92) \!important;
+}
+body.light-mode .hero-bg {
+  opacity: 0.3;
+}
+
+.theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 0.6rem; cursor: pointer; font-size: 0.85rem; color: var(--text); transition: all 0.2s; }
+.theme-toggle:hover { border-color: var(--purple-light); }
+
+
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -109,6 +130,10 @@
   .nav-links a:hover { color: var(--text); }
   .nav-cta { background: var(--gradient); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 100px; font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s, transform 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
   .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .nav-ai-link { color: var(--magenta-light) \!important; font-weight: 600; }
+  .nav-ai-link:hover { color: var(--purple-light) \!important; }
+
 
   /* ===== HERO ===== */
   .hero {
@@ -504,6 +529,11 @@
       border-bottom: 1px solid var(--border);
     }
   }
+  @media (max-width: 768px) {
+    .ai-teaser-grid { grid-template-columns: 1fr \!important; }
+  }
+
+
 
   /* ===== ANIMATIONS ===== */
   .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -520,18 +550,22 @@
 <nav>
   <div class="container">
     <a href="#" class="nav-logo">
-      <svg class="logo-svg" viewBox="0 0 44 44" fill="none">
-        <circle cx="18" cy="22" r="13" stroke="url(#navgrad)" stroke-width="1.8"/>
-        <path d="M28 10 L34 4" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M34 4 L36 10" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M34 4 L28 6" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
-        <text x="7" y="26" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="url(#navgrad)">grow.</text>
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="navgrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#8B55F6"/>
             <stop offset="100%" stop-color="#F055C0"/>
           </linearGradient>
         </defs>
+        <\!-- Circle arc - starts at top-right break point, goes counterclockwise around almost complete -->
+        <path d="M 29 13 A 13 13 0 1 0 31 17" stroke="url(#navgrad)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <\!-- Arrow shaft from break point going upper-right -->
+        <path d="M 29 13 L 37 4" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
+        <\!-- Arrowhead -->
+        <path d="M 37 4 L 37 10" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 37 4 L 31 5" stroke="url(#navgrad)" stroke-width="1.8" stroke-linecap="round"/>
+        <\!-- grow. text -->
+        <text x="7" y="28" font-family="DM Sans, sans-serif" font-size="9" font-weight="700" fill="url(#navgrad)">grow.</text>
       </svg>
       <div class="nav-logo-text">
         lets grow digital
@@ -540,14 +574,14 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#who-we-help">Who We Help</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#packages">Packages</a></li>
+      <li><a href="ai.html" class="nav-ai-link">✦ AI Agent</a></li>
+      <li><a href="agency.html">Agency</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
     <a href="#contact" class="nav-cta">Free Audit →</a>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -563,19 +597,19 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Now accepting new clients — limited spots available
+        ✦ AI-Powered Growth for SMBs
       </div>
       <h1 class="display">
-        Digital marketing<br>
-        that <span class="gradient-text line-italic">actually</span><br>
-        grows your business
+        AI that works for<br>
+        your business.<br>
+        <span class="gradient-text">24/7.</span>
       </h1>
       <p class="subhead">
-        Let our full-service digital agency help your company stand out, grow faster, and reach more clients than ever before. Every strategy is custom-built — no templates, no guesswork.
+        LetsGrowDigital.ai brings AI and automation into small & medium businesses to improve operations, enhance customer engagement, and boost revenue — backed by full-service digital marketing.
       </p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn-primary">Get a Free Audit →</a>
-        <a href="#services" class="btn-outline">Explore Services</a>
+        <a href="ai.html" class="btn-primary">See AI Front Desk →</a>
+        <a href="agency.html" class="btn-outline">Digital Agency Services</a>
       </div>
       <div class="hero-stats">
         <div>
@@ -583,17 +617,56 @@
           <div class="hero-stat-label">Businesses Grown</div>
         </div>
         <div>
-          <div class="hero-stat-num">3.8×</div>
-          <div class="hero-stat-label">Avg. ROAS for Clients</div>
+          <div class="hero-stat-num">24/7</div>
+          <div class="hero-stat-label">AI Always On</div>
         </div>
         <div>
           <div class="hero-stat-num">AI-First</div>
           <div class="hero-stat-label">Strategy & Execution</div>
         </div>
         <div>
-          <div class="hero-stat-num">24/7</div>
-          <div class="hero-stat-label">Campaign Monitoring</div>
+          <div class="hero-stat-num">48h</div>
+          <div class="hero-stat-label">Live in 48 Hours</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<\!-- ===== AI FRONT DESK TEASER ===== -->
+<section class="section-sm" id="ai-teaser" style="background: linear-gradient(135deg, rgba(107,53,217,0.12) 0%, rgba(212,53,160,0.12) 100%); border-top: 1px solid rgba(139,85,246,0.2); border-bottom: 1px solid rgba(139,85,246,0.2);">
+  <div class="container">
+    <div class="ai-teaser-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+      <div class="fade-up">
+        <p class="overline" style="color: var(--magenta-light);">✦ New — AI Front Desk</p>
+        <h2 class="headline" style="margin: 0.75rem 0 1rem;">Never miss a call.<br><span class="gradient-text">Never lose a lead.</span></h2>
+        <p class="subhead" style="font-size: 1rem;">An AI receptionist that answers calls & texts for your business — 24/7. Sounds like a real person. Branded to your company. <strong style="color: var(--text);">$299/mo. Live in 48 hours.</strong></p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+          <a href="ai.html" class="btn-primary">See How It Works →</a>
+          <a href="ai.html#demo-form" class="btn-outline">Book a Free Demo</a>
+        </div>
+      </div>
+      <div class="fade-up stagger-2">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">78%</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">of buyers choose the first to respond</div>
+          </div>
+          <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">62%</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">of small biz calls go unanswered</div>
+          </div>
+          <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">100×</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">better conversion in first 5 minutes</div>
+          </div>
+          <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">$299</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">/mo · No contracts</div>
+          </div>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem;">Built for plumbers, HVAC techs, electricians, roofers & more</p>
       </div>
     </div>
   </div>
@@ -1224,14 +1297,15 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul class="footer-links">
-          <li><a href="#services">SEO & GEO</a></li>
-          <li><a href="#services">Paid Media</a></li>
-          <li><a href="#services">Meta & Social Ads</a></li>
-          <li><a href="#services">Email & SMS</a></li>
-          <li><a href="#services">Content Marketing</a></li>
-          <li><a href="#services">Web Design & CRO</a></li>
-          <li><a href="#services">AI Integration</a></li>
-          <li><a href="#services">CRM & Lead Mgmt</a></li>
+          <li><a href="ai.html">AI Front Desk</a></li>
+          <li><a href="agency.html#services">SEO & GEO</a></li>
+          <li><a href="agency.html#services">Paid Media</a></li>
+          <li><a href="agency.html#services">Meta & Social Ads</a></li>
+          <li><a href="agency.html#services">Email & SMS</a></li>
+          <li><a href="agency.html#services">Content Marketing</a></li>
+          <li><a href="agency.html#services">Web Design & CRO</a></li>
+          <li><a href="agency.html#services">AI Integration</a></li>
+          <li><a href="agency.html#services">CRM & Lead Mgmt</a></li>
         </ul>
       </div>
 
@@ -1239,9 +1313,9 @@
         <h4>Company</h4>
         <ul class="footer-links">
           <li><a href="about.html">About LGD</a></li>
-          <li><a href="#who-we-help">Who We Help</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#packages">Pricing</a></li>
+          <li><a href="agency.html#who-we-help">Who We Help</a></li>
+          <li><a href="agency.html#process">Our Process</a></li>
+          <li><a href="agency.html#packages">Pricing</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
@@ -1249,13 +1323,13 @@
       <div class="footer-col">
         <h4>Industries</h4>
         <ul class="footer-links">
-          <li><a href="#who-we-help">Medical & Health</a></li>
-          <li><a href="#who-we-help">Legal Services</a></li>
-          <li><a href="#who-we-help">Professional Services</a></li>
-          <li><a href="#who-we-help">Retail & eCommerce</a></li>
-          <li><a href="#who-we-help">Food & Beverage</a></li>
-          <li><a href="#who-we-help">Technology</a></li>
-          <li><a href="#who-we-help">Home Services</a></li>
+          <li><a href="agency.html#who-we-help">Medical & Health</a></li>
+          <li><a href="agency.html#who-we-help">Legal Services</a></li>
+          <li><a href="agency.html#who-we-help">Professional Services</a></li>
+          <li><a href="agency.html#who-we-help">Retail & eCommerce</a></li>
+          <li><a href="agency.html#who-we-help">Food & Beverage</a></li>
+          <li><a href="agency.html#who-we-help">Technology</a></li>
+          <li><a href="agency.html#who-we-help">Home Services</a></li>
         </ul>
       </div>
     </div>
@@ -1427,5 +1501,42 @@
   });
 </script>
 
+
+<\!-- Cal.com Floating Booking Button -->
+<script type="text/javascript">
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal; let ar = arguments;
+    if (\!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+    if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", { origin: "https://cal.com" });
+Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=Lets Grow Digital Website", buttonText: "Book a Free Audit", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
+Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
+</script>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const btn = document.getElementById('theme-toggle');
+  btn.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+  localStorage.setItem('lgd-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+}
+
+// Load saved theme
+(function() {
+  if (localStorage.getItem('lgd-theme') === 'light') {
+    document.body.classList.add('light-mode');
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = '🌙';
+    });
+  }
+})();
+</script>
+
 </body>
-</html>

@@ -1,0 +1,2342 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Front Desk for Home Service Pros | LetsGrowDigital.ai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --purple: #6B35D9;
+            --purple-light: #8B55F6;
+            --purple-dark: #4A1FA8;
+            --magenta: #D435A0;
+            --magenta-light: #F055C0;
+            --gradient: linear-gradient(135deg, #6B35D9 0%, #D435A0 100%);
+            --gradient-text: linear-gradient(90deg, #8B55F6 0%, #F055C0 100%);
+            --dark: #0A0A0F;
+            --dark-2: #111118;
+            --dark-3: #18181F;
+            --dark-4: #22222C;
+            --border: rgba(255,255,255,0.08);
+            --text: #FFFFFF;
+            --text-muted: rgba(255,255,255,0.55);
+        }
+
+        body.light-mode {
+            --dark: #FFFFFF;
+            --dark-2: #F8F8FF;
+            --dark-3: #F0F0F8;
+            --dark-4: #E8E8F0;
+            --border: rgba(0,0,0,0.08);
+            --text: #0A0A1A;
+            --text-muted: rgba(10,10,26,0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: 'DM Sans', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            background-color: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode nav {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        nav.scrolled {
+            background-color: rgba(10, 10, 15, 0.95);
+        }
+
+        body.light-mode nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '↗';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            font-size: 1.2rem;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 0.65rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 53, 217, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(107, 53, 217, 0.1) 0%, rgba(212, 53, 160, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 34px, rgba(255,255,255,0.02) 34px, rgba(255,255,255,0.02) 35px),
+                repeating-linear-gradient(90deg, transparent, transparent 34px, rgba(255,255,255,0.02) 34px, rgba(255,255,255,0.02) 35px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(107, 53, 217, 0.15);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subhead {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(107, 53, 217, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(107, 53, 217, 0.15);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(107, 53, 217, 0.25);
+            border-color: rgba(107, 53, 217, 0.5);
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: #22C55E;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-trust {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== STATS STRIP ===== */
+        .stats-strip {
+            background: var(--dark-2);
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .stats-source {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        /* ===== PAIN POINTS ===== */
+        .pain-points {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pain-card {
+            background: rgba(220, 38, 38, 0.08);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .pain-card h3 {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+
+        .pain-separator {
+            text-align: center;
+            margin: 2.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .pain-separator::before,
+        .pain-separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .pain-separator p {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .pain-separator .strikethrough {
+            text-decoration: line-through;
+        }
+
+        .pain-close {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        .pain-close strong {
+            color: var(--text);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .how-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .steps-flow::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient);
+            z-index: 0;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .steps-flow::before {
+                display: block;
+            }
+        }
+
+        .step {
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: var(--dark-4);
+            border-color: rgba(107, 53, 217, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-bar {
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-bar strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature-row {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem;
+            background: var(--dark-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-row:hover {
+            background: var(--dark-3);
+            border-color: rgba(107, 53, 217, 0.3);
+            transform: translateX(8px);
+        }
+
+        .feature-number {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: var(--text-muted);
+        }
+
+        /* ===== DEMO WIDGET ===== */
+        .demo-widget {
+            padding: 5rem 2rem;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .demo-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .demo-tab.active {
+            color: var(--text);
+            border-bottom-color: var(--purple);
+        }
+
+        .demo-tab:hover {
+            color: var(--text);
+        }
+
+        .demo-content {
+            display: none;
+        }
+
+        .demo-content.active {
+            display: block;
+        }
+
+        .chat-container {
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chat-message {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.ai .chat-bubble {
+            background: rgba(107, 53, 217, 0.2);
+            border: 1px solid rgba(107, 53, 217, 0.3);
+            color: var(--text);
+        }
+
+        .chat-message.user .chat-bubble {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .chat-status {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        .chat-status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-status-item::before {
+            content: '✓';
+            color: #22C55E;
+            font-weight: bold;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calculator {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calc-card {
+            background: var(--dark-2);
+            border: 2px solid;
+            border-image: var(--gradient) 1;
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calc-input-group {
+            margin-bottom: 2rem;
+        }
+
+        .calc-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .calc-value {
+            font-size: 1.3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calc-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--dark-3);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calc-slider::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 20px rgba(107, 53, 217, 0.5);
+            transform: scale(1.2);
+        }
+
+        .calc-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient);
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .calc-slider::-moz-range-thumb:hover {
+            box-shadow: 0 0 20px rgba(107, 53, 217, 0.5);
+            transform: scale(1.2);
+        }
+
+        .calc-results {
+            background: rgba(107, 53, 217, 0.1);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .calc-result-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .calc-result-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calc-summary {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .calc-summary strong {
+            color: var(--text);
+        }
+
+        /* ===== TRADE BADGES ===== */
+        .trades {
+            padding: 5rem 2rem;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trades-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .trade-badge {
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .trade-badge:hover,
+        .trade-badge.active {
+            background: rgba(107, 53, 217, 0.2);
+            border-color: rgba(107, 53, 217, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .trade-info {
+            background: var(--dark-3);
+            border: 1px solid rgba(107, 53, 217, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .trade-info.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .trade-info h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .trade-info p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .trades-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comparison {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark-2);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--dark-3);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .comparison-table th:nth-child(1) {
+            width: 30%;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td:nth-child(2) {
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        .comparison-table .checkmark {
+            color: #22C55E;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table .x-mark {
+            color: #EF4444;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(107, 53, 217, 0.5);
+            background: var(--dark-4);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--purple);
+        }
+
+        /* ===== PRICING ===== */
+        .pricing {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--dark-2);
+            border: 1px solid var(--border);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22C55E;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-feature::before {
+            content: '✓';
+            color: #22C55E;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-feature:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-fine-print {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== DEMO FORM ===== */
+        .demo-form-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(107, 53, 217, 0.1) 0%, rgba(212, 53, 160, 0.1) 100%);
+            border-top: 1px solid var(--border);
+        }
+
+        .demo-form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .demo-form-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .form-left {
+            padding: 2rem;
+        }
+
+        .form-left h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-left-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .form-left-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .form-left-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--purple);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .form-trust {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .form-trust strong {
+            color: var(--text);
+        }
+
+        .form-right {
+            background: var(--dark-2);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--purple);
+            background: var(--dark-4);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-privacy {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 53, 217, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--text);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .nav-center.mobile-open {
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translateY(10px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translateY(-10px);
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-flow {
+                gap: 1rem;
+            }
+
+            .feature-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .demo-tabs {
+                gap: 0.5rem;
+            }
+
+            .demo-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .chat-container {
+                padding: 1rem;
+            }
+
+            .calc-card {
+                padding: 1.5rem;
+            }
+
+            .badge-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            }
+
+            .table-wrapper {
+                border-radius: 0;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-amount {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-subhead {
+                font-size: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .feature-row {
+                padding: 1.5rem;
+            }
+
+            .feature-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .pricing-amount {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <\!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            <div class="logo-icon">grow.</div>
+            <div>
+                <div style="font-size: 0.9rem;">lets grow digital</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">.ai</div>
+            </div>
+        </div>
+
+        <div class="nav-center" id="navCenter">
+            <ul class="nav-links">
+                <li><a href="lgd_website_v2.html">Home</a></li>
+                <li><a href="#" class="active">AI Agent</a></li>
+                <li><a href="agency.html">Agency</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="lgd_website_v2.html#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">☀️</button>
+            <button class="nav-cta" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Book a Demo →</button>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <\!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-up">
+            <div class="hero-badge">AI Front Desk · Home Service Pros</div>
+            <h1>Never miss a call.<br><span class="gradient-text">Never lose a lead.</span></h1>
+            <p class="hero-subhead">An AI receptionist that answers calls & texts for your business — 24/7. Sounds like a real person. Branded to your company.</p>
+            
+            <div class="hero-ctas">
+                <button class="btn-primary" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Book a Free 15-Min Demo →</button>
+                <button class="btn-secondary">
+                    <span>📞</span>
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.8rem;">Try AI Receptionist Live</div>
+                        <div style="font-weight: 600;">732-484-3000</div>
+                    </div>
+                </button>
+            </div>
+
+            <p class="hero-trust">7-day free trial · No setup required · Live in 48 hours</p>
+        </div>
+    </section>
+
+    <\!-- Stats Strip -->
+    <section class="stats-strip">
+        <div class="stats-container">
+            <div class="stat fade-up">
+                <div class="stat-number">78%</div>
+                <div class="stat-label">of buyers choose the first to respond</div>
+            </div>
+            <div class="stat fade-up">
+                <div class="stat-number">62%</div>
+                <div class="stat-label">of calls go unanswered</div>
+            </div>
+            <div class="stat fade-up">
+                <div class="stat-number">100×</div>
+                <div class="stat-label">more likely to convert in 5 min</div>
+            </div>
+            <div class="stat fade-up">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">no-show without reminders</div>
+            </div>
+        </div>
+        <p class="stats-source">Sources: LeadConnect, Forbes, InsideSales.com</p>
+    </section>
+
+    <\!-- Pain Points -->
+    <section class="pain-points">
+        <div class="section-header fade-up">
+            <h2>Sound Familiar?</h2>
+        </div>
+
+        <div class="pain-grid">
+            <div class="pain-card fade-up">
+                <div style="font-size: 2rem;">📞</div>
+                <h3>You miss calls on the job — and those leads call your competitor.</h3>
+            </div>
+            <div class="pain-card fade-up">
+                <div style="font-size: 2rem;">📝</div>
+                <h3>Customer info lives on sticky notes and texts you can never find.</h3>
+            </div>
+            <div class="pain-card fade-up">
+                <div style="font-size: 2rem;">📅</div>
+                <h3>Appointments fall through the cracks. No-shows cost you money.</h3>
+            </div>
+            <div class="pain-card fade-up">
+                <div style="font-size: 2rem;">😤</div>
+                <h3>You didn't start this business to answer phones all day.</h3>
+            </div>
+        </div>
+
+        <div class="pain-separator fade-up">
+            <p><span class="strikethrough">Press 1 for scheduling...</span></p>
+        </div>
+
+        <p class="pain-close fade-up"><strong>Not here.</strong></p>
+
+        <p class="pain-close fade-up">Our AI holds natural, human-like conversations. It understands context, asks follow-up questions, and knows your business. Callers regularly don't realize they're talking to AI.</p>
+    </section>
+
+    <\!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-container">
+            <div class="section-header fade-up">
+                <h2>How It Works</h2>
+                <p style="color: var(--text-muted); font-size: 1rem;">Simple setup. Instant results. Zero phone tag.</p>
+            </div>
+
+            <div class="steps-flow">
+                <div class="step fade-up">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📱</div>
+                    <h3>Customer calls or texts</h3>
+                    <p>Your existing number, forwarded to AI</p>
+                </div>
+                <div class="step fade-up">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🤖</div>
+                    <h3>AI handles it in your name</h3>
+                    <p>Natural conversation, books jobs, captures details</p>
+                </div>
+                <div class="step fade-up">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📩</div>
+                    <h3>You get the summary</h3>
+                    <p>Instant text with caller info, job details, next steps</p>
+                </div>
+            </div>
+
+            <div class="timeline-bar fade-up">
+                <strong>Day 1:</strong> Onboarding call → <strong>Day 2:</strong> AI trained on your business → <strong>Day 2:</strong> You're live
+            </div>
+        </div>
+    </section>
+
+    <\!-- Features -->
+    <section class="features">
+        <div class="section-header fade-up">
+            <h2>What We Handle For You</h2>
+        </div>
+
+        <div class="feature-list">
+            <div class="feature-row fade-up">
+                <div class="feature-number">1</div>
+                <div class="feature-content">
+                    <h3>Every call & text answered — 24/7</h3>
+                    <p>Picks up in your company's name. Takes caller details. Texts you a summary instantly.</p>
+                </div>
+            </div>
+            <div class="feature-row fade-up">
+                <div class="feature-number">2</div>
+                <div class="feature-content">
+                    <h3>Responds in seconds — not hours</h3>
+                    <p>While competitors go to voicemail, your business responds instantly. That speed wins the job.</p>
+                </div>
+            </div>
+            <div class="feature-row fade-up">
+                <div class="feature-number">3</div>
+                <div class="feature-content">
+                    <h3>Appointments booked & confirmed</h3>
+                    <p>Schedules jobs, sends confirmation texts, follows up before appointments to cut no-shows.</p>
+                </div>
+            </div>
+            <div class="feature-row fade-up">
+                <div class="feature-number">4</div>
+                <div class="feature-content">
+                    <h3>Every lead tracked automatically</h3>
+                    <p>Every interaction logged and organized. Your pipeline, built on autopilot.</p>
+                </div>
+            </div>
+            <div class="feature-row fade-up">
+                <div class="feature-number">5</div>
+                <div class="feature-content">
+                    <h3>Knows your business inside out</h3>
+                    <p>AI trained on your services, service area, and FAQs. Answers real questions like a team member.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <\!-- Demo Widget -->
+    <section class="demo-widget">
+        <div class="demo-container">
+            <div class="section-header fade-up">
+                <h2>See It In Action</h2>
+                <p style="color: var(--text-muted); font-size: 1rem;">Watch how our AI handles a real inbound call — naturally, professionally, instantly.</p>
+            </div>
+
+            <div class="demo-tabs fade-up">
+                <button class="demo-tab active" data-tab="plumbing">🔧 Plumbing</button>
+                <button class="demo-tab" data-tab="hvac">❄️ HVAC</button>
+                <button class="demo-tab" data-tab="electrical">⚡ Electrical</button>
+            </div>
+
+            <div class="demo-content active" data-content="plumbing">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Hi, I have a burst pipe in my kitchen, it's pretty bad</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Oh no, that sounds urgent\! I can absolutely help. Are you looking for emergency service right now, or can we schedule someone for tomorrow morning?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">I need someone ASAP please</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Got it — let me get a crew out to you. Can I get your name and address?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Mike Johnson, 47 Oak Street</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Perfect Mike. We're dispatching to 47 Oak Street now. I'm also texting you a confirmation with the tech's name. Anything else I can help with?</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Lead captured</div>
+                        <div class="chat-status-item">Details logged</div>
+                        <div class="chat-status-item">Owner notified</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="hvac">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">My AC stopped working and it's 90 degrees in here</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">I'm so sorry to hear that\! We definitely want to get you cooled down fast. We have openings today at 2 PM or 4 PM — which works better for you?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">2 PM works</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked\! You'll get a confirmation text in just a moment. Your tech will call 30 minutes before arrival. Is there anything specific about the unit you'd like us to know?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">No, that's it thanks</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Great\! Looking forward to getting you cooled down soon. See you at 2 PM\!</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Appointment booked</div>
+                        <div class="chat-status-item">Confirmation sent</div>
+                        <div class="chat-status-item">No-show reminder scheduled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="electrical">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">I've got some outlets not working in my living room, probably need an electrician</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Of course — that's a common issue and we can definitely help. Are you free this week for an inspection? We have Thursday morning or Friday afternoon available.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Thursday morning</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Perfect, I've got you down for Thursday. I'll send you a text confirmation right now. What's the best number to reach you at?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">555-0123</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Got it\! Confirmation text coming through now. Our technician will be there Thursday morning around 10 AM. Thanks\!</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Quote request logged</div>
+                        <div class="chat-status-item">Appointment confirmed</div>
+                        <div class="chat-status-item">Reminder scheduled</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <\!-- Calculator -->
+    <section class="calculator">
+        <div class="section-header fade-up">
+            <h2>How Much Are You Losing?</h2>
+        </div>
+
+        <div class="calc-card fade-up">
+            <div class="calc-input-group">
+                <div class="calc-label">
+                    <span>Missed calls per week</span>
+                    <span class="calc-value" id="missedCallsDisplay">5</span>
+                </div>
+                <input type="range" class="calc-slider" id="missedCallsSlider" min="1" max="30" value="5">
+            </div>
+
+            <div class="calc-input-group">
+                <div class="calc-label">
+                    <span>Average job value</span>
+                    <span class="calc-value" id="jobValueDisplay">$1,200</span>
+                </div>
+                <input type="range" class="calc-slider" id="jobValueSlider" min="200" max="5000" value="1200" step="100">
+            </div>
+
+            <div class="calc-results">
+                <div class="calc-result-item">
+                    <div class="calc-result-label">Monthly lost revenue</div>
+                    <div class="calc-result-value" id="monthlyLoss">$12,936</div>
+                </div>
+                <div class="calc-result-item">
+                    <div class="calc-result-label">Annual lost revenue</div>
+                    <div class="calc-result-value" id="annualLoss">$155,232</div>
+                </div>
+                <div class="calc-result-item">
+                    <div class="calc-result-label">LGD AI pays for itself in</div>
+                    <div class="calc-result-value" id="payoffDays">3.3 days</div>
+                </div>
+            </div>
+
+            <div class="calc-summary">
+                One missed call could be a <strong>$1,200 job</strong>. This pays for itself the first week.
+            </div>
+
+            <button class="btn-primary" style="width: 100%; margin-top: 2rem;" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Stop Losing Revenue →</button>
+        </div>
+    </section>
+
+    <\!-- Trade Badges -->
+    <section class="trades">
+        <div class="trades-container">
+            <div class="section-header fade-up">
+                <h2>Built for Your Trade</h2>
+                <p style="color: var(--text-muted); font-size: 1rem;">Custom AI knowledge base for your specific industry.</p>
+            </div>
+
+            <div class="badge-grid fade-up">
+                <button class="trade-badge" data-trade="plumbing">🔧 Plumbing</button>
+                <button class="trade-badge" data-trade="hvac">❄️ HVAC</button>
+                <button class="trade-badge" data-trade="electrical">⚡ Electrical</button>
+                <button class="trade-badge" data-trade="roofing">🏠 Roofing</button>
+                <button class="trade-badge" data-trade="landscaping">🌿 Landscaping</button>
+                <button class="trade-badge" data-trade="cleaning">🧹 Cleaning</button>
+                <button class="trade-badge" data-trade="pest">🐛 Pest Control</button>
+                <button class="trade-badge" data-trade="locksmith">🔐 Locksmith</button>
+                <button class="trade-badge" data-trade="painting">🎨 Painting</button>
+                <button class="trade-badge" data-trade="garage">🚗 Garage Doors</button>
+            </div>
+
+            <div class="trade-info" data-trade="plumbing">
+                <h4>🔧 Plumbing</h4>
+                <p>Our AI knows the difference between a slow drain and a burst pipe. It asks the right questions, captures emergency vs. routine flags, and dispatches accordingly.</p>
+            </div>
+
+            <div class="trade-info" data-trade="hvac">
+                <h4>❄️ HVAC</h4>
+                <p>The AI understands seasonal demand, common issues like thermostat calibration, and emergency situations. It prioritizes urgent calls and schedules routine maintenance efficiently.</p>
+            </div>
+
+            <div class="trade-info" data-trade="electrical">
+                <h4>⚡ Electrical</h4>
+                <p>Recognizes safety concerns, distinguishes between inspections and emergency calls, and knows your service area and availability for urgent jobs.</p>
+            </div>
+
+            <div class="trade-info" data-trade="roofing">
+                <h4>🏠 Roofing</h4>
+                <p>Understands weather-related damage claims, seasonal busy periods, and can qualify leads by roof type, age, and scope of work.</p>
+            </div>
+
+            <div class="trade-info" data-trade="landscaping">
+                <h4>🌿 Landscaping</h4>
+                <p>Knows seasonal services, handles recurring maintenance requests, and can book seasonal landscape designs and maintenance plans.</p>
+            </div>
+
+            <div class="trade-info" data-trade="cleaning">
+                <h4>🧹 Cleaning</h4>
+                <p>Manages recurring cleaning schedules, understands service types (residential, commercial, deep clean), and captures client preferences and special requests.</p>
+            </div>
+
+            <div class="trade-info" data-trade="pest">
+                <h4>🐛 Pest Control</h4>
+                <p>Identifies pest types, severity, and urgency. Books follow-up treatments and understands seasonal pest patterns in your service area.</p>
+            </div>
+
+            <div class="trade-info" data-trade="locksmith">
+                <h4>🔐 Locksmith</h4>
+                <p>Handles emergency lockouts, re-keying requests, and new installations. Prioritizes urgent lockout calls and documents property details.</p>
+            </div>
+
+            <div class="trade-info" data-trade="painting">
+                <h4>🎨 Painting</h4>
+                <p>Captures project scope, room counts, interior vs. exterior work, and special requests. Qualifies leads and books estimates accurately.</p>
+            </div>
+
+            <div class="trade-info" data-trade="garage">
+                <h4>🚗 Garage Doors</h4>
+                <p>Understands door types, panel vs. full replacement, and emergency repair needs. Captures customer details and books preventive maintenance appointments.</p>
+            </div>
+
+            <p class="trades-note">Don't see your trade? We'll build it.</p>
+        </div>
+    </section>
+
+    <\!-- Comparison -->
+    <section class="comparison">
+        <div class="section-header fade-up">
+            <h2>Why This Beats the Alternatives</h2>
+        </div>
+
+        <div class="table-wrapper fade-up">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>LGD AI</th>
+                        <th>Answering Service</th>
+                        <th>Voicemail</th>
+                        <th>DIY Apps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24/7 call & text</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Natural conversation</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td>scripted</td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Books appointments</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tracks every lead</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td>partial</td>
+                    </tr>
+                    <tr>
+                        <td>Knows your FAQs</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Under $300/mo</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Live in 48 hours</td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td><span class="x-mark">✗</span></td>
+                        <td><span class="checkmark">✓</span></td>
+                        <td>varies</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <\!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header fade-up">
+                <h2>Real Results from Real Contractors</h2>
+            </div>
+
+            <div class="testimonial-card fade-up">
+                <p class="testimonial-quote">"I used to miss 5-6 calls a day. Now every one gets answered, customers think it's a real person, and I get a text with the details. I signed up 3 new jobs in the first week."</p>
+                <p class="testimonial-author">— HVAC Contractor, NJ (Early Beta)</p>
+            </div>
+
+            <div class="testimonial-card fade-up">
+                <p class="testimonial-quote">"Setup took 20 minutes. My AI knows my entire service menu, my zip codes, and even my pricing. It's like hiring a full-time receptionist for less than I spend on coffee."</p>
+                <p class="testimonial-author">— Plumbing Company Owner, NJ (Early Beta)</p>
+            </div>
+        </div>
+    </section>
+
+    <\!-- Pricing -->
+    <section class="pricing">
+        <div class="section-header fade-up">
+            <h2>Simple Pricing. Serious Value.</h2>
+        </div>
+
+        <div class="pricing-card fade-up">
+            <div class="pricing-amount">$299<span style="font-size: 1.5rem; color: var(--text-muted);">/mo</span></div>
+            <p class="pricing-period">No contracts. Cancel anytime. Live in 48 hours.</p>
+            
+            <div class="pricing-badge">$499 setup fee waived with annual plan</div>
+
+            <div class="pricing-features">
+                <div class="pricing-feature">Inbound call & text handling, 24/7</div>
+                <div class="pricing-feature">Custom greeting with your business name</div>
+                <div class="pricing-feature">Natural, human-like AI conversations</div>
+                <div class="pricing-feature">AI trained on your services & FAQs</div>
+                <div class="pricing-feature">Appointment scheduling & confirmation texts</div>
+                <div class="pricing-feature">Automatic lead tracking & CRM</div>
+                <div class="pricing-feature">Instant text summaries of every interaction</div>
+                <div class="pricing-feature">Dedicated support from a real person</div>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; margin-bottom: 1.5rem;" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Get Started Today →</button>
+
+            <p class="pricing-fine-print">Service includes up to 500 inbound interactions/mo. Additional at $0.15 each. Domestic U.S. only.</p>
+        </div>
+    </section>
+
+    <\!-- Demo Form -->
+    <section class="demo-form-section" id="demo-form">
+        <div class="demo-form-container">
+            <div class="form-left fade-up">
+                <h3>Book a Free 15-Min Demo</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">See exactly how it works for your business. No pressure.</p>
+                
+                <ul class="form-left-list">
+                    <li>Live walkthrough of your AI receptionist in action</li>
+                    <li>Custom recommendations based on your business</li>
+                    <li>Answer all your questions about setup and pricing</li>
+                </ul>
+
+                <div class="form-trust">
+                    <strong>Questions? We're here to help</strong>
+                    <span>📞 732-484-3000</span>
+                    <span>📧 hello@letsgrowdigital.ai</span>
+                    <span>📍 Point Pleasant, NJ</span>
+                </div>
+            </div>
+
+            <div class="form-right fade-up">
+                <form id="demoForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessName">Business Name *</label>
+                        <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trade">Trade/Industry *</label>
+                        <select id="trade" name="trade" required>
+                            <option value="">Select your trade...</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="HVAC">HVAC</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Roofing">Roofing</option>
+                            <option value="Landscaping">Landscaping</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Pest Control">Pest Control</option>
+                            <option value="Locksmith">Locksmith</option>
+                            <option value="Painting">Painting</option>
+                            <option value="Garage Doors">Garage Doors</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bestTime">Best time to call *</label>
+                        <select id="bestTime" name="bestTime" required>
+                            <option value="">Select preferred time...</option>
+                            <option value="Morning (8am-12pm)">Morning (8am-12pm)</option>
+                            <option value="Afternoon (12pm-5pm)">Afternoon (12pm-5pm)</option>
+                            <option value="Evening (5pm+)">Evening (5pm+)</option>
+                            <option value="Anytime">Anytime</option>
+                        </select>
+                    </div>
+
+                    <p class="form-privacy">We respect your privacy. We'll only use your info to schedule your demo and send updates about LGD AI.</p>
+
+                    <button type="submit" class="form-submit">Book My Demo →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <\!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#demo-form">Book Demo</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="lgd_website_v2.html#contact">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 LetsGrowDigital.ai. All rights reserved.</p>
+                <p>Built for home service professionals who want to grow.</p>
+            </div>
+        </div>
+    </footer>
+
+    <\!-- Cal.com Integration -->
+    <script type="text/javascript">
+        (function (C, A, L) {
+            let p = function (a, ar) { a.q.push(ar); };
+            let d = C.document;
+            C.Cal = C.Cal || function () {
+                let cal = C.Cal; let ar = arguments;
+                if (\!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+                if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+                p(cal, ar);
+            };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", { origin: "https://cal.com" });
+        Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=AI Front Desk Page", buttonText: "Book a Free Demo", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
+        Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
+    </script>
+
+    <\!-- Main JS -->
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const isDarkMode = localStorage.getItem('darkMode') \!== 'false';
+
+        if (\!isDarkMode) {
+            body.classList.add('light-mode');
+            themeToggle.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isNowLight = body.classList.contains('light-mode');
+            localStorage.setItem('darkMode', \!isNowLight);
+            themeToggle.textContent = isNowLight ? '🌙' : '☀️';
+        });
+
+        // Nav Scroll Effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navCenter = document.getElementById('navCenter');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navCenter.classList.toggle('mobile-open');
+        });
+
+        // Close menu when link clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navCenter.classList.remove('mobile-open');
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Demo Tabs
+        const demoTabs = document.querySelectorAll('.demo-tab');
+        const demoContents = document.querySelectorAll('.demo-content');
+
+        demoTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                demoTabs.forEach(t => t.classList.remove('active'));
+                demoContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.querySelector(`.demo-content[data-content="${tabName}"]`).classList.add('active');
+            });
+        });
+
+        // Trade Badges
+        const tradeBadges = document.querySelectorAll('.trade-badge');
+        const tradeInfos = document.querySelectorAll('.trade-info');
+
+        tradeBadges.forEach(badge => {
+            badge.addEventListener('click', () => {
+                const tradeName = badge.getAttribute('data-trade');
+                
+                tradeBadges.forEach(b => b.classList.remove('active'));
+                tradeInfos.forEach(info => info.classList.remove('active'));
+                
+                badge.classList.add('active');
+                document.querySelector(`.trade-info[data-trade="${tradeName}"]`).classList.add('active');
+            });
+        });
+
+        // Calculator
+        const missedCallsSlider = document.getElementById('missedCallsSlider');
+        const jobValueSlider = document.getElementById('jobValueSlider');
+        const missedCallsDisplay = document.getElementById('missedCallsDisplay');
+        const jobValueDisplay = document.getElementById('jobValueDisplay');
+        const monthlyLoss = document.getElementById('monthlyLoss');
+        const annualLoss = document.getElementById('annualLoss');
+        const payoffDays = document.getElementById('payoffDays');
+
+        function updateCalculator() {
+            const missedCalls = parseInt(missedCallsSlider.value);
+            const jobValue = parseInt(jobValueSlider.value);
+
+            missedCallsDisplay.textContent = missedCalls;
+            jobValueDisplay.textContent = '$' + jobValue.toLocaleString();
+
+            const conversionRate = 0.4;
+            const weeksPerMonth = 4.33;
+            const monthlyRevenue = missedCalls * weeksPerMonth * jobValue * conversionRate;
+            const annualRevenue = monthlyRevenue * 12;
+            const daysToPayoff = (299 / (monthlyRevenue / 30)).toFixed(1);
+
+            monthlyLoss.textContent = '$' + Math.round(monthlyRevenue).toLocaleString();
+            annualLoss.textContent = '$' + Math.round(annualRevenue).toLocaleString();
+            payoffDays.textContent = daysToPayoff + ' days';
+        }
+
+        missedCallsSlider.addEventListener('input', updateCalculator);
+        jobValueSlider.addEventListener('input', updateCalculator);
+        updateCalculator();
+
+        // Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                businessName: document.getElementById('businessName').value,
+                trade: document.getElementById('trade').value,
+                bestTime: document.getElementById('bestTime').value,
+                source: 'AI Front Desk Demo Request',
+                entryPoint: 'AI Page Demo Form'
+            };
+
+            fetch('https://kb-leads-proxy.bryan-boutin.workers.dev/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Demo booked\! We\'ll be in touch shortly.');
+                    document.getElementById('demoForm').reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an issue submitting your form. Please try again or call us at 732-484-3000.');
+            });
+        }
+    </script>
+</body>
+</html>
