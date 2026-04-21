@@ -416,6 +416,22 @@
         .section-header h2 {
             font-size: clamp(2rem, 6vw, 3rem);
             margin-bottom: 1rem;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header p {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2,
+            .section-header p {
+                max-width: 100%;
+            }
         }
 
         .pain-grid {
@@ -431,6 +447,9 @@
             padding: 2rem;
             border-radius: 12px;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
         .pain-card:hover {
@@ -439,10 +458,20 @@
             transform: translateY(-4px);
         }
 
+        .pain-card-icon {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            height: calc(1.3rem * 1.4);
+        }
+
         .pain-card h3 {
             font-size: 1.3rem;
-            margin-top: 1rem;
+            margin-top: 0;
             line-height: 1.4;
+            flex: 1;
         }
 
         .pain-separator {
@@ -465,7 +494,8 @@
         .pain-separator p {
             color: var(--text-muted);
             font-style: italic;
-            font-size: 0.9rem;
+            font-size: 1.6rem;
+            font-weight: 500;
         }
 
         .pain-separator .strikethrough {
@@ -681,10 +711,11 @@
 
         .demo-tabs {
             display: flex;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             margin-bottom: 2rem;
             border-bottom: 1px solid var(--border);
-            overflow-x: auto;
+            padding-bottom: 0.5rem;
         }
 
         .demo-tab {
@@ -1096,6 +1127,36 @@
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .pricing-calc {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .pricing-calc .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-calc .calc-card,
+        .pricing-calc .pricing-card {
+            max-width: 100%;
+            padding: 2.5rem 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-calc-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
 
         .pricing-card {
@@ -1638,19 +1699,19 @@
 
         <div class="pain-grid">
             <div class="pain-card fade-up">
-                <div style="font-size: 2rem;">📞</div>
+                <div class="pain-card-icon">📞</div>
                 <h3>You miss calls on the job — and those leads call your competitor.</h3>
             </div>
             <div class="pain-card fade-up">
-                <div style="font-size: 2rem;">📝</div>
+                <div class="pain-card-icon">📝</div>
                 <h3>Customer info lives on sticky notes and texts you can never find.</h3>
             </div>
             <div class="pain-card fade-up">
-                <div style="font-size: 2rem;">📅</div>
+                <div class="pain-card-icon">📅</div>
                 <h3>Appointments fall through the cracks. No-shows cost you money.</h3>
             </div>
             <div class="pain-card fade-up">
-                <div style="font-size: 2rem;">😤</div>
+                <div class="pain-card-icon">😤</div>
                 <h3>You didn't start this business to answer phones all day.</h3>
             </div>
         </div>
@@ -1769,6 +1830,19 @@
                 <button class="demo-tab active" data-tab="plumbing">🔧 Plumbing</button>
                 <button class="demo-tab" data-tab="hvac">❄️ HVAC</button>
                 <button class="demo-tab" data-tab="electrical">⚡ Electrical</button>
+                <button class="demo-tab" data-tab="roofing">🏠 Roofing</button>
+                <button class="demo-tab" data-tab="siding">🧱 Siding</button>
+                <button class="demo-tab" data-tab="landscaping">🌿 Landscaping</button>
+                <button class="demo-tab" data-tab="pool">🏊 Pool &amp; Hot Tub</button>
+                <button class="demo-tab" data-tab="pest">🐛 Pest Control</button>
+                <button class="demo-tab" data-tab="cleaning">🧹 Cleaning</button>
+                <button class="demo-tab" data-tab="propmgmt">🏢 Property Mgmt</button>
+                <button class="demo-tab" data-tab="locksmith">🔐 Locksmith</button>
+                <button class="demo-tab" data-tab="garage">🚗 Garage Doors</button>
+                <button class="demo-tab" data-tab="autobody">🚙 Auto Body</button>
+                <button class="demo-tab" data-tab="detailing">✨ Auto Detailing</button>
+                <button class="demo-tab" data-tab="petgrooming">🐾 Pet Grooming</button>
+                <button class="demo-tab" data-tab="painting">🎨 Painting</button>
             </div>
 
             <div class="demo-content active" data-content="plumbing">
@@ -1854,52 +1928,370 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Calculator -->
-    <section class="calculator">
-        <div class="section-header fade-up">
-            <h2>How Much Are You Losing?</h2>
-        </div>
-
-        <div class="calc-card fade-up">
-            <div class="calc-input-group">
-                <div class="calc-label">
-                    <span>Missed calls per week</span>
-                    <span class="calc-value" id="missedCallsDisplay">5</span>
-                </div>
-                <input type="range" class="calc-slider" id="missedCallsSlider" min="1" max="30" value="5">
-            </div>
-
-            <div class="calc-input-group">
-                <div class="calc-label">
-                    <span>Average job value</span>
-                    <span class="calc-value" id="jobValueDisplay">$1,200</span>
-                </div>
-                <input type="range" class="calc-slider" id="jobValueSlider" min="200" max="5000" value="1200" step="100">
-            </div>
-
-            <div class="calc-results">
-                <div class="calc-result-item">
-                    <div class="calc-result-label">Monthly lost revenue</div>
-                    <div class="calc-result-value" id="monthlyLoss">$12,936</div>
-                </div>
-                <div class="calc-result-item">
-                    <div class="calc-result-label">Annual lost revenue</div>
-                    <div class="calc-result-value" id="annualLoss">$155,232</div>
-                </div>
-                <div class="calc-result-item">
-                    <div class="calc-result-label">LGD AI pays for itself in</div>
-                    <div class="calc-result-value" id="payoffDays">3.3 days</div>
+            <div class="demo-content" data-content="roofing">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">We had that big storm last night and I think some shingles came off. Can someone take a look?</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Absolutely — storm damage is exactly what we handle. Free inspection and we'll document everything in case you need to file with insurance. What's the address?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">22 Seaside Ave, Point Pleasant</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Got it. I can have an inspector out tomorrow between 10 AM and noon. They'll bring a full photo report you can share with your adjuster. Sound good?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Perfect, thank you</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">You're all set. Confirmation text heading your way now. If you spot any interior leaks before then, put a bucket under it and text us a photo — we'll prioritize.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Storm inspection booked</div>
+                        <div class="chat-status-item">Insurance docs flagged</div>
+                        <div class="chat-status-item">Photo report prepped</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="calc-summary">
-                One missed call could be a <strong>$1,200 job</strong>. This pays for itself the first week.
+            <div class="demo-content" data-content="siding">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Looking to get a quote on new siding for my house</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Happy to help! Quick questions so we can prep a real number: do you know the approximate square footage, and are you leaning vinyl, fiber cement, or not sure yet?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Probably around 2,000 sqft. Not sure on material</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">No problem — our estimator will walk you through options on-site. What day this week works for a free consult? We have Wednesday at 3 PM or Saturday at 10 AM.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Saturday at 10</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked. You'll get a text with your estimator's name and number. We'll bring samples so you can see materials side-by-side.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Estimate scheduled</div>
+                        <div class="chat-status-item">Sample kit prepped</div>
+                        <div class="chat-status-item">Lead in CRM</div>
+                    </div>
+                </div>
             </div>
 
-            <button class="btn-primary" style="width: 100%; margin-top: 2rem;" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Stop Losing Revenue →</button>
+            <div class="demo-content" data-content="landscaping">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Hi, looking for weekly lawn service starting this spring</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Perfect timing — we're booking our spring route now. What's the approximate lot size, and are you interested in mow-only or the full package with edging and cleanup?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Quarter acre, full package please</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Great choice. For a quarter-acre, that runs about $65 a visit, weekly. Want me to get you on the Tuesday route? First visit would be April 28.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Yes that works</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">You're booked. I'll text your welcome packet and the day-before reminder schedule. Our crew lead will intro by text before first visit.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Recurring service set up</div>
+                        <div class="chat-status-item">Route assigned</div>
+                        <div class="chat-status-item">Billing scheduled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="pool">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Need to schedule pool opening for Memorial Day weekend</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">You're smart to book early — that weekend fills up fast. Standard opening or full package with chemical balance and equipment check?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Full package, we had some issues last year</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good call. We'll catch anything before it becomes a problem. I've got Thursday May 22 or Friday May 23 available. Which works?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Friday</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Friday May 23 it is. I'll text you the confirmation and our pre-opening checklist so you know what to expect. Ready to enjoy that weekend.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Opening scheduled</div>
+                        <div class="chat-status-item">Chemical check added</div>
+                        <div class="chat-status-item">Prep checklist sent</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="pest">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">We've got ants all over the kitchen, can you come out today?</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Ugh, that's the worst. Yes, we have a tech who can be there this afternoon between 2 and 4. Is this the first treatment, or do you have existing service?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">First time</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Got it. Initial treatment is $189 and includes a follow-up two weeks later at no extra charge. What's the address?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">18 Maple Lane</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked for 18 Maple Lane, 2-4 PM today. Tech will text when he's 30 minutes out. Heads up: kids and pets should stay out of treated areas for 2 hours after.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Same-day service booked</div>
+                        <div class="chat-status-item">Follow-up pre-scheduled</div>
+                        <div class="chat-status-item">Safety instructions sent</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="cleaning">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">I need a deep clean for a move-out. Place is 3 bed 2 bath</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Move-outs are our specialty — we include appliance interiors, baseboards, and inside cabinets. When's your walk-through with the landlord?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Saturday afternoon</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Perfect. Let's get the clean done Friday so it's fresh for Saturday. For 3/2 move-out, the deep clean runs $385 and takes about 5 hours. Want to lock it in?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Yes</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">You're booked for Friday 9 AM. I'll text the crew lead's name and the pre-clean checklist so you know what's covered — and what to clear out beforehand.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Move-out clean booked</div>
+                        <div class="chat-status-item">Scope confirmed</div>
+                        <div class="chat-status-item">Checklist delivered</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="propmgmt">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Tenant at 412 Bayview says the dishwasher is leaking</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Got it — I'll log this as a maintenance ticket. Is the leak active right now, or is it intermittent? Want to route this emergency or standard?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Active, water on the floor</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Escalating. I'll dispatch our on-call plumber and text the tenant with ETA. Shutting off the dishwasher water valve under the sink is step one — I'll include that in the tenant text now.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Perfect, thanks</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Tenant notified, plumber dispatched, ticket #4187 opened. You'll get the service report and photos before invoice is submitted.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Emergency ticket opened</div>
+                        <div class="chat-status-item">Vendor dispatched</div>
+                        <div class="chat-status-item">Tenant kept in loop</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="locksmith">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">I'm locked out of my car in the Target parking lot</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">I'll get someone to you fast. Which Target, and are you in a safe spot?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Brick Township, yes I'm fine</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good. Nearest tech is 12 minutes out. Service call is $75 flat. Can I get your name and the make/model of the car so the tech is ready?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Sarah Kim, 2021 Honda Civic</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Thanks Sarah. Tech is en route, ETA 12 minutes. You'll get a text with his name and photo so you know who to expect. Hang tight.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Dispatch sent</div>
+                        <div class="chat-status-item">ETA shared</div>
+                        <div class="chat-status-item">Tech ID confirmed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="garage">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">My garage door spring broke, I can't get my car out for work tomorrow</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Broken torsion spring — we can absolutely fix that before morning. Do you have one car stuck inside, or are both cars in the garage?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Just the one</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good. We have an emergency slot tonight at 7 PM. Spring replacement runs $275 including labor and a new spring pair for balance. Want it locked in?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Yes please</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked for tonight at 7. I'll text you the tech's name and ETA once he's on the way. You'll be back in business by 8:30.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Emergency slot booked</div>
+                        <div class="chat-status-item">Part pre-assigned</div>
+                        <div class="chat-status-item">Same-day fix</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="autobody">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Got rear-ended at a light this morning, not major but the bumper's pretty messed up</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Sorry to hear that — glad you're safe. Quick check: do you have an insurance claim opened already, or would you like a direct estimate?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Claim is open, they said I can pick the shop</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Perfect — we work directly with all major carriers. Bring the car by and we'll handle the adjuster back-and-forth. Tomorrow at 9 AM or 11 AM for the estimate?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">11 AM</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked. Bring your insurance card, claim number, and driver's license. Estimate takes 30 minutes and we'll have a loaner ready if you need one for repair week.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Estimate scheduled</div>
+                        <div class="chat-status-item">Insurance path flagged</div>
+                        <div class="chat-status-item">Loaner available</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="detailing">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">How much for a full detail on an SUV?</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good question — full detail on a mid-size SUV is $185 and runs about 4 hours. Includes clay bar, paint sealant, interior shampoo, and leather conditioning. Interested in a one-time or our monthly club?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">What's the monthly club?</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">$89/month: one full detail every 6 weeks plus unlimited quick washes in between. Pays for itself after your second visit and your car always looks show-ready.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Sign me up</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Excellent choice. First detail — Saturday at 10 AM works? I'll send your member link to schedule quick washes anytime.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Membership started</div>
+                        <div class="chat-status-item">First detail booked</div>
+                        <div class="chat-status-item">Recurring billing set</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="petgrooming">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">First time groomer for my golden retriever, she's never been</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Love that. For first-time pups we do a meet-and-greet so she's comfortable, then the full groom. Any anxiety, allergies, or skin issues we should know about?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">She gets nervous around other dogs</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good heads-up — I'll schedule her as the first appointment of the day so the shop is quiet. Tuesday at 8 AM with Jen? She's our calmest groomer and great with first-timers.</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Yes, sounds great</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Booked Tuesday 8 AM with Jen. Bring her vaccine records and we'll do a 10-min meet-and-greet first. Full groom runs $85 for a golden — I'll text the intake form.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">First-time pup flagged</div>
+                        <div class="chat-status-item">Quiet slot reserved</div>
+                        <div class="chat-status-item">Intake form sent</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-content" data-content="painting">
+                <div class="chat-container">
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Want to get a quote to repaint my interior, 4 bedrooms and a living room</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Good-sized project — we do those regularly. Ballpark $4,500-$6,500 depending on ceiling height and prep work. Want to book a free in-home walkthrough for a real number?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Sure, when can someone come by?</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">This week is pretty open. Thursday at 4 PM or Saturday at 10 AM?</div>
+                    </div>
+                    <div class="chat-message user">
+                        <div class="chat-bubble">Thursday 4</div>
+                    </div>
+                    <div class="chat-message ai">
+                        <div class="chat-bubble">Done. Your estimator will text when he's 15 minutes out. He'll bring our color deck and handle the walkthrough in about 30 minutes. Written quote in your inbox same day.</div>
+                    </div>
+                    <div class="chat-status">
+                        <div class="chat-status-item">Walkthrough scheduled</div>
+                        <div class="chat-status-item">Estimator assigned</div>
+                        <div class="chat-status-item">Same-day quote promised</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2105,32 +2497,77 @@
         </div>
     </section>
 
-    <!-- Pricing -->
-    <section class="pricing">
+    <!-- Pricing + Calculator (merged 2-col) -->
+    <section class="pricing-calc">
         <div class="section-header fade-up">
-            <h2>Simple Pricing. Serious Value.</h2>
+            <h2>The Math Is Simple</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">See what you're losing. See what you'd pay. Decide.</p>
         </div>
 
-        <div class="pricing-card fade-up">
-            <div class="pricing-amount">$299<span style="font-size: 1.5rem; color: var(--text-muted);">/mo</span></div>
-            <p class="pricing-period">No contracts. Cancel anytime. Live in 48 hours.</p>
-            
-            <div class="pricing-badge">$499 setup fee waived with annual plan</div>
+        <div class="pricing-calc-grid fade-up">
+            <!-- Calculator (left) -->
+            <div class="calc-card">
+                <h3 style="margin: 0 0 1.5rem 0; font-size: 1.5rem;">How Much Are You Losing?</h3>
 
-            <div class="pricing-features">
-                <div class="pricing-feature">Inbound call & text handling, 24/7</div>
-                <div class="pricing-feature">Custom greeting with your business name</div>
-                <div class="pricing-feature">Natural, human-like AI conversations</div>
-                <div class="pricing-feature">AI trained on your services & FAQs</div>
-                <div class="pricing-feature">Appointment scheduling & confirmation texts</div>
-                <div class="pricing-feature">Automatic lead tracking & CRM</div>
-                <div class="pricing-feature">Instant text summaries of every interaction</div>
-                <div class="pricing-feature">Dedicated support from a real person</div>
+                <div class="calc-input-group">
+                    <div class="calc-label">
+                        <span>Missed calls per week</span>
+                        <span class="calc-value" id="missedCallsDisplay">5</span>
+                    </div>
+                    <input type="range" class="calc-slider" id="missedCallsSlider" min="1" max="30" value="5">
+                </div>
+
+                <div class="calc-input-group">
+                    <div class="calc-label">
+                        <span>Average job value</span>
+                        <span class="calc-value" id="jobValueDisplay">$1,200</span>
+                    </div>
+                    <input type="range" class="calc-slider" id="jobValueSlider" min="200" max="5000" value="1200" step="100">
+                </div>
+
+                <div class="calc-results">
+                    <div class="calc-result-item">
+                        <div class="calc-result-label">Monthly lost revenue</div>
+                        <div class="calc-result-value" id="monthlyLoss">$12,936</div>
+                    </div>
+                    <div class="calc-result-item">
+                        <div class="calc-result-label">Annual lost revenue</div>
+                        <div class="calc-result-value" id="annualLoss">$155,232</div>
+                    </div>
+                    <div class="calc-result-item">
+                        <div class="calc-result-label">LGD AI pays for itself in</div>
+                        <div class="calc-result-value" id="payoffDays">3.3 days</div>
+                    </div>
+                </div>
+
+                <div class="calc-summary">
+                    One missed call could be a <strong>$1,200 job</strong>. This pays for itself the first week.
+                </div>
             </div>
 
-            <button class="btn-primary" style="width: 100%; margin-bottom: 1.5rem;" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Get Started Today →</button>
+            <!-- Pricing (right) -->
+            <div class="pricing-card">
+                <h3 style="margin: 0 0 1rem 0; font-size: 1.5rem;">Simple Pricing. Serious Value.</h3>
+                <div class="pricing-amount">$299<span style="font-size: 1.5rem; color: var(--text-muted);">/mo</span></div>
+                <p class="pricing-period">No contracts. Cancel anytime. Live in 48 hours.</p>
 
-            <p class="pricing-fine-print">Service includes up to 500 inbound interactions/mo. Additional at $0.15 each. Domestic U.S. only.</p>
+                <div class="pricing-badge">$499 setup fee waived with annual plan</div>
+
+                <div class="pricing-features">
+                    <div class="pricing-feature">Inbound call & text handling, 24/7</div>
+                    <div class="pricing-feature">Custom greeting with your business name</div>
+                    <div class="pricing-feature">Natural, human-like AI conversations</div>
+                    <div class="pricing-feature">AI trained on your services & FAQs</div>
+                    <div class="pricing-feature">Appointment scheduling & confirmation texts</div>
+                    <div class="pricing-feature">Automatic lead tracking & CRM</div>
+                    <div class="pricing-feature">Instant text summaries of every interaction</div>
+                    <div class="pricing-feature">Dedicated support from a real person</div>
+                </div>
+
+                <button class="btn-primary" style="width: 100%; margin-bottom: 1.5rem;" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">Get Started Today →</button>
+
+                <p class="pricing-fine-print">Service includes up to 500 inbound interactions/mo. Additional at $0.15 each. Domestic U.S. only.</p>
+            </div>
         </div>
     </section>
 
@@ -2285,124 +2722,129 @@
 
     <!-- Main JS -->
     <script>
-        // Theme Toggle — standardized on lgd-theme key across site
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        if (localStorage.getItem('lgd-theme') === 'light') {
-            body.classList.add('light-mode');
-            if (themeToggle) themeToggle.textContent = '🌙';
-        }
+        // Each block wrapped in its own IIFE + try/catch so a single failure never cascades
 
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('light-mode');
-                const isNowLight = body.classList.contains('light-mode');
-                localStorage.setItem('lgd-theme', isNowLight ? 'light' : 'dark');
-                themeToggle.textContent = isNowLight ? '🌙' : '☀️';
-            });
-        }
+        // Theme Toggle — standardized on lgd-theme key across site
+        (function(){ try {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            if (localStorage.getItem('lgd-theme') === 'light') {
+                body.classList.add('light-mode');
+                if (themeToggle) themeToggle.textContent = '🌙';
+            }
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    body.classList.toggle('light-mode');
+                    const isNowLight = body.classList.contains('light-mode');
+                    localStorage.setItem('lgd-theme', isNowLight ? 'light' : 'dark');
+                    themeToggle.textContent = isNowLight ? '🌙' : '☀️';
+                });
+            }
+        } catch (e) { console.error('ThemeToggle error:', e); } })();
 
         // Nav Scroll Effect
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+        (function(){ try {
+            const nav = document.querySelector('nav');
+            if (!nav) return;
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        } catch (e) { console.error('NavScroll error:', e); } })();
 
         // Mobile Menu
-        const hamburger = document.getElementById('hamburger');
-        const navCenter = document.getElementById('navCenter');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navCenter.classList.toggle('mobile-open');
-        });
-
-        // Close menu when link clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navCenter.classList.remove('mobile-open');
+        (function(){ try {
+            const hamburger = document.getElementById('hamburger');
+            const navCenter = document.getElementById('navCenter');
+            if (!hamburger || !navCenter) return;
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navCenter.classList.toggle('mobile-open');
             });
-        });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navCenter.classList.remove('mobile-open');
+                });
+            });
+        } catch (e) { console.error('MobileMenu error:', e); } })();
 
         // Scroll Animations — enable animation only after JS is confirmed running
-        document.documentElement.classList.add('js-fade-init');
-        const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, observerOptions);
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-        // Safety net: after 1.2s force any still-hidden fade-up to visible so content never vanishes
-        setTimeout(() => {
-            document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
-        }, 1200);
+        (function(){ try {
+            document.documentElement.classList.add('js-fade-init');
+            const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, observerOptions);
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            // Safety net: after 1.2s force any still-hidden fade-up to visible so content never vanishes
+            setTimeout(() => {
+                document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
+            }, 1200);
+        } catch (e) { console.error('ScrollAnim error:', e); } })();
 
         // Demo Tabs
-        const demoTabs = document.querySelectorAll('.demo-tab');
-        const demoContents = document.querySelectorAll('.demo-content');
-
-        demoTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.getAttribute('data-tab');
-                
-                demoTabs.forEach(t => t.classList.remove('active'));
-                demoContents.forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                document.querySelector(`.demo-content[data-content="${tabName}"]`).classList.add('active');
+        (function(){ try {
+            const demoTabs = document.querySelectorAll('.demo-tab');
+            const demoContents = document.querySelectorAll('.demo-content');
+            if (!demoTabs.length) return;
+            demoTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabName = tab.getAttribute('data-tab');
+                    demoTabs.forEach(t => t.classList.remove('active'));
+                    demoContents.forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    const target = document.querySelector('.demo-content[data-content="' + tabName + '"]');
+                    if (target) target.classList.add('active');
+                });
             });
-        });
+        } catch (e) { console.error('DemoTabs error:', e); } })();
 
         // Trade Badges
-        const tradeBadges = document.querySelectorAll('.trade-badge');
-        const tradeInfos = document.querySelectorAll('.trade-info');
-
-        tradeBadges.forEach(badge => {
-            badge.addEventListener('click', () => {
-                const tradeName = badge.getAttribute('data-trade');
-                
-                tradeBadges.forEach(b => b.classList.remove('active'));
-                tradeInfos.forEach(info => info.classList.remove('active'));
-                
-                badge.classList.add('active');
-                document.querySelector(`.trade-info[data-trade="${tradeName}"]`).classList.add('active');
+        (function(){ try {
+            const tradeBadges = document.querySelectorAll('.trade-badge');
+            const tradeInfos = document.querySelectorAll('.trade-info');
+            if (!tradeBadges.length) return;
+            tradeBadges.forEach(badge => {
+                badge.addEventListener('click', () => {
+                    const tradeName = badge.getAttribute('data-trade');
+                    tradeBadges.forEach(b => b.classList.remove('active'));
+                    tradeInfos.forEach(info => info.classList.remove('active'));
+                    badge.classList.add('active');
+                    const target = document.querySelector('.trade-info[data-trade="' + tradeName + '"]');
+                    if (target) target.classList.add('active');
+                });
             });
-        });
+        } catch (e) { console.error('TradeBadges error:', e); } })();
 
         // Calculator
-        const missedCallsSlider = document.getElementById('missedCallsSlider');
-        const jobValueSlider = document.getElementById('jobValueSlider');
-        const missedCallsDisplay = document.getElementById('missedCallsDisplay');
-        const jobValueDisplay = document.getElementById('jobValueDisplay');
-        const monthlyLoss = document.getElementById('monthlyLoss');
-        const annualLoss = document.getElementById('annualLoss');
-        const payoffDays = document.getElementById('payoffDays');
+        (function(){ try {
+            const missedCallsSlider = document.getElementById('missedCallsSlider');
+            const jobValueSlider = document.getElementById('jobValueSlider');
+            const missedCallsDisplay = document.getElementById('missedCallsDisplay');
+            const jobValueDisplay = document.getElementById('jobValueDisplay');
+            const monthlyLoss = document.getElementById('monthlyLoss');
+            const annualLoss = document.getElementById('annualLoss');
+            const payoffDays = document.getElementById('payoffDays');
+            if (!missedCallsSlider || !jobValueSlider) return;
 
-        function updateCalculator() {
-            const missedCalls = parseInt(missedCallsSlider.value);
-            const jobValue = parseInt(jobValueSlider.value);
-
-            missedCallsDisplay.textContent = missedCalls;
-            jobValueDisplay.textContent = '$' + jobValue.toLocaleString();
-
-            const conversionRate = 0.4;
-            const weeksPerMonth = 4.33;
-            const monthlyRevenue = missedCalls * weeksPerMonth * jobValue * conversionRate;
-            const annualRevenue = monthlyRevenue * 12;
-            const daysToPayoff = (299 / (monthlyRevenue / 30)).toFixed(1);
-
-            monthlyLoss.textContent = '$' + Math.round(monthlyRevenue).toLocaleString();
-            annualLoss.textContent = '$' + Math.round(annualRevenue).toLocaleString();
-            payoffDays.textContent = daysToPayoff + ' days';
-        }
-
-        missedCallsSlider.addEventListener('input', updateCalculator);
-        jobValueSlider.addEventListener('input', updateCalculator);
-        updateCalculator();
+            function updateCalculator() {
+                const missedCalls = parseInt(missedCallsSlider.value, 10);
+                const jobValue = parseInt(jobValueSlider.value, 10);
+                if (missedCallsDisplay) missedCallsDisplay.textContent = missedCalls;
+                if (jobValueDisplay) jobValueDisplay.textContent = '$' + jobValue.toLocaleString();
+                const conversionRate = 0.4;
+                const weeksPerMonth = 4.33;
+                const monthlyRevenue = missedCalls * weeksPerMonth * jobValue * conversionRate;
+                const annualRevenue = monthlyRevenue * 12;
+                const daysToPayoff = (299 / (monthlyRevenue / 30)).toFixed(1);
+                if (monthlyLoss) monthlyLoss.textContent = '$' + Math.round(monthlyRevenue).toLocaleString();
+                if (annualLoss) annualLoss.textContent = '$' + Math.round(annualRevenue).toLocaleString();
+                if (payoffDays) payoffDays.textContent = daysToPayoff + ' days';
+            }
+            missedCallsSlider.addEventListener('input', updateCalculator);
+            jobValueSlider.addEventListener('input', updateCalculator);
+            updateCalculator();
+        } catch (e) { console.error('Calculator error:', e); } })();
 
         // Form Submission
         function handleFormSubmit(e) {
@@ -2416,4 +2858,28 @@
                 trade: document.getElementById('trade').value,
                 bestTime: document.getElementById('bestTime').value,
                 source: 'AI Front Desk Demo Request',
-   
+                entryPoint: 'AI Page Demo Form'
+            };
+
+            fetch('https://kb-leads-proxy.bryan-boutin.workers.dev/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    alert('Demo booked! We\'ll be in touch shortly.');
+                    const form = document.getElementById('demoForm');
+                    if (form) form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                alert('There was an issue submitting your form. Please try again or call us at 732-484-3000.');
+            });
+        }
+    </script>
+</body>
+</html>
