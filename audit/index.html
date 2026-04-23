@@ -129,10 +129,11 @@ body {
 .hero .container { position: relative; z-index: 1; }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: start;
 }
+.hero-copy { position: sticky; top: 96px; }
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -180,124 +181,28 @@ h1.hero-title em {
   margin-bottom: 40px;
   max-width: 560px;
 }
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 1rem 2.25rem;
-  background: var(--gradient);
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 100px;
-  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 10px 30px -10px rgba(212,53,160,0.45);
+.hero-promises {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
 }
-.hero-cta:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 14px 36px -10px rgba(212,53,160,0.6); }
-.hero-cta-sub {
-  display: block;
-  margin-top: 16px;
-  font-size: 14px;
-  color: var(--text-dim);
+.hero-promises li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-muted);
 }
-
-/* Hero stat card */
-.stat-card {
-  background: var(--dark-3);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 44px 40px;
-  border-radius: 24px;
-  position: relative;
-  box-shadow: 0 20px 60px -20px rgba(107,53,217,0.35);
-}
-.stat-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 24px;
-  padding: 1px;
-  background: var(--gradient);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.6;
-}
-.stat-label {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--magenta-light);
-  margin-bottom: 14px;
-  font-weight: 500;
-}
-.stat-number {
-  font-family: var(--font-serif);
-  font-size: 84px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  margin-bottom: 18px;
+.hero-promises li::before {
+  content: '→';
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-.stat-desc {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--text-muted);
-}
-.stat-source {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--text-dim);
-  font-style: italic;
-}
-
-/* ============ PROBLEM STRIP ============ */
-.problem {
-  background: var(--dark-2);
-  padding: 96px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-}
-.problem-item {
-  background: var(--dark-3);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.problem-item:hover {
-  border-color: rgba(139,85,246,0.35);
-  transform: translateY(-2px);
-}
-.problem-num {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple-light);
   font-weight: 500;
-  margin-bottom: 18px;
-  display: block;
-}
-.problem-text {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1.35;
-  font-weight: 400;
-  color: var(--text);
+  flex-shrink: 0;
 }
 
 /* ============ HOW IT WORKS ============ */
@@ -381,64 +286,18 @@ h1.hero-title em {
   line-height: 1.6;
 }
 
-/* ============ FORM SECTION ============ */
-.form-section {
-  padding: 110px 0;
-  background: var(--dark-2);
-}
-.form-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 64px;
-  align-items: start;
-}
-.form-side h2 {
-  font-family: var(--font-serif);
-  font-size: 44px;
-  line-height: 1.1;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  color: var(--text);
-}
-.form-side p {
-  color: var(--text-muted);
-  font-size: 17px;
-  margin-bottom: 32px;
-}
-.form-promises {
-  list-style: none;
-  padding: 0;
-}
-.form-promises li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 15px;
-  color: var(--text-muted);
-}
-.form-promises li::before {
-  content: '→';
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 500;
-  flex-shrink: 0;
-}
+/* ============ FORM EMBED (in hero) ============ */
 .form-embed {
   background: var(--dark-3);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 8px;
-  box-shadow: 0 20px 60px -20px rgba(107,53,217,0.3);
+  box-shadow: 0 20px 60px -20px rgba(107,53,217,0.35);
   position: relative;
 }
 .form-embed iframe {
   width: 100%;
-  height: 720px;
+  height: 1080px;
   border: 0;
   border-radius: 16px;
   display: block;
@@ -511,19 +370,13 @@ footer {
 /* ============ MOBILE ============ */
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
-  .hero { padding: 56px 0 72px; }
+  .hero { padding: 48px 0 64px; }
   .hero-bg { width: 500px; height: 500px; top: -10%; }
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .stat-card { padding: 32px 28px; }
-  .stat-number { font-size: 64px; }
-  .problem { padding: 64px 0; }
-  .problem-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-copy { position: static; top: auto; }
+  .form-embed iframe { height: 1200px; }
   .how { padding: 64px 0; }
   .steps { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
-  .form-section { padding: 64px 0; }
-  .form-embed iframe { height: 820px; }
-  .form-wrap { grid-template-columns: 1fr; gap: 40px; }
-  .form-side h2 { font-size: 34px; }
   .faq { padding: 64px 0; }
   .faq-grid { grid-template-columns: 1fr; gap: 40px; }
   .section-title { margin-bottom: 40px; }
@@ -543,11 +396,11 @@ footer {
 </nav>
 
 <!-- ============ HERO ============ -->
-<section class="hero">
+<section class="hero" id="audit">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-grid">
-      <div>
+      <div class="hero-copy">
         <span class="eyebrow"><span class="eyebrow-dot"></span>Free Audit · No Pitch</span>
         <h1 class="hero-title">
           Stop missing the calls <em>you're already paying to earn.</em>
@@ -555,40 +408,20 @@ footer {
         <p class="hero-sub">
           Every missed call is a job your competitor just booked. Our AI Voice + Text agents answer 24/7, book the job, and hand off qualified leads to your team — so you stop losing money after 5 PM.
         </p>
-        <a href="#audit" class="hero-cta">
-          Get my free audit
-          <span>→</span>
-        </a>
-        <span class="hero-cta-sub">Takes 60 seconds. We respond within 1 business day.</span>
+        <ul class="hero-promises">
+          <li>Personalized audit within 1 business day</li>
+          <li>No pitch, no pressure, no "discovery call" trap</li>
+          <li>Numbers based on your industry, not fluff</li>
+          <li>Delete our email anytime — we don't do spam</li>
+        </ul>
       </div>
 
-      <div class="stat-card">
-        <div class="stat-label">The hidden cost</div>
-        <div class="stat-number">62%</div>
-        <p class="stat-desc">
-          of calls to small home-service businesses go unanswered during business hours. After hours, that number climbs to over 85%.
-        </p>
-        <div class="stat-source">Industry averages for home services, 2024–2025</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROBLEM STRIP ============ -->
-<section class="problem">
-  <div class="container">
-    <div class="problem-grid">
-      <div class="problem-item">
-        <span class="problem-num">01 · The pain</span>
-        <p class="problem-text">Phones ring while your tech is on a job. Most of those leads never call back.</p>
-      </div>
-      <div class="problem-item">
-        <span class="problem-num">02 · The pain</span>
-        <p class="problem-text">After 5 PM and weekends are dead zones. Your ad spend keeps running anyway.</p>
-      </div>
-      <div class="problem-item">
-        <span class="problem-num">03 · The pain</span>
-        <p class="problem-text">Front desk staff turnover kills your booking rate every 6–12 months.</p>
+      <div class="form-embed">
+        <iframe
+          src="https://forms.monday.com/forms/embed/ddd5d550c191434c2a3b3e428d8af437?r=use1"
+          title="Free AI Voice + Text Audit"
+          loading="lazy">
+        </iframe>
       </div>
     </div>
   </div>
@@ -620,32 +453,6 @@ footer {
   </div>
 </section>
 
-<!-- ============ FORM SECTION ============ -->
-<section class="form-section" id="audit">
-  <div class="container">
-    <div class="form-wrap">
-      <div class="form-side">
-        <div class="section-label">Your free audit</div>
-        <h2>Tell us about your business. We'll tell you what you're leaving on the table.</h2>
-        <p>No sales call until you want one. Just a straight answer on how much AI could realistically do for your bottom line.</p>
-        <ul class="form-promises">
-          <li>You'll get a personalized audit within 1 business day</li>
-          <li>No pitch, no pressure, no "discovery call" trap</li>
-          <li>Numbers based on your industry, not fluff</li>
-          <li>Delete our email anytime — we don't do spam</li>
-        </ul>
-      </div>
-      <div class="form-embed" id="audit-form">
-        <iframe
-          src="https://forms.monday.com/forms/embed/ddd5d550c191434c2a3b3e428d8af437?r=use1"
-          title="Free AI Voice + Text Audit"
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ FAQ ============ -->
 <section class="faq">
   <div class="container">
@@ -666,18 +473,6 @@ footer {
         <details class="faq-item">
           <summary class="faq-q">How long until it's live?</summary>
           <div class="faq-a">10–14 business days from contract signing. Week 1 is training the AI on your business. Week 2 is testing and dialing it in with your team. We don't go live until you've personally approved every flow.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">What if the AI messes up a call?</summary>
-          <div class="faq-a">Every interaction is logged, transcribed, and reviewable in your dashboard. We tune the agent weekly for the first 60 days based on real call data. If the AI can't handle something, it transfers warmly to a human — it never leaves a customer hanging.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Do you work with my industry?</summary>
-          <div class="faq-a">We specialize in home services: HVAC, plumbing, electrical, landscaping, lawn care, pest control, cleaning, roofing, garage door, and similar trades. If you're unsure, ask — we'll be honest if you're not a fit.</div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Is this just a chatbot?</summary>
-          <div class="faq-a">No. A chatbot reads from a script. Our AI agents understand context, handle multi-step conversations (scheduling around existing jobs, qualifying emergencies, upselling seasonal services), and integrate with your calendar and CRM. It's closer to a trained employee than a decision tree.</div>
         </details>
       </div>
     </div>
