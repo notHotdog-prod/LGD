@@ -1036,6 +1036,13 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
               <label>Tell us about your business (optional)</label>
               <textarea placeholder="What do you do, who are your customers, what's your biggest marketing challenge?"></textarea>
             </div>
+            <div class="form-group" style="flex-direction:row; align-items:flex-start; gap:0.6rem;">
+              <input type="checkbox" id="sms_optin" name="sms_optin" required style="margin-top:0.25rem; flex-shrink:0; width:18px; height:18px; accent-color: var(--magenta); cursor:pointer;">
+              <label for="sms_optin" style="font-size:0.8rem; line-height:1.55; color:var(--text-muted); margin:0; cursor:pointer;">
+                By checking this box, I agree to receive recurring SMS messages from Lets Grow Digital regarding my inquiry, including appointment confirmations, reminders, and follow-up communications. Consent is not a condition of purchase. Message and data rates may apply. Message frequency varies. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out at any time. See our <a href="privacy.html" style="color: var(--magenta-light); text-decoration: underline;">Privacy Policy</a> and <a href="terms.html" style="color: var(--magenta-light); text-decoration: underline;">Terms of Service</a> for details.
+              </label>
+            </div>
+            <input type="hidden" name="form_version" value="2026-05-02-sms-v1">
             <button type="submit" class="btn-primary" style="width:100%;justify-content:center;border:none;padding:1rem 2rem;font-size:1rem;">
               Send Request →
             </button>
@@ -1137,6 +1144,21 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
     const btn = e.target.querySelector('button[type=submit]');
     const originalText = btn.textContent;
 
+    // SMS opt-in validation: if a phone number is provided, explicit consent is required (TCPA / A2P 10DLC)
+    const phoneVal = (e.target.querySelector('input[type="tel"]')?.value || '').trim();
+    const smsCheckbox = e.target.querySelector('#sms_optin');
+    if (phoneVal && smsCheckbox && !smsCheckbox.checked) {
+      btn.textContent = '✗ Please confirm SMS consent above';
+      btn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+      smsCheckbox.focus();
+      smsCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 3000);
+      return;
+    }
+
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
@@ -1153,15 +1175,19 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
       }
     }
 
+    const smsOptedIn = !!(smsCheckbox && smsCheckbox.checked);
     const payload = {
       name: e.target.querySelector('input[placeholder*="John Smith"]')?.value || '',
       email: e.target.querySelector('input[type="email"]')?.value || '',
-      phone: e.target.querySelector('input[type="tel"]')?.value || '',
+      phone: phoneVal,
       company: e.target.querySelector('input[placeholder*="Acme Corp"]')?.value || '',
       message: e.target.querySelector('textarea')?.value || '',
       budget: budgetValue,
       source: 'Lets Grow Digital Website',
-      entryPoint: 'Contact Form'
+      entryPoint: 'Contact Form',
+      sms_optin: smsOptedIn,
+      sms_optin_timestamp: smsOptedIn ? new Date().toISOString() : '',
+      form_version: e.target.querySelector('input[name="form_version"]')?.value || ''
     };
 
     try {
