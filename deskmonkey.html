@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>deskMonkey — 24/7 AI Receptionist for Auto Body, Home Services & Local Business | Lets Grow Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="favicon.jpg">
+<link rel="canonical" href="https://letsgrowdigital.ai/deskmonkey.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="shortcut icon" href="favicon-32.png">
+<meta name="description" content="deskMonkey is a 24/7 AI receptionist that answers every call, books appointments, and texts follow-ups in your brand voice. $299/mo. Live in 48 hours. 30-day guarantee.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://letsgrowdigital.ai/deskmonkey.html">
+<meta property="og:title" content="deskMonkey — 24/7 AI Receptionist for Local Business">
+<meta property="og:description" content="Never miss a call. Never lose a lead. Auto body, home services, medical, legal — $299/mo, month-to-month, 30-day guarantee.">
+<meta property="og:image" content="https://letsgrowdigital.ai/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="deskMonkey — 24/7 AI Receptionist">
+<meta name="twitter:description" content="Never miss a call. Never lose a lead. $299/mo. Live in 48 hours.">
+<meta name="twitter:image" content="https://letsgrowdigital.ai/og-image.jpg">
+<style>
+  :root {
+    --purple: #6B35D9;
+    --purple-light: #8B55F6;
+    --purple-dark: #4A1FA8;
+    --magenta: #D435A0;
+    --magenta-light: #F055C0;
+    --gradient: linear-gradient(135deg, #6B35D9 0%, #D435A0 100%);
+    --gradient-text: linear-gradient(90deg, #8B55F6 0%, #F055C0 100%);
+    --dark: #0A0A0F;
+    --dark-2: #111118;
+    --dark-3: #18181F;
+    --dark-4: #22222C;
+    --border: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --text-muted: rgba(255,255,255,0.55);
+    --text-dim: rgba(255,255,255,0.5);
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+  }
+  body.light-mode {
+    --dark: #FFFFFF;
+    --dark-2: #F8F8FF;
+    --dark-3: #F0F0F8;
+    --dark-4: #E8E8F0;
+    --border: rgba(0,0,0,0.08);
+    --text: #0A0A1A;
+    --text-muted: rgba(10,10,26,0.6);
+    --text-dim: rgba(10,10,26,0.4);
+  }
+  body.light-mode nav { background: rgba(255,255,255,0.92) !important; }
+  body.light-mode .hero-bg { opacity: 0.3; }
+
+  .theme-toggle { background: none; border: none; padding: 0; cursor: pointer; display: inline-flex; align-items: center; line-height: 1; }
+  .theme-toggle-track { position: relative; display: inline-flex; align-items: center; justify-content: space-between; width: 56px; height: 28px; padding: 0 7px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); transition: background 0.3s ease, border-color 0.3s ease; box-sizing: border-box; }
+  .theme-toggle-icon { font-size: 0.8rem; line-height: 1; z-index: 1; pointer-events: none; }
+  .theme-toggle-sun { color: #fbbf24; }
+  .theme-toggle-moon { color: #c4b5fd; }
+  .theme-toggle-thumb { position: absolute; top: 50%; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35); transform: translateY(-50%); transition: transform 0.3s ease, background 0.3s ease; }
+  body.light-mode .theme-toggle-track { background: rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.18); }
+  body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); background: #1a1a1a; }
+  .theme-toggle:hover .theme-toggle-track { border-color: var(--purple-light); }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--dark); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+  /* ===== TYPOGRAPHY ===== */
+  .display { font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .headline { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+  h1.headline, h2.headline, h3.headline, .section-header h2, .section-header h3, .hero h1 { max-width: 900px; margin-left: auto; margin-right: auto; }
+  .subhead { font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.55; font-weight: 300; color: var(--text-muted); }
+  p.subhead, .section-header p, .hero-subhead { max-width: 850px; margin-left: auto; margin-right: auto; }
+  @media (max-width: 768px) {
+    h1.headline, h2.headline, h3.headline, .section-header h2, .section-header h3, .hero h1,
+    p.subhead, .section-header p, .hero-subhead { max-width: 100%; }
+  }
+  .overline { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--magenta-light); }
+  .gradient-text { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 100px 0; }
+  .section-sm { padding: 60px 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 36px; left: 0; right: 0; z-index: 999;
+    padding: 1.25rem 0;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: var(--gradient); color: white; border: none; padding: 0.6rem 1.4rem; border-radius: 100px; font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s, transform 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+  .nav-ai-link { color: var(--magenta-light) !important; font-weight: 600; }
+  .nav-ai-link:hover { color: var(--purple-light) !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 90vh;
+    display: flex; align-items: center;
+    padding: 160px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(107,53,217,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(212,53,160,0.12) 0%, transparent 60%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(to right, white 1px, transparent 1px),
+      linear-gradient(to bottom, white 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 820px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(107,53,217,0.15);
+    border: 1px solid rgba(139,85,246,0.3);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--purple-light);
+    margin-bottom: 2rem;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--magenta-light); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero h1 { margin-bottom: 1.5rem; }
+  .hero p { max-width: 640px; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--gradient); color: white; border: none; padding: 0.9rem 2rem; border-radius: 100px; font-family: var(--font-sans); font-size: 1rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s, transform 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 0.9rem 2rem; border-radius: 100px; font-family: var(--font-sans); font-size: 1rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-outline:hover { border-color: var(--purple-light); background: rgba(139,85,246,0.08); }
+  body.light-mode .btn-outline { color: var(--text); border-color: rgba(10,10,26,0.18); }
+  body.light-mode .btn-outline:hover { border-color: var(--purple); background: rgba(107,53,217,0.08); }
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .hero-stat-card { background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; }
+  .hero-stat-num { font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+  .hero-stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+  /* ===== OLD-WAY vs DESKMONKEY-WAY ===== */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .compare-col { background: var(--dark-3); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem 2rem; position: relative; }
+  .compare-col.old { opacity: 0.92; }
+  .compare-col.new { border-color: rgba(139,85,246,0.4); background: linear-gradient(180deg, rgba(107,53,217,0.10) 0%, var(--dark-3) 100%); }
+  .compare-col .compare-badge { position: absolute; top: -12px; left: 1.5rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; }
+  .compare-col.old .compare-badge { background: var(--dark-4); color: var(--text-muted); border: 1px solid var(--border); }
+  .compare-col.new .compare-badge { background: var(--gradient); color: #fff; }
+  .compare-col h3 { font-family: var(--font-serif); font-size: 1.65rem; margin-bottom: 1.25rem; }
+  .compare-col .compare-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .compare-col .compare-list li { font-size: 0.95rem; color: var(--text-muted); padding-left: 1.75rem; position: relative; line-height: 1.5; }
+  .compare-col.old .compare-list li::before { content: '✗'; position: absolute; left: 0; top: 0; color: #dc3545; font-weight: 700; font-size: 1.1rem; }
+  .compare-col.new .compare-list li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--purple-light); font-weight: 700; font-size: 1.1rem; }
+
+  /* ===== PROCESS STEPS ===== */
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--purple), var(--magenta), transparent);
+    z-index: 0;
+  }
+  .process-step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+  .process-num {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1.25rem;
+    background: var(--gradient);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700;
+    box-shadow: 0 0 24px rgba(107,53,217,0.4);
+    color: #fff;
+  }
+  .process-step h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .process-step p { font-size: 0.875rem; color: var(--text-muted); }
+
+  /* ===== TRY IT LIVE PANEL ===== */
+  .try-block { background: linear-gradient(135deg, rgba(107,53,217,0.12) 0%, rgba(212,53,160,0.10) 100%); border: 1px solid rgba(139,85,246,0.30); border-radius: 28px; padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .try-block::before { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(107,53,217,0.15) 0%, transparent 70%); }
+  .try-block > * { position: relative; z-index: 1; }
+  .try-block h2 { font-family: var(--font-serif); font-size: clamp(1.85rem, 3.5vw, 2.8rem); margin-bottom: 1rem; }
+  .try-block p { color: var(--text-muted); max-width: 640px; margin: 0 auto 1.5rem; font-size: 1rem; }
+  .try-hint { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem; padding: 0.5rem 0.85rem; background: var(--dark-3); border: 1px solid var(--border); border-radius: 100px; }
+  .try-hint-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--magenta-light); animation: pulse 1.5s infinite; }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--dark-3); }
+  .compare-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  .compare-table th, .compare-table td { padding: 0.85rem 1rem; text-align: left; font-size: 0.875rem; border-bottom: 1px solid var(--border); }
+  .compare-table th { background: var(--dark-2); color: var(--text); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .compare-table th.us { background: var(--gradient); color: #fff; }
+  .compare-table td.first { font-weight: 500; color: var(--text); }
+  .compare-table td.us { background: rgba(107,53,217,0.10); color: var(--text); font-weight: 600; }
+  .compare-table td.good { color: #22c55e; font-weight: 600; }
+  .compare-table td.bad { color: #ef4444; }
+  .compare-table td.meh { color: var(--text-muted); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-fineprint { font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem; text-align: center; }
+
+  /* ===== GUARANTEE BLOCK ===== */
+  .guarantee-block { background: linear-gradient(135deg, rgba(107,53,217,0.18) 0%, rgba(212,53,160,0.12) 100%); border: 1px solid rgba(139,85,246,0.4); border-radius: 24px; padding: 3.5rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .guarantee-block::before { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,53,160,0.10) 0%, transparent 70%); }
+  .guarantee-block > * { position: relative; z-index: 1; }
+  .guarantee-seal { display: inline-flex; align-items: center; justify-content: center; width: 104px; height: 104px; border-radius: 50%; background: var(--gradient); font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; box-shadow: 0 8px 32px rgba(107,53,217,0.4); line-height: 1; flex-direction: column; }
+  .guarantee-seal .num { font-family: var(--font-serif); font-size: 2.2rem; }
+  .guarantee-seal .day { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+  .guarantee-block h3 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: 1rem; }
+  .guarantee-block p { color: var(--text-muted); max-width: 660px; margin: 0 auto 1.5rem; font-size: 1rem; line-height: 1.65; }
+
+  /* ===== FAQ ACCORDION ===== */
+  .faq-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 820px; margin: 0 auto; }
+  .faq-item { background: var(--dark-3); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(139,85,246,0.25); }
+  .faq-question { width: 100%; background: none; border: none; padding: 1.25rem 1.5rem; font-family: var(--font-sans); font-size: 1rem; font-weight: 600; color: var(--text); text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .faq-toggle-icon { font-size: 1.5rem; color: var(--purple-light); transition: transform 0.25s ease; flex-shrink: 0; line-height: 1; font-weight: 300; }
+  .faq-item.open .faq-toggle-icon { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem; }
+  .faq-answer p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; padding-bottom: 1.25rem; }
+  .faq-item.open .faq-answer { max-height: 600px; }
+
+  /* ===== INDUSTRIES STRIP ===== */
+  .industries-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 800px; margin: 0 auto; }
+  .industry-pill { background: var(--dark-3); border: 1px solid var(--border); border-radius: 100px; padding: 0.5rem 1.1rem; font-size: 0.85rem; color: var(--text-muted); transition: all 0.2s; }
+  .industry-pill:hover { border-color: rgba(139,85,246,0.4); color: var(--purple-light); background: rgba(107,53,217,0.08); }
+  .industry-pill.featured { background: var(--gradient); color: #fff; border-color: transparent; font-weight: 600; }
+
+  /* ===== CTA BLOCK ===== */
+  .cta-block { background: var(--dark-2); border: 1px solid var(--border); border-radius: 28px; padding: 5rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-block::before { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(107,53,217,0.15) 0%, transparent 70%); }
+  .cta-block > * { position: relative; z-index: 1; }
+  .cta-block h2 { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1rem; }
+  .cta-block p { color: var(--text-muted); max-width: 520px; margin: 0 auto 2rem; }
+
+  /* ===== FOOTER ===== */
+  footer { border-top: 1px solid var(--border); background: var(--dark-2); padding: 4rem 0 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 0.875rem; color: var(--text-muted); margin: 1rem 0 1.5rem; max-width: 280px; }
+  .footer-social { display: flex; gap: 0.75rem; }
+  .social-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--dark-3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+  .social-icon:hover { border-color: rgba(139,85,246,0.4); color: var(--purple-light); }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--purple-light); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .footer-bottom p { font-size: 0.8rem; color: var(--text-dim); }
+
+  /* ===== GLOW DIVIDER ===== */
+  .glow-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(107,53,217,0.5), rgba(212,53,160,0.5), transparent); margin: 0; }
+
+  /* ===== AI BADGE ===== */
+  .ai-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, rgba(107,53,217,0.2), rgba(212,53,160,0.2)); border: 1px solid rgba(139,85,246,0.25); border-radius: 100px; padding: 0.25rem 0.75rem; font-size: 0.72rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.05em; }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+
+  ::selection { background: rgba(139,85,246,0.35); color: inherit; }
+  body.light-mode ::selection { background: rgba(107,53,217,0.25); color: #0A0A1A; }
+
+  /* ===== TOP BANNER (phone/text) ===== */
+  .top-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: var(--gradient); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1rem; text-align: center; letter-spacing: 0.01em; }
+  .top-banner a { color: #fff; text-decoration: none; font-weight: 700; }
+  .top-banner a:hover { text-decoration: underline; }
+  @media (max-width: 480px) {
+    .top-banner { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
+    nav { top: 32px !important; }
+  }
+
+  /* ===== HAMBURGER ===== */
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+  body.light-mode .nav-hamburger span { background: #0A0A1A; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 768px) {
+    .nav-hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links.mobile-open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,15,0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem;
+      gap: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    body.light-mode .nav-links.mobile-open { background: rgba(255,255,255,0.98); }
+  }
+
+  /* ===== TRILLET WIDGET LAUNCHER (bottom-left; Cal.com lives bottom-right) ===== */
+  .dm-widget-launcher { position: fixed; bottom: 24px; left: 24px; z-index: 998; }
+  .dm-widget-toggle { background: var(--gradient); color: #fff; border: none; padding: 0.9rem 1.35rem; border-radius: 100px; font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: 0 8px 24px rgba(107,53,217,0.35); display: inline-flex; align-items: center; gap: 0.55rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .dm-widget-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(107,53,217,0.5); }
+  .dm-widget-toggle .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: pulse 1.5s infinite; }
+  .dm-widget-panel { display: none; position: fixed; bottom: 88px; left: 24px; flex-direction: column; width: 360px; max-width: calc(100vw - 48px); height: 540px; max-height: calc(100vh - 140px); background: var(--dark-2); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 56px rgba(0,0,0,0.55); overflow: hidden; z-index: 998; }
+  body.light-mode .dm-widget-panel { box-shadow: 0 24px 56px rgba(10,10,26,0.18); }
+  .dm-widget-panel.open { display: flex; }
+  .dm-widget-header { padding: 1rem 1.25rem; background: var(--gradient); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .dm-widget-header strong { font-weight: 600; font-size: 0.95rem; }
+  .dm-widget-header small { display: block; font-weight: 400; font-size: 0.72rem; opacity: 0.85; margin-top: 2px; }
+  .dm-widget-close { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; padding: 0; line-height: 1; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+  .dm-widget-close:hover { background: rgba(255,255,255,0.15); }
+  .dm-widget-tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--dark-2); }
+  .dm-widget-tab { flex: 1; background: none; border: none; padding: 0.85rem; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .dm-widget-tab.active { color: var(--text); border-bottom-color: var(--purple-light); }
+  .dm-widget-tab:hover { color: var(--text); }
+  .dm-widget-body { flex: 1; display: none; flex-direction: column; min-height: 0; }
+  .dm-widget-body.active { display: flex; }
+  .dm-msg-log { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; background: var(--dark); }
+  body.light-mode .dm-msg-log { background: var(--dark-2); }
+  .dm-msg { padding: 0.65rem 0.9rem; border-radius: 12px; font-size: 0.875rem; line-height: 1.45; max-width: 85%; word-wrap: break-word; }
+  .dm-msg.user { background: var(--gradient); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .dm-msg.bot { background: var(--dark-3); color: var(--text); align-self: flex-start; border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+  .dm-msg.system { background: none; color: var(--text-dim); font-size: 0.78rem; text-align: center; font-style: italic; align-self: center; max-width: 100%; padding: 0.25rem 0; }
+  .dm-input-row { padding: 0.75rem; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; background: var(--dark-2); }
+  .dm-input-row input { flex: 1; background: var(--dark-3); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.85rem; color: var(--text); font-family: var(--font-sans); font-size: 0.875rem; outline: none; }
+  .dm-input-row input:focus { border-color: rgba(139,85,246,0.5); }
+  .dm-input-row button { background: var(--gradient); border: none; color: #fff; border-radius: 8px; padding: 0 1rem; font-weight: 600; cursor: pointer; font-size: 0.875rem; }
+  .dm-input-row button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .dm-voice-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem; padding: 2rem; text-align: center; background: var(--dark); }
+  body.light-mode .dm-voice-body { background: var(--dark-2); }
+  .dm-voice-btn { width: 104px; height: 104px; border-radius: 50%; background: var(--gradient); border: none; color: #fff; font-size: 2.4rem; cursor: pointer; box-shadow: 0 8px 24px rgba(107,53,217,0.4); transition: transform 0.2s; line-height: 1; }
+  .dm-voice-btn:hover { transform: scale(1.05); }
+  .dm-voice-btn.active { animation: pulse-ring 1.5s infinite; }
+  @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(212,53,160,0.5); } 70% { box-shadow: 0 0 0 28px rgba(212,53,160,0); } 100% { box-shadow: 0 0 0 0 rgba(212,53,160,0); } }
+  .dm-voice-status { font-size: 0.9rem; color: var(--text-muted); }
+  .dm-voice-status strong { color: var(--text); }
+  .dm-voice-fineprint { font-size: 0.72rem; color: var(--text-dim); max-width: 280px; line-height: 1.5; }
+  @media (max-width: 480px) {
+    .dm-widget-launcher { bottom: 16px; left: 16px; }
+    .dm-widget-toggle { font-size: 0.8rem; padding: 0.75rem 1.05rem; }
+    .dm-widget-panel { bottom: 76px; left: 16px; width: calc(100vw - 32px); height: calc(100vh - 160px); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem 0; }
+    .process-steps::before { display: none; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn-primary, .hero-ctas .btn-outline { justify-content: center; }
+    .guarantee-block, .try-block, .cta-block { padding: 2.5rem 1.5rem; }
+  }
+
+  .site-logo { height: 38px; width: auto; display: block; }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BANNER ===== -->
+<div class="top-banner">📞 Call or Text: <a href="tel:+17324661234">732-466-1234</a></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Lets Grow Digital" class="site-logo" width="160" height="67">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="deskmonkey.html" class="nav-ai-link">✦ deskMonkey</a></li>
+      <li><a href="ai.html">AI Agent</a></li>
+      <li><a href="agency.html">Agency</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <a href="index.html#contact" class="nav-cta">Sign Up →</a>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme" role="switch" aria-checked="false">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
+        <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-thumb" aria-hidden="true"></span>
+      </span>
+    </button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        ✦ 24/7 AI Receptionist · Live in 48 hours
+      </div>
+      <h1 class="display">
+        <span class="gradient-text">deskMonkey</span><br>
+        Never miss a call.<br>
+        Never lose a lead.
+      </h1>
+      <p class="subhead">An AI receptionist that answers your phone 24/7, books appointments straight into your calendar, and texts your customers back instantly — in your business's voice. Built for auto body shops, home services, and any local business losing revenue to unanswered calls.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="openWidget('voice')">▶ Try deskMonkey Live</button>
+        <a href="index.html#contact" class="btn-outline">Sign Up →</a>
+        <a href="tel:+17324661234" class="btn-outline">📞 732-466-1234</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">$299</div>
+          <div class="hero-stat-label">/mo · No contracts</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">78%</div>
+          <div class="hero-stat-label">of buyers choose the first to respond</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">62%</div>
+          <div class="hero-stat-label">of small-biz calls go unanswered</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-num">100×</div>
+          <div class="hero-stat-label">better conversion in first 5 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== OLD WAY VS DESKMONKEY WAY ===== -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:780px; margin:0 auto 3.5rem;" class="fade-up">
+      <p class="overline">The Math On Missed Calls</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Every unanswered call is<br><span class="gradient-text">money walking next door.</span></h2>
+      <p class="subhead" style="font-size: 1.05rem;">62% of inbound calls to small businesses go unanswered. 78% of buyers go with whoever picks up first. The next name on Google is one tap away.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-col old fade-up stagger-1">
+        <span class="compare-badge">The Old Way</span>
+        <h3>Voicemail. Maybe a callback. Probably a lost job.</h3>
+        <ul class="compare-list">
+          <li>Phone rings while you're under the hood, on a roof, or with a patient.</li>
+          <li>Customer hits voicemail, hangs up, calls the next shop.</li>
+          <li>If you get a message, it's "Hi, this is John, call me back."</li>
+          <li>You play phone tag for two days.</li>
+          <li>By the time you connect, they've already booked someone else.</li>
+          <li>After 6 PM, weekends, holidays — your phone is just dead.</li>
+          <li>You spend marketing dollars driving calls that never get answered.</li>
+        </ul>
+      </div>
+
+      <div class="compare-col new fade-up stagger-2">
+        <span class="compare-badge">The deskMonkey Way</span>
+        <h3>Answered in one ring. Booked in two minutes. Confirmed by text.</h3>
+        <ul class="compare-list">
+          <li>Every call answered within one ring, 24/7/365, in your brand voice.</li>
+          <li>deskMonkey asks the right intake questions — service, urgency, address, callback.</li>
+          <li>Appointment booked straight into your calendar (Cal.com, Google, Outlook, GHL).</li>
+          <li>Caller gets an instant SMS confirmation with the booking link.</li>
+          <li>You get a clean email summary: transcript, structured data, sentiment.</li>
+          <li>Emergencies trigger an immediate text to you for callback in minutes.</li>
+          <li>Spam and telemarketers are blocked automatically — they never waste your time.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== HOW IT WORKS — 4 STEPS ===== -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:780px; margin:0 auto 4rem;" class="fade-up">
+      <p class="overline">How It Works</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Four steps. <span class="gradient-text">Every call.</span> Same brain.</h2>
+      <p class="subhead" style="font-size: 1.05rem;">deskMonkey follows the same sales-floor playbook a great front-desk hire would — without the lunch breaks, sick days, or shift changes.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step fade-up stagger-1">
+        <div class="process-num">1</div>
+        <h4>Identify</h4>
+        <p>Greets the caller by your business name, captures their name and callback number, confirms the digits back.</p>
+      </div>
+      <div class="process-step fade-up stagger-2">
+        <div class="process-num">2</div>
+        <h4>Screen</h4>
+        <p>One open-ended "what's going on?" Lets the customer describe the job. Detects spam and telemarketers and politely ends those calls.</p>
+      </div>
+      <div class="process-step fade-up stagger-3">
+        <div class="process-num">3</div>
+        <h4>Qualify</h4>
+        <p>Classifies urgency (emergency, same-day, standard, quote-only), captures service address, asks the trade-specific intake questions you set up.</p>
+      </div>
+      <div class="process-step fade-up stagger-4">
+        <div class="process-num">4</div>
+        <h4>Book</h4>
+        <p>Offers the next slot from your calendar, books it, sends SMS confirmation, emails you a summary. Done — before the next call rings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== TRY IT LIVE ===== -->
+<section class="section" id="try-it-live">
+  <div class="container">
+    <div class="try-block fade-up">
+      <p class="overline">Try It Live · No Sign-Up</p>
+      <h2>Hear it for yourself.</h2>
+      <p>deskMonkey is sitting in the bottom-left of this page right now. Click the launcher and you'll talk to (or chat with) the same AI receptionist that handles inbound calls for Lets Grow Digital. Ask it pricing, ask it what we do, ask it to book you a demo. It is the actual product, not a video tour.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top: 0.5rem;">
+        <button class="btn-primary" onclick="openWidget('voice')">🎙️ Talk to deskMonkey</button>
+        <button class="btn-outline" onclick="openWidget('text')">💬 Chat with deskMonkey</button>
+      </div>
+      <div class="try-hint"><span class="try-hint-dot"></span> Voice mode requires microphone permission · works on any browser</div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== COMPETITOR COMPARISON ===== -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:820px; margin:0 auto 3rem;" class="fade-up">
+      <p class="overline">How We Compare</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">deskMonkey vs. <span class="gradient-text">everything else.</span></h2>
+      <p class="subhead" style="font-size: 1.05rem;">Most "AI receptionist" products are stand-alone SaaS tools. Most answering services are people taking messages. deskMonkey is a full marketing partner that catches every call, books the job, and runs the ads driving the call in the first place.</p>
+    </div>
+
+    <div class="compare-table-wrap fade-up">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="min-width:180px;"></th>
+            <th class="us">deskMonkey</th>
+            <th>Smith.ai / Ruby</th>
+            <th>Goodcall / Dialzara<br><span style="font-size:0.7rem;font-weight:400;opacity:0.7;">/ Hey Rosie / My AI Front Desk</span></th>
+            <th>Hire a receptionist</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="first">Starting price</td>
+            <td class="us">$299/mo</td>
+            <td class="meh">$200–400/mo</td>
+            <td class="meh">$60–300/mo</td>
+            <td class="bad">$1,500–2,500/mo + benefits</td>
+          </tr>
+          <tr>
+            <td class="first">Contract</td>
+            <td class="us">Month-to-month</td>
+            <td class="bad">Annual common</td>
+            <td class="meh">Month-to-month</td>
+            <td class="bad">Salaried / hourly</td>
+          </tr>
+          <tr>
+            <td class="first">Hours covered</td>
+            <td class="us">24/7/365</td>
+            <td class="meh">Business hours</td>
+            <td class="us">24/7</td>
+            <td class="bad">9 to 5</td>
+          </tr>
+          <tr>
+            <td class="first">Books into your calendar</td>
+            <td class="us">Yes — Cal.com, Google, Outlook, GHL</td>
+            <td class="meh">Some plans</td>
+            <td class="meh">Limited integrations</td>
+            <td class="good">Yes (manually)</td>
+          </tr>
+          <tr>
+            <td class="first">SMS confirmation to caller</td>
+            <td class="us">Automatic</td>
+            <td class="meh">Manual</td>
+            <td class="meh">Add-on</td>
+            <td class="meh">Manual</td>
+          </tr>
+          <tr>
+            <td class="first">Custom voice & brand</td>
+            <td class="us">Full white-label</td>
+            <td class="bad">Generic agent identity</td>
+            <td class="meh">Templated</td>
+            <td class="good">Yes</td>
+          </tr>
+          <tr>
+            <td class="first">Industry-specific intake</td>
+            <td class="us">Built per vertical (auto body, HVAC, dental…)</td>
+            <td class="meh">Script-based</td>
+            <td class="bad">Generic</td>
+            <td class="meh">Depends on hire</td>
+          </tr>
+          <tr>
+            <td class="first">Meta lead-form callback &lt;30s</td>
+            <td class="us">Native</td>
+            <td class="bad">No</td>
+            <td class="meh">Via Zapier</td>
+            <td class="bad">No</td>
+          </tr>
+          <tr>
+            <td class="first">Bundled with marketing services</td>
+            <td class="us">SEO, PPC, Meta, content, web</td>
+            <td class="bad">Receptionist only</td>
+            <td class="bad">AI tool only</td>
+            <td class="bad">Receptionist only</td>
+          </tr>
+          <tr>
+            <td class="first">30-day money-back guarantee</td>
+            <td class="us">Yes</td>
+            <td class="bad">No</td>
+            <td class="meh">Sometimes</td>
+            <td class="bad">No</td>
+          </tr>
+          <tr>
+            <td class="first">Setup time to live</td>
+            <td class="us">3–5 business days</td>
+            <td class="meh">1–2 weeks</td>
+            <td class="meh">Days to weeks</td>
+            <td class="bad">Weeks to months (recruit + train)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-fineprint">Comparison reflects publicly available competitor pricing and feature claims as of May 2026. Smith.ai and Ruby use human receptionists with AI assist; Goodcall, Dialzara, Hey Rosie, and My AI Front Desk are pure-AI products.</p>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== 30-DAY GUARANTEE ===== -->
+<section class="section">
+  <div class="container">
+    <div class="guarantee-block fade-up">
+      <div class="guarantee-seal" aria-hidden="true">
+        <span class="num">30</span>
+        <span class="day">DAY</span>
+      </div>
+      <p class="overline">Money-Back Guarantee</p>
+      <h3>If deskMonkey isn't catching leads in the first 30 days, we refund the retainer.</h3>
+      <p>We're confident enough in the product to put our money where our mouth is. Sign up, run it for a full 30 days, and if it isn't paying for itself by week four — full refund of the monthly retainer, no questions asked. You walk away. We port your call forwarding back the way it was. The only thing you lose is some setup time.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top: 0.5rem;">
+        <a href="index.html#contact" class="btn-primary">Sign Up Now →</a>
+        <a href="https://cal.com/letsgrowletsgo?metadata[source]=deskMonkey Landing" class="btn-outline">Book a 25-min Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== INDUSTRIES ===== -->
+<section class="section-sm">
+  <div class="container">
+    <div style="text-align:center; max-width:780px; margin:0 auto 2rem;" class="fade-up">
+      <p class="overline">Industries We Serve</p>
+      <h3 class="headline" style="margin: 0.75rem 0 0.5rem; font-size: clamp(1.6rem, 3vw, 2.4rem);">Built for businesses where <span class="gradient-text">every call counts.</span></h3>
+    </div>
+    <div class="industries-strip fade-up">
+      <span class="industry-pill featured">★ Auto Body Shops</span>
+      <span class="industry-pill">Plumbing</span>
+      <span class="industry-pill">HVAC</span>
+      <span class="industry-pill">Electrical</span>
+      <span class="industry-pill">Landscaping</span>
+      <span class="industry-pill">Roofing</span>
+      <span class="industry-pill">Tree Service</span>
+      <span class="industry-pill">Locksmith</span>
+      <span class="industry-pill">Garage Door</span>
+      <span class="industry-pill">Pool</span>
+      <span class="industry-pill">Pest Control</span>
+      <span class="industry-pill">Septic</span>
+      <span class="industry-pill">Paving</span>
+      <span class="industry-pill">Dental</span>
+      <span class="industry-pill">Medical</span>
+      <span class="industry-pill">Med Spa</span>
+      <span class="industry-pill">Legal</span>
+      <span class="industry-pill">Restaurants</span>
+      <span class="industry-pill">Recreation</span>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== FAQ ===== -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center; max-width:780px; margin:0 auto 3rem;" class="fade-up">
+      <p class="overline">FAQ</p>
+      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Questions <span class="gradient-text">worth answering.</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          How is this different from a regular answering service?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Answering services take messages. deskMonkey actually answers questions, books appointments into your calendar, and follows up by text — all in your business's voice, 24/7. Customers get a real conversation, not a "we'll call you back" runaround.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-2">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          Will my customers know it's AI?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>The experience feels like a real receptionist — natural voice, your business details, immediate answers. We don't deceive callers, but most don't ask. The ones who do don't mind once they realize they got their problem handled in one call.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-3">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          How do I know it won't say something wrong?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Three things: (1) it's trained only on your business info — we don't let it freelance, (2) for any technical or diagnostic question it has a hard rule to redirect to a booked visit instead of guessing, (3) you get a transcript of every call so nothing is hidden. If you want to flag a phrasing change, we update it within 24 hours.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          What happens if a call is an emergency?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>We program urgency tiers into your agent. For emergencies (gas leak, no heat in winter, water leak, downed tree, fender-bender at night) it acknowledges the urgency, captures the caller's location, and immediately texts you so you can call back in seconds.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-2">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          Can I listen to my agent before I commit?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Yes. We spin up a live test number you can call as part of the discovery process. Hear it answer, ask it questions, see if it sounds like you. No commitment.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-3">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          Do I have to change my phone number?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>No. You keep your existing number. Setup is a 30-second call-forwarding change on your phone — we walk you through it for your specific carrier.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          Does it work with my CRM or scheduling tool?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Native support for GoHighLevel, Cal.com, Google Calendar, Outlook, and Meta Lead Forms. HubSpot and other CRMs via webhook or API as part of onboarding. If you use something exotic, we connect it.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-2">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          What if it can't handle a call?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>It transfers to a human (warm transfer — it stays on the line) or takes a message and schedules a callback. You're never just hearing "I don't know" and a dead silence.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-3">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          How fast can you get me live?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Most clients are live in 3 to 5 business days. Faster if you're ready with your services list, hours, and pricing. The bottleneck is collecting your details, not the build.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-1">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          What if I want to cancel?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Month-to-month, no contract. Cancel anytime with 30 days notice. We'll port your call-forwarding back the way it was — no holding your number hostage.</p></div>
+      </div>
+
+      <div class="faq-item fade-up stagger-2">
+        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+          Is this HIPAA, TCPA, and SOC 2 compliant?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer"><p>Yes. The underlying platform is HIPAA, SOC 2 Type II, TCPA, A2P 10DLC, and GDPR compliant out of the box. For medical and dental clients we sign a Business Associate Agreement (BAA).</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="section">
+  <div class="container">
+    <div class="cta-block fade-up">
+      <p class="overline">No Risk · 30-Day Guarantee · Live in 48 Hours</p>
+      <h2>Stop paying for ads<br>that go to voicemail.</h2>
+      <p>Sign up today and we'll have deskMonkey answering your phones by the end of the week.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn-primary">Sign Up →</a>
+        <a href="tel:+17324661234" class="btn-outline">📞 732-466-1234</a>
+        <a href="https://cal.com/letsgrowletsgo?metadata[source]=deskMonkey Landing" class="btn-outline">Book a Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Lets Grow Digital" style="height:48px; width:auto; display:block; margin-bottom:16px;">
+        <p>Full-service digital marketing built for ambitious businesses. AI-first. Results-focused. Obsessively transparent.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon">fb</a>
+          <a href="#" class="social-icon">ig</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="deskmonkey.html"><strong style="color:var(--magenta-light);">★ deskMonkey</strong></a></li>
+          <li><a href="ai.html">AI Agent</a></li>
+          <li><a href="agency.html#services">SEO &amp; GEO</a></li>
+          <li><a href="agency.html#services">Paid Media</a></li>
+          <li><a href="agency.html#services">Meta &amp; Social Ads</a></li>
+          <li><a href="agency.html#services">Email &amp; SMS</a></li>
+          <li><a href="agency.html#services">Web Design &amp; CRO</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About LGD</a></li>
+          <li><a href="agency.html#who-we-help">Who We Help</a></li>
+          <li><a href="agency.html#process">Our Process</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="kb.txt">Knowledge Base</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#auto-body"><strong style="color:var(--magenta-light);">★ Auto Body Shops</strong></a></li>
+          <li><a href="agency.html#who-we-help">Medical &amp; Health</a></li>
+          <li><a href="agency.html#who-we-help">Legal Services</a></li>
+          <li><a href="agency.html#who-we-help">Home Services</a></li>
+          <li><a href="agency.html#who-we-help">Professional Services</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Lets Grow Digital, a DBA of GBBB Holdings LLC. All rights reserved.</p>
+      <p><a href="privacy.html" style="color:var(--text-muted);text-decoration:none;">Privacy Policy</a> · <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== TRILLET WIDGET LAUNCHER (bottom-left) ===== -->
+<div class="dm-widget-launcher">
+  <button id="dm-widget-toggle" class="dm-widget-toggle" onclick="openWidget()" aria-label="Open deskMonkey live demo">
+    <span class="pulse-dot"></span> Try deskMonkey Live
+  </button>
+</div>
+
+<div id="dm-widget-panel" class="dm-widget-panel" role="dialog" aria-label="deskMonkey live demo">
+  <div class="dm-widget-header">
+    <div>
+      <strong>deskMonkey · Live Demo</strong>
+      <small>Talk or chat with our AI receptionist</small>
+    </div>
+    <button class="dm-widget-close" onclick="closeWidget()" aria-label="Close">×</button>
+  </div>
+  <div class="dm-widget-tabs">
+    <button class="dm-widget-tab active" data-mode="voice" onclick="switchMode('voice')">🎙️ Talk</button>
+    <button class="dm-widget-tab" data-mode="text" onclick="switchMode('text')">💬 Chat</button>
+  </div>
+
+  <div id="dm-voice-body" class="dm-widget-body active">
+    <div class="dm-voice-body">
+      <button id="dm-voice-btn" class="dm-voice-btn" onclick="toggleVoice()" aria-label="Start voice call">🎙️</button>
+      <div id="dm-voice-status" class="dm-voice-status">Tap the mic to start. <strong>deskMonkey will answer.</strong></div>
+      <div class="dm-voice-fineprint">By starting, you allow microphone access for this session only. The conversation is recorded for quality. By using this demo you consent to those terms.</div>
+    </div>
+  </div>
+
+  <div id="dm-text-body" class="dm-widget-body">
+    <div id="dm-msg-log" class="dm-msg-log">
+      <div class="dm-msg system">Loading deskMonkey…</div>
+    </div>
+    <form id="dm-text-form" class="dm-input-row" onsubmit="sendText(event)">
+      <input type="text" id="dm-text-input" placeholder="Type a message…" autocomplete="off" disabled>
+      <button type="submit" id="dm-text-send" disabled>Send</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Hamburger menu
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('mobile-open');
+    hamburger.setAttribute('aria-label', hamburger.classList.contains('open') ? 'Close menu' : 'Open menu');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('mobile-open');
+  }));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const isLight = document.body.classList.contains('light-mode');
+    if (window.scrollY > 60) {
+      nav.style.background = isLight ? 'rgba(255,255,255,0.97)' : 'rgba(10,10,15,0.97)';
+    } else {
+      nav.style.background = isLight ? 'rgba(255,255,255,0.92)' : 'rgba(10,10,15,0.85)';
+    }
+  });
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+</script>
+
+<!-- Cal.com Floating Booking Button (bottom-right) -->
+<script type="text/javascript">
+(function (C, A, L) {
+  let p = function (a, ar) { a.q.push(ar); };
+  let d = C.document;
+  C.Cal = C.Cal || function () {
+    let cal = C.Cal; let ar = arguments;
+    if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+    if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", { origin: "https://cal.com" });
+Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=deskMonkey Landing", buttonText: "Book A Demo", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
+Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
+</script>
+
+<!-- Theme toggle (default LIGHT, persist via localStorage) -->
+<script>
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light-mode');
+  const btn = document.getElementById('theme-toggle');
+  if (btn) btn.setAttribute('aria-checked', isLight ? 'true' : 'false');
+  localStorage.setItem('lgd-theme', isLight ? 'light' : 'dark');
+}
+(function() {
+  if (localStorage.getItem('lgd-theme') !== 'dark') {
+    document.body.classList.add('light-mode');
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.setAttribute('aria-checked', 'true');
+    });
+  }
+})();
+</script>
+
+<!--
+  ===== TRILLET LIVE DEMO WIDGET =====
+  Requirements (Bryan-side):
+    1. Trillet portal → Settings → Domain: whitelist letsgrowdigital.ai (allow 24h to propagate)
+    2. Trillet portal → "Lets Grow Digital" call flow → Settings tab → Public Access: ON
+    3. Verify AGENT_ID matches the Agent ID shown on the call flow card
+       (not the Flow ID — Trillet docs use "Agent ID" for the SDK)
+
+  IDs (per Bryan, 2026-05-11):
+    Workspace ID: 69e69b651b3de0d5cc652aeb
+    Flow ID:      69e8a7bf1b3de0d5ccd34dd2
+    Agent ID:     69e8a7bf1b3de0d5ccd34dc1   ← used below; verify if widget fails to connect
+-->
+<script type="module">
+  import { TrilletAgent } from 'https://cdn.jsdelivr.net/npm/@trillet-ai/web-sdk/+esm';
+
+  const WORKSPACE_ID = '69e69b651b3de0d5cc652aeb';
+  const AGENT_ID     = '69e8a7bf1b3de0d5ccd34dc1';
+
+  const launcher = document.getElementById('dm-widget-toggle');
+  const panel    = document.getElementById('dm-widget-panel');
+  const tabs     = document.querySelectorAll('.dm-widget-tab');
+  const voiceBody = document.getElementById('dm-voice-body');
+  const textBody  = document.getElementById('dm-text-body');
+  const voiceBtn  = document.getElementById('dm-voice-btn');
+  const voiceStatus = document.getElementById('dm-voice-status');
+  const msgLog    = document.getElementById('dm-msg-log');
+  const textInput = document.getElementById('dm-text-input');
+  const textSend  = document.getElementById('dm-text-send');
+
+  let voiceAgent = null;
+  let textAgent  = null;
+  let voiceActive = false;
+
+  // ----- panel controls (exposed to inline onclick handlers) -----
+  window.openWidget = function(mode) {
+    panel.classList.add('open');
+    if (mode === 'text') switchMode('text');
+    else switchMode('voice');
+  };
+  window.closeWidget = function() {
+    panel.classList.remove('open');
+    stopVoice();
+  };
+  window.switchMode = function(mode) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+    voiceBody.classList.toggle('active', mode === 'voice');
+    textBody.classList.toggle('active', mode === 'text');
+    if (mode === 'text') ensureTextAgent();
+  };
+
+  // ----- voice mode -----
+  window.toggleVoice = async function() {
+    if (voiceActive) { stopVoice(); return; }
+    voiceStatus.textContent = 'Connecting…';
+    voiceBtn.classList.add('active');
+    try {
+      voiceAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: AGENT_ID, mode: 'voice' });
+      voiceAgent.on('connected', () => {
+        voiceActive = true;
+        voiceStatus.innerHTML = '<strong>Connected.</strong> Speak naturally — deskMonkey is listening.';
+      });
+      voiceAgent.on('disconnected', () => {
+        voiceActive = false;
+        voiceBtn.classList.remove('active');
+        voiceStatus.innerHTML = 'Call ended. <strong>Tap to call again.</strong>';
+      });
+      voiceAgent.on('error', (err) => {
+        console.error('Trillet voice error:', err);
+        voiceActive = false;
+        voiceBtn.classList.remove('active');
+        voiceStatus.innerHTML = 'Something went wrong. <strong>Try again,</strong> or call 732-466-1234.';
+      });
+      await voiceAgent.startPublicCall();
+    } catch (err) {
+      console.error('Trillet voice init failed:', err);
+      voiceBtn.classList.remove('active');
+      voiceStatus.innerHTML = 'Demo unavailable right now. Call us at <strong>732-466-1234</strong>.';
+    }
+  };
+
+  function stopVoice() {
+    if (voiceAgent && voiceActive) {
+      try { voiceAgent.disconnect?.() || voiceAgent.endCall?.() || voiceAgent.stop?.(); } catch (e) {}
+    }
+    voiceActive = false;
+    voiceBtn.classList.remove('active');
+  }
+
+  // ----- text mode -----
+  async function ensureTextAgent() {
+    if (textAgent) return;
+    msgLog.innerHTML = '';
+    appendSystem('Connecting to deskMonkey…');
+    try {
+      textAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: AGENT_ID, mode: 'text' });
+      textAgent.on('connected', () => {
+        appendSystem('Connected. Say hi.');
+        textInput.disabled = false;
+        textSend.disabled = false;
+        textInput.focus();
+      });
+      textAgent.on('disconnected', () => {
+        appendSystem('Chat ended.');
+        textInput.disabled = true;
+        textSend.disabled = true;
+      });
+      textAgent.on('error', (err) => {
+        console.error('Trillet text error:', err);
+        appendSystem('Connection error. Call us at 732-466-1234 or try again.');
+      });
+      textAgent.on('message', (data) => {
+        const text = data?.text || data?.message || data?.content;
+        if (text) appendMsg(text, 'bot');
+      });
+      textAgent.on('transcript', (data) => {
+        const text = data?.text || data?.transcript;
+        if (text && data?.role !== 'user') appendMsg(text, 'bot');
+      });
+      await textAgent.startPublicCall();
+    } catch (err) {
+      console.error('Trillet text init failed:', err);
+      appendSystem('Chat unavailable right now. Call us at 732-466-1234.');
+    }
+  }
+
+  window.sendText = function(e) {
+    e.preventDefault();
+    const text = textInput.value.trim();
+    if (!text || !textAgent) return;
+    appendMsg(text, 'user');
+    textInput.value = '';
+    try {
+      (textAgent.sendMessage || textAgent.send || textAgent.sendText)?.call(textAgent, text);
+    } catch (err) {
+      console.error('Trillet send failed:', err);
+      appendSystem('Failed to send. Try refreshing or call 732-466-1234.');
+    }
+  };
+
+  function appendMsg(text, role) {
+    const div = document.createElement('div');
+    div.className = 'dm-msg ' + role;
+    div.textContent = text;
+    msgLog.appendChild(div);
+    msgLog.scrollTop = msgLog.scrollHeight;
+  }
+  function appendSystem(text) {
+    const div = document.createElement('div');
+    div.className = 'dm-msg system';
+    div.textContent = text;
+    msgLog.appendChild(div);
+    msgLog.scrollTop = msgLog.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
