@@ -4,8 +4,8 @@
 
 const BOARD_ID = 18406534251; // bryanboutins-team.monday.com/boards/18406534251
 
-// Allowed origins regex — matches LGD, LGC, LGP, Daven Insurance on either .com or .ai
-// with optional www. Daven's actual production domain is insuremybiz123.com.
+// Allowed origins regex — matches LGD, LGC, LGP, InsureMyBiz123 on either .com or .ai
+// with optional www. The "daven-insurance" name is deprecated; current brand is InsureMyBiz123.
 const ALLOWED_ORIGIN_RE = /^https:\/\/(www\.)?(letsgrowdigital|letsgrowclients|letsgrowpatients|insuremybiz123)\.(com|ai)$/;
 
 const cors = (origin) => ({
@@ -19,7 +19,7 @@ const cors = (origin) => ({
 function deriveSource(origin) {
   if (/letsgrowclients/.test(origin)) return 'Lets Grow Clients';
   if (/letsgrowpatients/.test(origin)) return 'Lets Grow Patients';
-  if (/insuremybiz123/.test(origin)) return 'Daven Insurance';
+  if (/insuremybiz123/.test(origin)) return 'InsureMyBiz123';
   if (/letsgrowdigital/.test(origin)) return 'Lets Grow Digital';
   return 'Unknown';
 }
@@ -65,8 +65,8 @@ export default {
     }
 
     // Accept BOTH shapes of payload:
-    //   LGD/agency:   { firstName, lastName, email, company, goal, budget, description, ... }
-    //   LGC/LGP/Daven: { name, email, phone, message, company?, ... }
+    //   LGD/agency:           { firstName, lastName, email, company, goal, budget, description, ... }
+    //   LGC/LGP/InsureMyBiz:  { name, email, phone, message, company?, ... }
     const {
       firstName, lastName, name,
       email, phone, company,
@@ -87,19 +87,29 @@ export default {
     const detectedSource = source || deriveSource(origin);
     const itemName = company ? `${fullName} — ${company}` : `${fullName} — ${detectedSource}`;
 
-    const columnValues = {
-      text_mm1h9h2n:   email,
-      text_mm1hmpav:   company || '',
-      dropdown_mm1h6zpz: goal ? { labels: [goal] }            : undefined,
-      // description (LGD) and message (LGC/LGP/Daven) both land in the long-text column
-      text_mm1hvcfh:   description || message || '',
-      numeric_mm1hmrqe: budget ? String(budget)               : undefined,
-      // ↓ TO ENABLE: add these columns in Monday, then plug their column IDs here:
-      // <PHONE_COLUMN_ID>:  phone || '',
-      // <SOURCE_COLUMN_ID>: { labels: [detectedSource] },   // for a dropdown/status column
-      // OR if you want it as plain text:
-      // <SOURCE_COLUMN_ID>: detectedSource,
+    // Combine description/message/goal/budget into the long-text Description column.
+    // (Monday board has no dedicated goal/budget columns; fold them into description.)
+    const descriptionParts = [];
+    if (description) descriptionParts.push(description);
+    if (message && message !== description) descriptionParts.push(message);
+    if (goal) descriptionParts.push(`Goal: ${goal}`);
+    if (budget) descriptionParts.push(`Budget: ${budget}`);
+    const descriptionText = descriptionParts.join('\n\n').trim();
+
+    // Build column values matching the current Monday board structure (board 18406534251).
+    // Email/phone/status columns have special formats per Monday API docs.
+    const columnValuesRaw = {
+      lead_email:           { email: email, text: email },
+      lead_company:         company || undefined,
+      lead_phone:           phone ? { phone: phone, countryShortName: 'US' } : undefined,
+      color_mkyb8krc:       { label: detectedSource },                     // Lead Source (status)
+      long_text_mm226ey8:   descriptionText ? { text: descriptionText } : undefined,
     };
+
+    // Strip undefined values so we don't send empty keys to Monday
+    const columnValues = Object.fromEntries(
+      Object.entries(columnValuesRaw).filter(([, v]) => v !== undefined)
+    );
 
     const mutation = `mutation {
       create_item(
