@@ -63,27 +63,27 @@ These appear on `index.html`, `agency.html`, and `ai.html`. Bryan flagged the di
 - `letsgrowdigital-frontend` → `https://f3eece8ec557e6d8bf348c28d8bc5a24@o4511377116168192.ingest.us.sentry.io/4511377133076480` ✅ wired
 - `letsgrowclients-frontend` → `https://bac64c1ce2382e76faaf57bfb19ab0a6@o4511377116168192.ingest.us.sentry.io/4511377214996480`
 - `letsgrowpatients-frontend` → `https://81dce303019608110d281584a35b324b@o4511377116168192.ingest.us.sentry.io/4511377223319552`
-- `insurance-frontend` (daven-insurance) → `https://39ea15b9cd2850965201332fb5f054d5@o4511377116168192.ingest.us.sentry.io/4511377282826240`
+- `insurance-frontend` (InsureMyBiz123 — domain insuremybiz123.com, local repo folder still named `daven-insurance`) → `https://39ea15b9cd2850965201332fb5f054d5@o4511377116168192.ingest.us.sentry.io/4511377282826240`
 - `turfboss-frontend` → `https://c6143fffbc6425880c86056e2abe3269@o4511377116168192.ingest.us.sentry.io/4511377233018880`
 - `turfboss-worker` → `https://b2b61569f6de8cb17e2108e5d4420e21@o4511377116168192.ingest.us.sentry.io/4511377236688896`
 
-**To complete:** Bryan provides local repo paths for LGC, LGP, Daven, Turfboss, plus confirms whether each site uses its own Cloudflare Worker or shares one. Future Claude session inserts the Loader Script tag into each site's HTML `<head>` and wraps Worker handlers with `Sentry.withSentry`.
+**To complete:** Bryan provides local repo paths for LGC, LGP, InsureMyBiz123, Turfboss, plus confirms whether each site uses its own Cloudflare Worker or shares one. Future Claude session inserts the Loader Script tag into each site's HTML `<head>` and wraps Worker handlers with `Sentry.withSentry`.
 
 **Per-project alert:** each of the 6 projects above needs a "Send notification to bryan.boutin@gmail.com" alert rule (Sentry → Alerts → Create rule → "Issue Alert" template → email action). One per project; Sentry does not propagate alerts cross-project.
 
-## 7. LGC/LGP/Daven UI parity with LGD
+## 7. LGC/LGP/InsureMyBiz123 UI parity with LGD
 **Status:** Not started — parity prompt drafted in chat history of 2026-05-12
 
-**Context:** LGC, LGP, and Daven are stylistically/functionally behind LGD: no top phone banner, no light/dark toggle, no deskMonkey nav link, form payloads don't match the LGD shape, no .htaccess cache headers, no SMS-consent TCPA language on forms collecting phones. Sentry is wired in but they're missing the polish layer.
+**Context:** LGC, LGP, and InsureMyBiz123 are stylistically/functionally behind LGD: no top phone banner, no light/dark toggle, no deskMonkey nav link, form payloads don't match the LGD shape, no .htaccess cache headers, no SMS-consent TCPA language on forms collecting phones. Sentry is wired in but they're missing the polish layer.
 
 **Approach:** Use the "parity prompt" drafted in chat to brief a focused session. Apply each item to all three sites in one pass. Push site-by-site so rollback is granular.
 
 ## 8. Monday board: add Phone + Lead Source columns
 **Status:** Blocked on Bryan
-**Why:** kb-leads-proxy now receives phone and lead-source data from LGC/LGP/Daven but drops them on the floor because Monday doesn't have columns to receive them.
+**Why:** kb-leads-proxy now receives phone and lead-source data from LGC/LGP/InsureMyBiz123 but drops them on the floor because Monday doesn't have columns to receive them.
 
 **To unblock:**
-1. In Monday, add two columns to the board: "Phone" (Phone or Text type) and "Lead Source" (Status with options: "Lets Grow Digital", "Lets Grow Clients", "Lets Grow Patients", "Daven Insurance")
+1. In Monday, add two columns to the board: "Phone" (Phone or Text type) and "Lead Source" (Status with options: "Lets Grow Digital", "Lets Grow Clients", "Lets Grow Patients", "InsureMyBiz123")
 2. Hit https://kb-leads-proxy.bryan-boutin.workers.dev/columns in a browser; it returns column IDs as JSON
 3. Paste JSON to Claude; Claude updates the worker's columnValues block and you redeploy
 
@@ -98,3 +98,46 @@ These appear on `index.html`, `agency.html`, and `ai.html`. Bryan flagged the di
 **What stays per-site:** content HTML, page-specific styles, forms (since fields differ).
 
 **Setup:** ~2 hr focused session. Version-pin URL (`v1.css`, `v2.css`) to avoid breaking changes. Eliminates the need to propagate chrome edits across repos by hand.
+
+## 10. CF Git connection for all Workers
+**Status:** Decided (replaces Wrangler CLI) — not yet implemented
+**Why:** Replaces "edit-in-Cloudflare-dashboard" copy-paste deploys with auto-deploy from GitHub on push. Each Worker gets its own GitHub repo + `wrangler.toml`. Push to repo → CF builds and deploys. Works alongside Sentry Workers SDK when we wire that up later.
+
+**Apply to:**
+- `kb-leads-proxy` — current LGD/LGC/LGP/IMB123 form proxy (most urgent — touched most often)
+- `turfboss-form` — Turfboss quote form proxy
+- Any new GHL-replacement Workers when GHL migration happens
+
+**Effort:** ~30 min per Worker, one-time. Setup involves: create dedicated GitHub repo per Worker, add `wrangler.toml`, connect repo in CF dashboard → Worker settings → Build.
+
+## 11. Centralize DNS on Cloudflare (consolidation)
+**Status:** Not started
+**Why:** If domains are scattered across registrars/DNS providers (Hostinger DNS, GoDaddy DNS, Cloudflare DNS, etc.), consolidate to Cloudflare. Benefits:
+- Faster DNS resolution worldwide via Cloudflare's anycast network
+- Single dashboard to manage records across all sites
+- Free SSL/TLS certs (already getting via Hostinger but Cloudflare is more flexible)
+- Required step for Sentry tunneling (TODO #5) — each tunnel needs a Cloudflare-hosted subdomain
+- Required step before adding business email (TODO #12) — DNS edits for MX/SPF/DKIM/DMARC happen here
+- Foundation for Cloudflare Workers being able to route via custom domains (`api.letsgrowdigital.ai` instead of `kb-leads-proxy.bryan-boutin.workers.dev`)
+
+**Effort:** ~30 min per domain to transfer DNS. Note: this is DNS only — your domain *registration* can stay at whoever you bought it from (Hostinger, GoDaddy, Namecheap). Cloudflare DNS is free even on the free plan.
+
+**To do per domain:** (1) Add site to Cloudflare → it auto-imports existing records, (2) Cloudflare gives you 2 nameservers, (3) Update nameservers at the domain registrar, (4) Wait 24-48 hr for propagation.
+
+## 12. M365 Business Tenant + business email
+**Status:** Not started — discussed in chat history of 2026-05-12
+**Why:** Stop emailing prospects from `bryan.boutin@gmail.com`. Get `bryan@letsgrowdigital.ai`, `bryan@letsgrowclients.com`, etc. Unified identity. OneDrive backup. Domain credibility for deliverability.
+
+**Plan:** One M365 tenant, multiple domains added to it. Per-domain DNS records (MX, TXT, SPF, DKIM, DMARC) configured at the DNS provider — easiest if DNS is already on Cloudflare (TODO #11). M365 Business Basic = $6/user/mo, ~$144/yr for solo, ~$300/yr for you + Kirk.
+
+**Effort:** 2-4 hr initial setup (tenant + first domain + first mailbox). Each additional domain ~30 min. Mailbox migration from Gmail uses Microsoft's built-in import tools.
+
+**Sequence with other TODOs:** do AFTER #11 (DNS on Cloudflare) so DNS records are easy to add.
+
+## 13. Operational hygiene quick wins
+**Status:** Not started — short-list
+- **Per-project email alerts in Sentry** (6 projects × 1 min each = 6 min) — TODO from prior items, still open
+- **Uptime monitoring (UptimeRobot free tier)** — 15 min to add 5 site monitors; alerts when any goes down with status code != 200
+- **Password manager (Bitwarden free)** — 30 min to migrate critical credentials (Cloudflare, GitHub, Sentry, Monday, Hostinger)
+- **2FA pass** — Cloudflare, GitHub, Sentry, Monday, Hostinger, banking. 20 min each, 2 hr total. Don't skip.
+- **Repo backup** — once M365 is set up, schedule a monthly tar.gz of all 5 repos to OneDrive
