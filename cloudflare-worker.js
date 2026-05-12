@@ -4,26 +4,25 @@
 
 const BOARD_ID = 18404299545; // ← confirm this matches your board URL
 
-// Allowed origins — sites that share this kb-leads-proxy Worker
-// To add a site: add its exact origin (no trailing slash). www variants allowed via regex below.
-const ALLOWED_ORIGINS = [
-  'https://letsgrowdigital.ai',
-  'https://letsgrowclients.ai',
-  'https://letsgrowpatients.ai',
-  'https://daven-insurance.com',
-];
-// Also allow www. variants of any listed origin, in case visitors land via www
-const isAllowedOrigin = (origin) => {
-  if (!origin) return false;
-  if (ALLOWED_ORIGINS.includes(origin)) return true;
-  return ALLOWED_ORIGINS.some((o) => origin === o.replace('https://', 'https://www.'));
-};
+// Allowed origins regex — matches LGD, LGC, LGP, Daven Insurance on either .com or .ai
+// with optional www. Adjust the inner group when adding/removing sites.
+const ALLOWED_ORIGIN_RE = /^https:\/\/(www\.)?(letsgrowdigital|letsgrowclients|letsgrowpatients|daven-insurance)\.(com|ai)$/;
 
 const cors = (origin) => ({
-  'Access-Control-Allow-Origin': isAllowedOrigin(origin) ? origin : 'null',
+  'Access-Control-Allow-Origin': ALLOWED_ORIGIN_RE.test(origin) ? origin : 'null',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
+  'Vary': 'Origin',
 });
+
+// Map an Origin to a human-readable lead-source label
+function deriveSource(origin) {
+  if (/letsgrowclients/.test(origin)) return 'Lets Grow Clients';
+  if (/letsgrowpatients/.test(origin)) return 'Lets Grow Patients';
+  if (/daven-insurance/.test(origin)) return 'Daven Insurance';
+  if (/letsgrowdigital/.test(origin)) return 'Lets Grow Digital';
+  return 'Unknown';
+}
 
 export default {
   async fetch(request, env) {
@@ -65,20 +64,41 @@ export default {
       return json({ error: 'Invalid request body' }, 400, cors(origin));
     }
 
-    const { firstName, lastName, email, company, goal, budget, description } = body;
+    // Accept BOTH shapes of payload:
+    //   LGD/agency:   { firstName, lastName, email, company, goal, budget, description, ... }
+    //   LGC/LGP/Daven: { name, email, phone, message, company?, ... }
+    const {
+      firstName, lastName, name,
+      email, phone, company,
+      goal, budget,
+      description, message,
+      source,
+    } = body;
 
-    if (!firstName || !lastName || !email || !company) {
-      return json({ error: 'Missing required fields' }, 422, cors(origin));
+    // Only email is universally required; derive a name from whatever was provided
+    if (!email) {
+      return json({ error: 'Email is required' }, 422, cors(origin));
     }
 
-    const itemName = `${firstName} ${lastName} — ${company}`;
+    let fullName = (name || '').trim();
+    if (!fullName) fullName = `${firstName || ''} ${lastName || ''}`.trim();
+    if (!fullName) fullName = email; // last-resort fallback
+
+    const detectedSource = source || deriveSource(origin);
+    const itemName = company ? `${fullName} — ${company}` : `${fullName} — ${detectedSource}`;
 
     const columnValues = {
       text_mm1h9h2n:   email,
-      text_mm1hmpav:   company,
-      dropdown_mm1h6zpz: goal   ? { labels: [goal] }            : undefined,
-      text_mm1hvcfh:   description || '',
-      numeric_mm1hmrqe: budget  ? String(budget)                : undefined,
+      text_mm1hmpav:   company || '',
+      dropdown_mm1h6zpz: goal ? { labels: [goal] }            : undefined,
+      // description (LGD) and message (LGC/LGP/Daven) both land in the long-text column
+      text_mm1hvcfh:   description || message || '',
+      numeric_mm1hmrqe: budget ? String(budget)               : undefined,
+      // ↓ TO ENABLE: add these columns in Monday, then plug their column IDs here:
+      // <PHONE_COLUMN_ID>:  phone || '',
+      // <SOURCE_COLUMN_ID>: { labels: [detectedSource] },   // for a dropdown/status column
+      // OR if you want it as plain text:
+      // <SOURCE_COLUMN_ID>: detectedSource,
     };
 
     const mutation = `mutation {
