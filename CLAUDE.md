@@ -43,6 +43,12 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 - No npm, no node_modules, no build step
 - Sparse comments — only where non-obvious
 
+## Open Work Items
+See `TODO.md` in this repo for pending items that are blocked on external dependencies (Trillet widget snippet, OG social cards, stats/testimonial review). Check it at the start of each session and update as items unblock or new ones appear.
+
+## Marketing Copy — No Concessions
+Never add the following to any LGD page without explicit Bryan confirmation: "30-day guarantee", "money-back", "month-to-month", "no contracts", "cancel anytime", "free trial", "no setup required". The actual deal is setup fee + 12-month commitment; the worst-case retainer refund is internal-only, not marketed. "No commitment" is OK only when scoped to the inquiry/discovery (not the deal itself).
+
 ## What Claude Should NOT Do
 - Do not suggest multi-file architecture
 - Do not add npm dependencies or build tools
