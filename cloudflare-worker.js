@@ -84,16 +84,24 @@ export default {
     if (!fullName) fullName = `${firstName || ''} ${lastName || ''}`.trim();
     if (!fullName) fullName = email; // last-resort fallback
 
-    const detectedSource = source || deriveSource(origin);
+    // Lead Source for the Monday status column must match one of the predefined labels
+    // ("Lets Grow Digital", "Lets Grow Clients", "Lets Grow Patients", "InsureMyBiz123").
+    // Always derive from the request Origin — clients can send freeform `source` in the
+    // payload (e.g., "Lets Grow Digital Website - Contact Form") but that won't match a
+    // status label and would 500 the Monday API. Use the client `source` only as a hint
+    // in the description for entry-point tracking.
+    const detectedSource = deriveSource(origin);
+    const entryPoint = source || '';
     const itemName = company ? `${fullName} — ${company}` : `${fullName} — ${detectedSource}`;
 
-    // Combine description/message/goal/budget into the long-text Description column.
+    // Combine description/message/goal/budget/entry-point into the long-text Description column.
     // (Monday board has no dedicated goal/budget columns; fold them into description.)
     const descriptionParts = [];
     if (description) descriptionParts.push(description);
     if (message && message !== description) descriptionParts.push(message);
     if (goal) descriptionParts.push(`Goal: ${goal}`);
     if (budget) descriptionParts.push(`Budget: ${budget}`);
+    if (entryPoint && !/^(Lets Grow|InsureMyBiz|Daven)/.test(entryPoint)) descriptionParts.push(`Entry point: ${entryPoint}`);
     const descriptionText = descriptionParts.join('\n\n').trim();
 
     // Build column values matching the current Monday board structure (board 18406534251).
