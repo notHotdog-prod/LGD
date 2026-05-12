@@ -3,10 +3,24 @@
 // API token stored as Cloudflare Secret: MONDAY_API_TOKEN
 
 const BOARD_ID = 18404299545; // ← confirm this matches your board URL
-const ALLOWED_ORIGIN = 'https://letsgrowdigital.ai';
+
+// Allowed origins — sites that share this kb-leads-proxy Worker
+// To add a site: add its exact origin (no trailing slash). www variants allowed via regex below.
+const ALLOWED_ORIGINS = [
+  'https://letsgrowdigital.ai',
+  'https://letsgrowclients.ai',
+  'https://letsgrowpatients.ai',
+  'https://daven-insurance.com',
+];
+// Also allow www. variants of any listed origin, in case visitors land via www
+const isAllowedOrigin = (origin) => {
+  if (!origin) return false;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  return ALLOWED_ORIGINS.some((o) => origin === o.replace('https://', 'https://www.'));
+};
 
 const cors = (origin) => ({
-  'Access-Control-Allow-Origin': origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : 'null',
+  'Access-Control-Allow-Origin': isAllowedOrigin(origin) ? origin : 'null',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 });
