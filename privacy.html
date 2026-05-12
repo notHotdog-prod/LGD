@@ -164,9 +164,22 @@
 
   ::selection { background: rgba(139,85,246,0.35); color: inherit; }
   body.light-mode ::selection { background: rgba(107,53,217,0.25); color: #0A0A1A; }
+
+  /* ===== TOP BANNER (phone/text) ===== */
+  .top-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: var(--gradient); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1rem; text-align: center; letter-spacing: 0.01em; }
+  .top-banner a { color: #fff; text-decoration: none; font-weight: 700; }
+  .top-banner a:hover { text-decoration: underline; }
+  nav { top: 36px; }
+  @media (max-width: 480px) {
+    .top-banner { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
+    nav { top: 32px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== TOP BANNER ===== -->
+<div class="top-banner">📞 Call or Text: <a href="tel:+17324661234">732-466-1234</a></div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -180,7 +193,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <a href="index.html#contact" class="nav-cta">Free Audit →</a>
+    <a href="index.html#contact" class="nav-cta">Sign Up →</a>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme" role="switch" aria-checked="false">
       <span class="theme-toggle-track">
         <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
@@ -198,7 +211,7 @@ function toggleTheme() {
   localStorage.setItem('lgd-theme', isLight ? 'light' : 'dark');
 }
 (function() {
-  if (localStorage.getItem('lgd-theme') === 'light') {
+  if (localStorage.getItem('lgd-theme') !== 'dark') {
     document.body.classList.add('light-mode');
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('theme-toggle');
@@ -266,7 +279,7 @@ function toggleTheme() {
     <p><strong>What we collect for SMS:</strong> Mobile phone number, opt-in source (contact form, Cal.com booking, or in-person), timestamp, IP address at time of opt-in, and message content/timestamps for messages sent and received.</p>
     <p><strong>How we use it:</strong> Solely to send the appointment confirmations, appointment reminders, and customer service messages you have opted in to receive, and to maintain compliance records as required by federal and state law.</p>
     <p><strong>Sub-processors.</strong> SMS delivery is handled by Twilio Inc. and our configured messaging service providers, who process this data only to deliver messages on our behalf and are contractually prohibited from using it for any other purpose.</p>
-    <p><strong>Your rights.</strong> You may opt out at any time by replying STOP to any message. You may request deletion of your phone number and SMS consent records by emailing <strong><a href="mailto:hello@letsgrowdigital.ai">hello@letsgrowdigital.ai</a></strong> or calling <strong>732-484-3000</strong>.</p>
+    <p><strong>Your rights.</strong> You may opt out at any time by replying STOP to any message. You may request deletion of your phone number and SMS consent records by emailing <strong><a href="mailto:hello@letsgrowdigital.ai">hello@letsgrowdigital.ai</a></strong> or calling <strong>732-466-1234</strong>.</p>
 
     <h3>5. Cookies and Tracking</h3>
     <p>Our website uses cookies and similar technologies to remember your preferences, understand how you use our site, and measure the effectiveness of our digital marketing. You can control cookies through your browser settings. Disabling cookies may affect site functionality and your experience.</p>
@@ -280,7 +293,7 @@ function toggleTheme() {
       <li>Request a portable copy of your data</li>
       <li>Object to certain data processing activities</li>
     </ul>
-    <p>To exercise these rights, contact us at <strong>hello@letsgrowdigital.ai</strong> or <strong>732-484-3000</strong>.</p>
+    <p>To exercise these rights, contact us at <strong>hello@letsgrowdigital.ai</strong> or <strong>732-466-1234</strong>.</p>
 
     <h3>7. Data Security</h3>
     <p>We implement encryption, secure servers, firewalls, and strict access controls to protect your information. We follow industry best practices for security. However, no system is completely secure. We encourage strong passwords and immediate reporting of suspicious activity.</p>
@@ -295,7 +308,7 @@ function toggleTheme() {
     <p>For privacy questions or data requests:</p>
     <ul>
       <li><strong>Email:</strong> hello@letsgrowdigital.ai</li>
-      <li><strong>Phone:</strong> 732-484-3000</li>
+      <li><strong>Phone:</strong> 732-466-1234</li>
       <li><strong>Location:</strong> New Jersey, USA</li>
     </ul>
 

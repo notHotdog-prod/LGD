@@ -1659,9 +1659,23 @@
     
   ::selection { background: rgba(139,85,246,0.35); color: inherit; }
   body.light-mode ::selection { background: rgba(107,53,217,0.25); color: #0A0A1A; }
+
+  /* ===== TOP BANNER (phone/text) ===== */
+  .top-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: var(--gradient); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1rem; text-align: center; letter-spacing: 0.01em; }
+  .top-banner a { color: #fff; text-decoration: none; font-weight: 700; }
+  .top-banner a:hover { text-decoration: underline; }
+  nav { top: 36px; }
+  @media (max-width: 480px) {
+    .top-banner { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
+    nav { top: 32px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== TOP BANNER ===== -->
+<div class="top-banner">📞 Call or Text: <a href="tel:+17324661234">732-466-1234</a></div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-inner">
@@ -1708,8 +1722,8 @@
                 <button class="btn-secondary">
                     <span>📞</span>
                     <div style="text-align: left;">
-                        <div style="font-size: 0.8rem;">Try AI Receptionist Live</div>
-                        <div style="font-weight: 600;">732-484-3000</div>
+                        <div style="font-size: 0.8rem;">Try desk Monkey Live</div>
+                        <div style="font-weight: 600;">732-466-1234</div>
                     </div>
                 </button>
             </div>
@@ -1877,7 +1891,8 @@
             </div>
 
             <div class="demo-tabs fade-up">
-                <button class="demo-tab active" data-tab="plumbing">🔧 Plumbing</button>
+                <button class="demo-tab active" data-tab="autobody">🚙 Auto Body</button>
+                <button class="demo-tab" data-tab="plumbing">🔧 Plumbing</button>
                 <button class="demo-tab" data-tab="hvac">❄️ HVAC</button>
                 <button class="demo-tab" data-tab="electrical">⚡ Electrical</button>
                 <button class="demo-tab" data-tab="roofing">🏠 Roofing</button>
@@ -1889,13 +1904,12 @@
                 <button class="demo-tab" data-tab="propmgmt">🏢 Property Mgmt</button>
                 <button class="demo-tab" data-tab="locksmith">🔐 Locksmith</button>
                 <button class="demo-tab" data-tab="garage">🚗 Garage Doors</button>
-                <button class="demo-tab" data-tab="autobody">🚙 Auto Body</button>
                 <button class="demo-tab" data-tab="detailing">✨ Auto Detailing</button>
                 <button class="demo-tab" data-tab="petgrooming">🐾 Pet Grooming</button>
                 <button class="demo-tab" data-tab="painting">🎨 Painting</button>
             </div>
 
-            <div class="demo-content active" data-content="plumbing">
+            <div class="demo-content" data-content="plumbing">
                 <div class="chat-container">
                     <div class="chat-message user">
                         <div class="chat-bubble">Hi, I have a burst pipe in my kitchen, it's pretty bad</div>
@@ -2231,7 +2245,7 @@
                 </div>
             </div>
 
-            <div class="demo-content" data-content="autobody">
+            <div class="demo-content active" data-content="autobody">
                 <div class="chat-container">
                     <div class="chat-message user">
                         <div class="chat-bubble">Got rear-ended at a light this morning, not major but the bumper's pretty messed up</div>
@@ -2354,6 +2368,7 @@
             </div>
 
             <div class="badge-grid fade-up">
+                <button class="trade-badge" data-trade="autobody">🚙 Auto Body</button>
                 <button class="trade-badge" data-trade="plumbing">🔧 Plumbing</button>
                 <button class="trade-badge" data-trade="hvac">❄️ HVAC</button>
                 <button class="trade-badge" data-trade="electrical">⚡ Electrical</button>
@@ -2366,7 +2381,6 @@
                 <button class="trade-badge" data-trade="propmgmt">🏢 Property Mgmt</button>
                 <button class="trade-badge" data-trade="locksmith">🔐 Locksmith</button>
                 <button class="trade-badge" data-trade="garage">🚗 Garage Doors</button>
-                <button class="trade-badge" data-trade="autobody">🚙 Auto Body</button>
                 <button class="trade-badge" data-trade="detailing">✨ Auto Detailing</button>
                 <button class="trade-badge" data-trade="petgrooming">🐾 Pet Grooming</button>
                 <button class="trade-badge" data-trade="painting">🎨 Painting</button>
@@ -2636,7 +2650,7 @@
 
                 <div class="form-trust">
                     <strong>Questions? We're here to help</strong>
-                    <span>📞 732-484-3000</span>
+                    <span>📞 732-466-1234</span>
                     <span>📧 hello@letsgrowdigital.ai</span>
                     <span>📍 Bay Head, NJ</span>
                 </div>
@@ -2668,6 +2682,7 @@
                         <label for="trade">Trade/Industry *</label>
                         <select id="trade" name="trade" required>
                             <option value="">Select your trade...</option>
+                            <option value="Auto Body">Auto Body</option>
                             <option value="Plumbing">Plumbing</option>
                             <option value="HVAC">HVAC</option>
                             <option value="Electrical">Electrical</option>
@@ -2680,7 +2695,6 @@
                             <option value="Property Management">Property Management</option>
                             <option value="Locksmith">Locksmith</option>
                             <option value="Garage Doors">Garage Doors</option>
-                            <option value="Auto Body">Auto Body</option>
                             <option value="Auto Detailing">Auto Detailing</option>
                             <option value="Pet Grooming">Pet Grooming</option>
                             <option value="Painting">Painting</option>
@@ -2779,7 +2793,7 @@
         (function(){ try {
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
-            if (localStorage.getItem('lgd-theme') === 'light') {
+            if (localStorage.getItem('lgd-theme') !== 'dark') {
                 body.classList.add('light-mode');
                 if (themeToggle) themeToggle.setAttribute('aria-checked', 'true');
             }
@@ -2927,7 +2941,7 @@
             })
             .catch(function(error) {
                 console.error('Error:', error);
-                alert('There was an issue submitting your form. Please try again or call us at 732-484-3000.');
+                alert('There was an issue submitting your form. Please try again or call us at 732-466-1234.');
             });
         }
     </script>

@@ -9,27 +9,32 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 
 ## Tech Stack
 - Single-file HTML/CSS/JS — no frameworks, no build tools
-- **Main file:** `lgd_website_v2.html`
+- **Live pages:** `index.html` (homepage), `ai.html`, `agency.html`, `about.html`, `privacy.html`, `terms.html`, `audit/index.html`
+- **Stale draft (do NOT edit):** `lgd_website_v2.html` — v2 mockup left in repo for reference only
 - **Deployment:** GitHub → Hostinger manual deploy via hPanel
-- **API proxy:** Cloudflare Worker (`lgd-monday-proxy`) for Monday.com lead capture
+- **API proxy:** Cloudflare Worker `kb-leads-proxy.bryan-boutin.workers.dev` for lead capture (POST /lead, POST /newsletter)
 - **CRM:** Monday.com (workspace: bryanboutins-team)
+- **Booking:** Cal.com floating button on index/ai/agency/about (`letsgrowletsgo` slug)
+- **Primary phone (display + tel):** 732-466-1234
 
 ## Design System
-- Dark purple to magenta gradient color palette
-- Dark theme, bold typography, high contrast
+- Purple (#6B35D9) → magenta (#D435A0) gradient
+- **Default theme: light** (user can toggle to dark via pill switch; preference stored in `localStorage` key `lgd-theme`)
+- Bold typography: DM Sans (body) + DM Serif Display (headlines)
+- CSS variables for all colors and design tokens; `body.light-mode` overrides the dark palette
 - Partner badges included in layout
-- CSS variables used for all colors and design tokens
+- **Top banner:** fixed `📞 Call or Text: 732-466-1234` strip above every page's nav (z-index 1001)
 
 ## Lead Capture
-- Monday.com WorkForm embedded in site
-- Form submissions proxied through `lgd-monday-proxy` Cloudflare Worker
+- Sign Up form on `index.html` and `agency.html` POSTs JSON to the Cloudflare Worker `kb-leads-proxy` (`/lead`)
+- Newsletter form in footer POSTs to `/newsletter`
 - **API token is NEVER in client-side code** — always in Worker environment
 
 ## Deployment Workflow
-1. Edit `lgd_website_v2.html` locally
+1. Edit the relevant live page(s) locally (`index.html`, `ai.html`, etc.)
 2. Commit and push to GitHub
 3. Deploy manually via Hostinger hPanel
-4. Cloudflare Worker handles Monday.com submissions independently
+4. Cloudflare Worker handles lead/newsletter submissions independently
 
 ## Coding Conventions
 - Single-file architecture is intentional — do not split into separate CSS/JS files
@@ -40,6 +45,7 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 ## What Claude Should NOT Do
 - Do not suggest multi-file architecture
 - Do not add npm dependencies or build tools
-- Do not expose Monday.com API token in client-side code
+- Do not expose any API token (Monday.com, Worker, etc.) in client-side code
 - Do not redesign the color scheme without explicit instruction
 - Do not use placeholder copy — ask if real copy is needed
+- Do not edit `lgd_website_v2.html` (stale draft)

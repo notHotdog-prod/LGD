@@ -171,9 +171,22 @@
         
   ::selection { background: rgba(139,85,246,0.35); color: inherit; }
   body.light-mode ::selection { background: rgba(107,53,217,0.25); color: #0A0A1A; }
+
+  /* ===== TOP BANNER (phone/text) ===== */
+  .top-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; background: var(--gradient); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 0.5rem 1rem; text-align: center; letter-spacing: 0.01em; }
+  .top-banner a { color: #fff; text-decoration: none; font-weight: 700; }
+  .top-banner a:hover { text-decoration: underline; }
+  nav { top: 36px; }
+  @media (max-width: 480px) {
+    .top-banner { font-size: 0.75rem; padding: 0.4rem 0.5rem; }
+    nav { top: 32px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== TOP BANNER ===== -->
+<div class="top-banner">📞 Call or Text: <a href="tel:+17324661234">732-466-1234</a></div>
 
 <!-- NAV -->
 <nav>
@@ -195,7 +208,7 @@
           <span class="theme-toggle-thumb" aria-hidden="true"></span>
         </span>
       </button>
-      <a href="#contact" class="nav-cta">Free Audit →</a>
+      <a href="#contact" class="nav-cta">Sign Up →</a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -217,7 +230,7 @@
         Comprehensive digital marketing for ambitious businesses. SEO to paid media, social to email — every strategy is AI-powered and custom-built for your goals.
       </p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn-primary">Get a Free Audit →</a>
+        <a href="#contact" class="btn-primary">Sign Up →</a>
         <a href="#services" class="btn-outline">Explore Services</a>
       </div>
       <div class="hero-stats">
@@ -493,8 +506,8 @@
   <div class="container" style="text-align:center; max-width:700px; margin:0 auto;">
     <p class="overline">Ready to Grow?</p>
     <h2 class="headline" style="margin:0.75rem 0 1.25rem;">Does your business pop when<br>prospects search for you?</h2>
-    <p style="color:var(--text-muted); margin-bottom:2rem; font-size:1rem;">Get a free, no-obligation marketing audit. We'll show you exactly what's working, what's not, and what the fastest path to growth looks like for your business.</p>
-    <a href="#contact" class="btn-primary">Request Free Audit →</a>
+    <p style="color:var(--text-muted); margin-bottom:2rem; font-size:1rem;">Sign up and we'll show you exactly what's working, what's not, and what the fastest path to growth looks like for your business — no obligation.</p>
+    <a href="#contact" class="btn-primary">Sign Up →</a>
   </div>
 </section>
 
@@ -509,7 +522,7 @@
       <div class="fade-up">
         <div class="contact-point">
           <div class="contact-point-icon">📞</div>
-          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Phone</h4><p style="color:var(--text-muted); font-size:0.9rem;"><a href="tel:+17324843000" style="color:var(--purple-light); text-decoration:none;">732-484-3000</a></p></div>
+          <div><h4 style="font-weight:600; margin-bottom:0.25rem;">Phone</h4><p style="color:var(--text-muted); font-size:0.9rem;"><a href="tel:+17324661234" style="color:var(--purple-light); text-decoration:none;">732-466-1234</a></p></div>
         </div>
         <div class="contact-point">
           <div class="contact-point-icon">✉️</div>
@@ -530,7 +543,7 @@
       </div>
       <div class="fade-up stagger-2">
         <div style="background:var(--dark-3); border:1px solid var(--border); border-radius:20px; padding:2.5rem;">
-          <h3 style="font-size:1.25rem; font-weight:600; margin-bottom:1.75rem;">Request Your Free Audit</h3>
+          <h3 style="font-size:1.25rem; font-weight:600; margin-bottom:1.75rem;">Sign Up</h3>
           <form onsubmit="handleSubmit(event)">
             <div class="form-group"><label>Name *</label><input type="text" placeholder="John Smith" required></div>
             <div class="form-group"><label>Email *</label><input type="email" placeholder="john@yourbusiness.com" required></div>
@@ -644,7 +657,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
     localStorage.setItem('lgd-theme', isLight ? 'light' : 'dark');
   }
   (function() {
-    if (localStorage.getItem('lgd-theme') === 'light') {
+    if (localStorage.getItem('lgd-theme') !== 'dark') {
       document.body.classList.add('light-mode');
       document.addEventListener('DOMContentLoaded', () => { const b = document.getElementById('theme-toggle'); if(b) b.setAttribute('aria-checked', 'true'); });
     }
