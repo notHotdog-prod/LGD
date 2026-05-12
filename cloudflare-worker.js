@@ -2,11 +2,11 @@
 // Proxies form submissions from letsgrowdigital.ai to Monday.com API v2
 // API token stored as Cloudflare Secret: MONDAY_API_TOKEN
 
-const BOARD_ID = 18404299545; // ← confirm this matches your board URL
+const BOARD_ID = 18406534251; // bryanboutins-team.monday.com/boards/18406534251
 
 // Allowed origins regex — matches LGD, LGC, LGP, Daven Insurance on either .com or .ai
-// with optional www. Adjust the inner group when adding/removing sites.
-const ALLOWED_ORIGIN_RE = /^https:\/\/(www\.)?(letsgrowdigital|letsgrowclients|letsgrowpatients|daven-insurance)\.(com|ai)$/;
+// with optional www. Daven's actual production domain is insuremybiz123.com.
+const ALLOWED_ORIGIN_RE = /^https:\/\/(www\.)?(letsgrowdigital|letsgrowclients|letsgrowpatients|insuremybiz123)\.(com|ai)$/;
 
 const cors = (origin) => ({
   'Access-Control-Allow-Origin': ALLOWED_ORIGIN_RE.test(origin) ? origin : 'null',
@@ -19,7 +19,7 @@ const cors = (origin) => ({
 function deriveSource(origin) {
   if (/letsgrowclients/.test(origin)) return 'Lets Grow Clients';
   if (/letsgrowpatients/.test(origin)) return 'Lets Grow Patients';
-  if (/daven-insurance/.test(origin)) return 'Daven Insurance';
+  if (/insuremybiz123/.test(origin)) return 'Daven Insurance';
   if (/letsgrowdigital/.test(origin)) return 'Lets Grow Digital';
   return 'Unknown';
 }
