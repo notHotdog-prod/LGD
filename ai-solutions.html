@@ -181,6 +181,10 @@
   .svc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
   .svc-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--purple-light); background: rgba(107,53,217,0.12); border-radius: 100px; padding: 0.2rem 0.6rem; }
   .svc-tag.outcome { color: var(--magenta-light); background: rgba(212,53,160,0.12); }
+  .svc-tag.domain { color: var(--text-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+  body.light-mode .svc-tag.domain { background: rgba(0,0,0,0.04); }
+  .svc-time { display: flex; align-items: center; gap: 0.4rem; padding-top: 0.6rem; margin-top: 0.6rem; border-top: 1px dotted var(--border); font-size: 0.72rem; color: var(--text-dim); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+  .svc-time::before { content: "⚡"; font-size: 0.85rem; line-height: 1; }
 
   /* deskMonkey cross-link callout */
   .dm-callout { margin-top: 3rem; padding: 1.75rem 2rem; background: var(--dark-3); border: 1px solid var(--border); border-left: 3px solid var(--magenta-light); border-radius: 14px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
@@ -415,10 +419,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Advisory</span>
             <span class="svc-tag outcome">Best starting point</span>
+            <span class="svc-tag domain">AI Strategy</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Project</span><span class="price-val">$2,500–$7,500</span></div>
             <div class="price-row recurring"><span class="price-label">Quarterly refresh</span><span class="price-val">$500–$1,500</span></div>
+            <div class="svc-time">Live in 1–2 weeks</div>
           </div>
         </div>
 
@@ -430,10 +436,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Easy win</span>
+            <span class="svc-tag domain">Workflow Automation</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Setup</span><span class="price-val">$1,500–$3,500</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly</span><span class="price-val">$300–$1,000</span></div>
+            <div class="svc-time">Live in 2–3 weeks</div>
           </div>
         </div>
 
@@ -445,10 +453,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Saves hours weekly</span>
+            <span class="svc-tag domain">Document Automation</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Per workflow</span><span class="price-val">$2,000–$6,000</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly support</span><span class="price-val">$300–$800</span></div>
+            <div class="svc-time">Live in 3–4 weeks</div>
           </div>
         </div>
 
@@ -472,10 +482,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">24/7 coverage</span>
+            <span class="svc-tag domain">Conversational AI</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Setup</span><span class="price-val">$3,000–$8,000</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly</span><span class="price-val">$500–$2,000</span></div>
+            <div class="svc-time">Live in 4–6 weeks</div>
           </div>
         </div>
 
@@ -487,9 +499,11 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Recurring</span>
+            <span class="svc-tag domain">Reputation Mgmt</span>
           </div>
           <div class="price-block">
             <div class="price-row recurring"><span class="price-label">Monthly retainer</span><span class="price-val">$500–$1,500</span></div>
+            <div class="svc-time">Live in 2–3 weeks</div>
           </div>
         </div>
 
@@ -501,9 +515,11 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Always-on output</span>
+            <span class="svc-tag domain">Content Automation</span>
           </div>
           <div class="price-block">
             <div class="price-row recurring"><span class="price-label">Monthly retainer</span><span class="price-val">$1,500–$4,000</span></div>
+            <div class="svc-time">Live in 3–4 weeks</div>
           </div>
         </div>
 
@@ -527,10 +543,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Pipeline builder</span>
+            <span class="svc-tag domain">Sales Automation</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Setup</span><span class="price-val">$3,000–$8,000</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly mgmt</span><span class="price-val">$500–$2,000</span></div>
+            <div class="svc-time">Live in 3–5 weeks</div>
           </div>
         </div>
 
@@ -542,10 +560,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Implementation</span>
             <span class="svc-tag outcome">Tool-agnostic</span>
+            <span class="svc-tag domain">CRM Automation</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Setup</span><span class="price-val">$2,500–$6,000</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly</span><span class="price-val">$500–$1,500</span></div>
+            <div class="svc-time">Live in 3–4 weeks</div>
           </div>
         </div>
 
@@ -557,10 +577,12 @@
           <div class="svc-tags">
             <span class="svc-tag">Advisory</span>
             <span class="svc-tag outcome">Close rate lift</span>
+            <span class="svc-tag domain">AI-Augmented Sales</span>
           </div>
           <div class="price-block">
             <div class="price-row"><span class="price-label">Engagement</span><span class="price-val">$3,000–$8,000</span></div>
             <div class="price-row recurring"><span class="price-label">Monthly coaching</span><span class="price-val">$1,000–$2,500</span></div>
+            <div class="svc-time">Live in 2–4 weeks</div>
           </div>
         </div>
 
