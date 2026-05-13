@@ -21,11 +21,11 @@
 <meta property="og:url" content="https://letsgrowdigital.ai/deskmonkey.html">
 <meta property="og:title" content="deskMonkey — 24/7 AI Receptionist for Local Business">
 <meta property="og:description" content="Never miss a call. Never lose a lead. Auto body, home services, medical, legal — 24/7 AI receptionist, branded to your business, live in 48 hours.">
-<meta property="og:image" content="https://letsgrowdigital.ai/deskmonkey-logo-T.png">
+<meta property="og:image" content="https://letsgrowdigital.ai/deskMonkey_v3-white.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="deskMonkey — 24/7 AI Receptionist">
 <meta name="twitter:description" content="Never miss a call. Never lose a lead. From $299/mo. Live in 48 hours.">
-<meta name="twitter:image" content="https://letsgrowdigital.ai/deskmonkey-logo-T.png">
+<meta name="twitter:image" content="https://letsgrowdigital.ai/deskMonkey_v3-white.png">
 <style>
   :root {
     --purple: #6B35D9;
@@ -388,12 +388,21 @@
   /* ===== DESKMONKEY LOGO ===== */
   .dm-logo { display: inline-block; vertical-align: middle; max-width: 100%; height: auto; }
   .dm-logo-hero { width: 300px; max-width: 60vw; margin-bottom: 1.5rem; filter: drop-shadow(0 12px 32px rgba(107,53,217,0.25)); }
+  /* Compact cropped icon — sits inline next to the hero headline */
+  .hero-headline-row { display: flex; align-items: center; gap: 1.75rem; margin-bottom: 1.5rem; }
+  .hero-headline-row h1 { margin: 0; flex: 1; min-width: 0; }
+  .dm-icon-hero { width: 180px; height: auto; flex-shrink: 0; filter: drop-shadow(0 12px 28px rgba(107,53,217,0.28)); }
+  @media (max-width: 900px) {
+    .hero-headline-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .dm-icon-hero { width: 120px; }
+  }
   .dm-logo-nav { width: 26px; height: 26px; vertical-align: middle; flex-shrink: 0; }
   .dm-logo-accent { width: 64px; height: 64px; }
   .nav-ai-link { display: inline-flex; align-items: center; gap: 0.35rem; }
   .nav-solutions-link { color: var(--purple-light) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; }
   .nav-solutions-link:hover { color: var(--magenta-light) !important; }
-  .nav-agency-link { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .nav-agency-link { color: var(--purple-light) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .nav-agency-link:hover { color: var(--magenta-light) !important; }
   .nav-icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
   .nav-stack-label { display: inline-block; text-align: center; line-height: 1.05; }
   /* deskMonkey logo theme-swap: white-BG in light mode, black-BG in dark mode */
@@ -468,16 +477,18 @@
   <div class="hero-grid-lines"></div>
   <div class="container">
     <div class="hero-content">
-      <img src="deskMonkey_v3-white.png" alt="deskMonkey — AI receptionist for home service pros and auto body shops" class="dm-logo dm-logo-hero dm-light-only"><img src="deskMonkey_v3-black.png" alt="" class="dm-logo dm-logo-hero dm-dark-only" aria-hidden="true">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         ✦ 24/7 AI Receptionist · Live in 48 hours
       </div>
-      <h1 class="display">
-        <span class="gradient-text">deskMonkey:</span><br>
-        Never miss a call.<br>
-        Never lose a lead.
-      </h1>
+      <div class="hero-headline-row">
+        <img src="deskMonkey_v3-white-icon.png" alt="" class="dm-icon-hero dm-light-only" aria-hidden="true"><img src="deskMonkey_v3-black-icon.png" alt="" class="dm-icon-hero dm-dark-only" aria-hidden="true">
+        <h1 class="display">
+          <span class="gradient-text">deskMonkey:</span><br>
+          Never miss a call.<br>
+          Never lose a lead.
+        </h1>
+      </div>
       <p class="subhead">An AI receptionist that answers your phone 24/7, books appointments straight into your calendar, and texts your customers back instantly — in your business's voice. Built for auto body shops, home services, and any local business losing revenue to unanswered calls.</p>
       <div class="hero-ctas">
         <button class="btn-primary" onclick="openWidget('voice')">▶ Try deskMonkey Live</button>
