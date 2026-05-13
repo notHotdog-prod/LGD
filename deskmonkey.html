@@ -422,11 +422,6 @@
   .nav-agency-link:hover { color: var(--magenta-light) !important; }
   .nav-icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
   .nav-stack-label { display: inline-block; text-align: center; line-height: 1.05; }
-  /* deskMonkey logo theme-swap: white-BG in light mode, black-BG in dark mode */
-  .dm-light-only { display: inline-block !important; }
-  .dm-dark-only { display: none !important; }
-  body:not(.light-mode) .dm-light-only { display: none !important; }
-  body:not(.light-mode) .dm-dark-only { display: inline-block !important; }
 
   /* ===== PRICING TIERS (matches agency.html pkg-* styling) ===== */
   .packages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
@@ -465,7 +460,7 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskMonkey_v3-white.png" alt="" class="dm-logo-nav dm-light-only" aria-hidden="true"><img src="deskMonkey_v3-black.png" alt="" class="dm-logo-nav dm-dark-only" aria-hidden="true">deskMonkey</a></li>
+      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskMonkey_v3-white.png" alt="" class="dm-logo-nav" aria-hidden="true">deskMonkey</a></li>
       <li><a href="ai-solutions.html" class="nav-solutions-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 1 L10.2 7.8 L17 9 L10.2 10.2 L9 17 L7.8 10.2 L1 9 L7.8 7.8 Z"/><path d="M19 3 L19.7 5.3 L22 6 L19.7 6.7 L19 9 L18.3 6.7 L16 6 L18.3 5.3 Z"/><path d="M21 17 L21.4 18.6 L23 19 L21.4 19.4 L21 21 L20.6 19.4 L19 19 L20.6 18.6 Z" opacity="0.75"/></svg>AI Solutions</a></li>
       <li><a href="agency.html" class="nav-agency-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg><span class="nav-stack-label">Marketing<br>Agency</span></a></li>
       <li><a href="about.html">About</a></li>
@@ -497,7 +492,7 @@
         ✦ 24/7 AI Receptionist · Live in 48 hours · 🍌
       </div>
       <div class="hero-headline-row">
-        <img src="deskMonkey_v3-white-icon.png" alt="" class="dm-icon-hero dm-light-only" aria-hidden="true"><img src="deskMonkey_v3-black-icon.png" alt="" class="dm-icon-hero dm-dark-only" aria-hidden="true">
+        <img src="deskMonkey_v3-white-icon.png" alt="" class="dm-icon-hero" aria-hidden="true">
         <h1 class="display">
           <span class="gradient-text">deskMonkey:</span><br>
           Never miss a call.<br>
@@ -525,7 +520,7 @@
         </div>
         <div class="hero-stat-card">
           <div class="hero-stat-num">100×</div>
-          <div class="hero-stat-label">better conversion in first 5 min</div>
+          <div class="hero-stat-label">better conversion in first 5 min <span style="color:var(--text-dim);">(MIT)</span></div>
         </div>
       </div>
     </div>
@@ -646,7 +641,7 @@
         <div class="pkg-price">$299<span class="pkg-period">/mo</span></div>
         <div class="pkg-desc">Just the basics, done right. Perfect for solo operators and lower-volume shops.</div>
         <ul class="pkg-features">
-          <li><strong style="color:var(--text)">250 minutes</strong> / month included</li>
+          <li>250 minutes / month included</li>
           <li>$0.30 per extra minute</li>
           <li><strong style="color:var(--text)">Voice + Chat Channels</strong></li>
           <li>Email support · 24-hour response</li>
@@ -667,7 +662,7 @@
         <div class="pkg-price">$499<span class="pkg-period">/mo</span></div>
         <div class="pkg-desc">Sweet spot for most local businesses running real marketing and after-hours coverage.</div>
         <ul class="pkg-features">
-          <li><strong style="color:var(--text)">750 minutes</strong> / month included</li>
+          <li>750 minutes / month included</li>
           <li>$0.23 per extra minute <em style="color:var(--purple-light)">(23% lower rate)</em></li>
           <li><strong style="color:var(--text)">Voice, Chat, and Social Channels</strong></li>
           <li>Phone + email support · business hours</li>
@@ -688,7 +683,7 @@
         <div class="pkg-price">$999<span class="pkg-period">/mo</span></div>
         <div class="pkg-desc">Full-stack for high-volume operators, multi-location businesses, and ad-driven shops.</div>
         <ul class="pkg-features">
-          <li><strong style="color:var(--text)">2,000 minutes</strong> / month included</li>
+          <li>2,000 minutes / month included</li>
           <li>$0.15 per extra minute <em style="color:var(--purple-light)">(50% lower rate)</em></li>
           <li><strong style="color:var(--text)">Voice, Chat, and Social Channels</strong></li>
           <li>Dedicated account rep + priority support</li>
@@ -864,7 +859,7 @@
         <img src="logo.png" alt="Lets Grow Digital" style="height:48px; width:auto; display:block; margin-bottom:16px;">
         <p>Full-service digital marketing built for ambitious businesses. AI-first. Results-focused. Obsessively transparent.</p>
         <div style="display:flex; align-items:center; gap:0.6rem; margin:1rem 0;">
-          <img src="deskMonkey_v3-white.png" alt="" aria-hidden="true" class="dm-light-only" style="width:36px; height:36px;"><img src="deskMonkey_v3-black.png" alt="" aria-hidden="true" class="dm-dark-only" style="width:36px; height:36px;">
+          <img src="deskMonkey_v3-white.png" alt="" aria-hidden="true" style="width:36px; height:36px;">
           <span style="font-size:0.8rem; color:var(--text-muted);">deskMonkey is a product of Lets Grow Digital</span>
         </div>
         <div class="footer-social">

@@ -160,12 +160,6 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
   .dm-logo-nav { width: 26px; height: 26px; vertical-align: middle; flex-shrink: 0; }
   .nav-icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
   .nav-stack-label { display: inline-block; text-align: center; line-height: 1.05; }
-  /* deskMonkey logo theme-swap: white-BG in light mode, black-BG in dark mode */
-  /* !important required because .dm-logo (defined later) sets display:inline-block at same specificity */
-  .dm-light-only { display: inline-block !important; }
-  .dm-dark-only { display: none !important; }
-  body:not(.light-mode) .dm-light-only { display: none !important; }
-  body:not(.light-mode) .dm-dark-only { display: inline-block !important; }
 
 
   /* ===== HERO ===== */
@@ -628,7 +622,7 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
     </a>
 
     <ul class="nav-links">
-      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskMonkey_v3-white.png" alt="" class="dm-logo-nav dm-light-only" aria-hidden="true"><img src="deskMonkey_v3-black.png" alt="" class="dm-logo-nav dm-dark-only" aria-hidden="true">deskMonkey</a></li>
+      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskMonkey_v3-white.png" alt="" class="dm-logo-nav" aria-hidden="true">deskMonkey</a></li>
       <li><a href="ai-solutions.html" class="nav-solutions-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 1 L10.2 7.8 L17 9 L10.2 10.2 L9 17 L7.8 10.2 L1 9 L7.8 7.8 Z"/><path d="M19 3 L19.7 5.3 L22 6 L19.7 6.7 L19 9 L18.3 6.7 L16 6 L18.3 5.3 Z"/><path d="M21 17 L21.4 18.6 L23 19 L21.4 19.4 L21 21 L20.6 19.4 L19 19 L20.6 18.6 Z" opacity="0.75"/></svg>AI Solutions</a></li>
       <li><a href="agency.html" class="nav-agency-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg><span class="nav-stack-label">Marketing<br>Agency</span></a></li>
       <li><a href="about.html">About</a></li>
@@ -684,7 +678,7 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
     <div class="ai-teaser-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
       <div class="fade-up">
         <div class="ai-teaser-row">
-          <img src="deskMonkey_v3-white-icon.png" alt="deskMonkey — AI receptionist" class="dm-teaser-icon dm-light-only"><img src="deskMonkey_v3-black-icon.png" alt="" class="dm-teaser-icon dm-dark-only" aria-hidden="true">
+          <img src="deskMonkey_v3-white-icon.png" alt="deskMonkey — AI receptionist" class="dm-teaser-icon">
           <div>
             <p class="overline" style="color: var(--magenta-light); margin-bottom: 0.5rem;">✦ Meet deskMonkey</p>
             <h2 class="headline" style="margin: 0;">Never miss a call.<br><span class="gradient-text">Never lose a lead.</span></h2>
@@ -708,7 +702,7 @@ body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); backgrou
           </div>
           <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
             <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">100×</div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">better conversion in first 5 minutes</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">better conversion in first 5 minutes <span style="color:var(--text-dim);">(MIT)</span></div>
           </div>
           <div style="background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center;">
             <div style="font-size: 2rem; font-weight: 800; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">$299</div>
