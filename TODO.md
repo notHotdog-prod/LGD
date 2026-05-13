@@ -69,7 +69,7 @@ These appear on `index.html`, `agency.html`, and `ai.html`. Bryan flagged the di
 
 **To complete:** Bryan provides local repo paths for LGC, LGP, InsureMyBiz123, Turfboss, plus confirms whether each site uses its own Cloudflare Worker or shares one. Future Claude session inserts the Loader Script tag into each site's HTML `<head>` and wraps Worker handlers with `Sentry.withSentry`.
 
-**Per-project alert:** each of the 6 projects above needs a "Send notification to bryan.boutin@gmail.com" alert rule (Sentry → Alerts → Create rule → "Issue Alert" template → email action). One per project; Sentry does not propagate alerts cross-project.
+**Per-project alert:** ✅ Auto-configured by Sentry on project creation. Each of the 6 projects has a "Send a notification for high priority issues" rule with action "Notify Suggested Assignees → Recently Active Members" — which for a 1-member org routes to bryan.boutin@gmail.com. Confirmed working by the LGD alert firing 3 hours ago for the localStorage error. No further action needed unless we want to broaden the trigger from "high priority only" to "any new issue" — discuss if Bryan wants more sensitive alerting.
 
 ## 7. LGC/LGP/InsureMyBiz123 UI parity with LGD
 **Status:** Not started — parity prompt drafted in chat history of 2026-05-12
@@ -78,14 +78,12 @@ These appear on `index.html`, `agency.html`, and `ai.html`. Bryan flagged the di
 
 **Approach:** Use the "parity prompt" drafted in chat to brief a focused session. Apply each item to all three sites in one pass. Push site-by-site so rollback is granular.
 
-## 8. Monday board: add Phone + Lead Source columns
-**Status:** Blocked on Bryan
-**Why:** kb-leads-proxy now receives phone and lead-source data from LGC/LGP/InsureMyBiz123 but drops them on the floor because Monday doesn't have columns to receive them.
-
-**To unblock:**
-1. In Monday, add two columns to the board: "Phone" (Phone or Text type) and "Lead Source" (Status with options: "Lets Grow Digital", "Lets Grow Clients", "Lets Grow Patients", "InsureMyBiz123")
-2. Hit https://kb-leads-proxy.bryan-boutin.workers.dev/columns in a browser; it returns column IDs as JSON
-3. Paste JSON to Claude; Claude updates the worker's columnValues block and you redeploy
+## 8. Monday board: column wire-up ✅ DONE
+**Status:** Complete (verified 2026-05-12)
+- Phone column (`lead_phone`) already existed on the board
+- Lead Source column (`color_mkyb8krc`) status labels added: Lets Grow Digital, Lets Grow Clients, Lets Grow Patients, InsureMyBiz123 (Daven Insurance kept temporarily)
+- Worker wired to real column IDs: `lead_email`, `lead_phone`, `lead_company`, `color_mkyb8krc`, `long_text_mm226ey8`
+- End-to-end form pipeline tested across all 4 sites that share kb-leads-proxy (LGD, LGC, LGP, IMB123). Items 11992163652, 11992203151, 11992217259, 11992207145, 11992204306 are test entries to delete from Monday.
 
 ## 9. Shared CSS+JS for chrome (multi-site propagation)
 **Status:** Not started — strategic improvement

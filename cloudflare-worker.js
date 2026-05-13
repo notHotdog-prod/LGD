@@ -24,6 +24,74 @@ function deriveSource(origin) {
   return 'Unknown';
 }
 
+// Short site slug for Sentry filtering ("lgd", "lgc", etc.)
+function deriveSiteSlug(origin) {
+  if (/letsgrowclients/.test(origin)) return 'lgc';
+  if (/letsgrowpatients/.test(origin)) return 'lgp';
+  if (/insuremybiz123/.test(origin)) return 'imb123';
+  if (/letsgrowdigital/.test(origin)) return 'lgd';
+  return 'unknown';
+}
+
+// Direct-fetch Sentry reporter. Fails silently so lead capture is never blocked.
+// To enable: add SENTRY_DSN secret in CF dashboard (Settings → Variables and Secrets).
+async function reportToSentry(err, env, context = {}, origin = '') {
+  if (!env.SENTRY_DSN) return;
+  try {
+    const dsn = new URL(env.SENTRY_DSN);
+    const projectId = dsn.pathname.slice(1);
+    const publicKey = dsn.username;
+    const envelopeUrl = `${dsn.protocol}//${dsn.host}/api/${projectId}/envelope/`;
+
+    const eventId = crypto.randomUUID().replace(/-/g, '');
+    const timestamp = Date.now() / 1000;
+
+    const event = {
+      event_id: eventId,
+      timestamp,
+      platform: 'javascript',
+      level: 'error',
+      logger: 'kb-leads-proxy-worker',
+      exception: {
+        values: [{
+          type: err.name || 'Error',
+          value: err.message || String(err),
+          stacktrace: err.stack ? {
+            frames: err.stack.split('\n').slice(1, 10).map(line => ({
+              filename: 'cloudflare-worker.js',
+              function: line.trim(),
+            })),
+          } : undefined,
+        }],
+      },
+      tags: {
+        worker: 'kb-leads-proxy',
+        site: deriveSiteSlug(origin),
+      },
+      extra: { ...context, origin },
+    };
+
+    const envelopeHeader = JSON.stringify({
+      event_id: eventId,
+      sent_at: new Date().toISOString(),
+      dsn: env.SENTRY_DSN,
+    });
+    const itemHeader = JSON.stringify({ type: 'event' });
+    const envelope = `${envelopeHeader}\n${itemHeader}\n${JSON.stringify(event)}`;
+
+    await fetch(envelopeUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-sentry-envelope',
+        'X-Sentry-Auth': `Sentry sentry_version=7, sentry_key=${publicKey}, sentry_client=kb-leads-proxy/1.0`,
+      },
+      body: envelope,
+    });
+  } catch (sentryErr) {
+    console.error('Sentry report failed:', sentryErr);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -132,11 +200,18 @@ export default {
       res  = await mondayRequest(mutation, env.MONDAY_API_TOKEN);
       data = await res.json();
     } catch (err) {
+      await reportToSentry(err, env, { stage: 'monday_fetch', itemName, columnValues }, origin);
       return json({ error: 'Failed to reach Monday.com' }, 502, cors(origin));
     }
 
     if (data.errors?.length) {
       console.error('Monday API error:', JSON.stringify(data.errors));
+      await reportToSentry(new Error(`Monday API error: ${data.errors[0].message}`), env, {
+        stage: 'monday_response',
+        mondayErrors: data.errors,
+        itemName,
+        columnValues,
+      }, origin);
       return json({ error: data.errors[0].message }, 500, cors(origin));
     }
 
