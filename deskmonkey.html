@@ -396,11 +396,13 @@
   .nav-agency-link { display: inline-flex; align-items: center; gap: 0.35rem; }
   .nav-icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
   .nav-stack-label { display: inline-block; text-align: center; line-height: 1.05; }
+  /* deskMonkey logo theme-swap: white-BG in light mode, black-BG in dark mode */
+  .dm-light-only { display: inline-block; }
+  .dm-dark-only { display: none; }
+  body:not(.light-mode) .dm-light-only { display: none; }
+  body:not(.light-mode) .dm-dark-only { display: inline-block; }
   /* Dark-mode framing — gives the transparent PNG a card so the dark monkey body has contrast */
-  body:not(.light-mode) .dm-logo-framed {
-    background: #fff; padding: 14px; border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  }
+  /* .dm-logo-framed dark-mode card no longer needed — black-BG logo variant provides its own contrast */
   @media (max-width: 768px) {
     .dm-logo-hero { width: 220px; margin: 0 auto 1.25rem; display: block; }
   }
@@ -420,7 +422,7 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskmonkey-logo-T.png" alt="" class="dm-logo-nav" aria-hidden="true">deskMonkey</a></li>
+      <li><a href="deskmonkey.html" class="nav-ai-link"><img src="deskMonkey_v3-white.png" alt="" class="dm-logo-nav dm-light-only" aria-hidden="true"><img src="deskMonkey_v3-black.png" alt="" class="dm-logo-nav dm-dark-only" aria-hidden="true">deskMonkey</a></li>
       <li><a href="ai-solutions.html" class="nav-solutions-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 1 L10.2 7.8 L17 9 L10.2 10.2 L9 17 L7.8 10.2 L1 9 L7.8 7.8 Z"/><path d="M19 3 L19.7 5.3 L22 6 L19.7 6.7 L19 9 L18.3 6.7 L16 6 L18.3 5.3 Z"/><path d="M21 17 L21.4 18.6 L23 19 L21.4 19.4 L21 21 L20.6 19.4 L19 19 L20.6 18.6 Z" opacity="0.75"/></svg>AI Solutions</a></li>
       <li><a href="agency.html" class="nav-agency-link"><svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg><span class="nav-stack-label">Marketing<br>Agency</span></a></li>
       <li><a href="about.html">About</a></li>
@@ -447,7 +449,7 @@
   <div class="hero-grid-lines"></div>
   <div class="container">
     <div class="hero-content">
-      <img src="deskmonkey-logo-T.png" alt="deskMonkey — AI receptionist for home service pros and auto body shops" class="dm-logo dm-logo-hero dm-logo-framed">
+      <img src="deskMonkey_v3-white.png" alt="deskMonkey — AI receptionist for home service pros and auto body shops" class="dm-logo dm-logo-hero dm-light-only"><img src="deskMonkey_v3-black.png" alt="" class="dm-logo dm-logo-hero dm-dark-only" aria-hidden="true">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         ✦ 24/7 AI Receptionist · Live in 48 hours
@@ -828,7 +830,7 @@
         <img src="logo.png" alt="Lets Grow Digital" style="height:48px; width:auto; display:block; margin-bottom:16px;">
         <p>Full-service digital marketing built for ambitious businesses. AI-first. Results-focused. Obsessively transparent.</p>
         <div style="display:flex; align-items:center; gap:0.6rem; margin:1rem 0;">
-          <img src="deskmonkey-logo-T.png" alt="" aria-hidden="true" style="width:36px; height:36px;">
+          <img src="deskMonkey_v3-white.png" alt="" aria-hidden="true" class="dm-light-only" style="width:36px; height:36px;"><img src="deskMonkey_v3-black.png" alt="" aria-hidden="true" class="dm-dark-only" style="width:36px; height:36px;">
           <span style="font-size:0.8rem; color:var(--text-muted);">deskMonkey is a product of Lets Grow Digital</span>
         </div>
         <div class="footer-social">
