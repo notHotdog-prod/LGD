@@ -227,6 +227,15 @@
   .guarantee-block h3 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: 1rem; }
   .guarantee-block p { color: var(--text-muted); max-width: 660px; margin: 0 auto 1.5rem; font-size: 1rem; line-height: 1.65; }
 
+  /* ===== HOW-IT-WORKS ACCORDION (collapsed below pricing) ===== */
+  .how-accordion { background: var(--dark-3); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 2rem; max-width: 1000px; margin: 3rem auto 0; }
+  .how-accordion summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; color: var(--text); }
+  .how-accordion summary::-webkit-details-marker { display: none; }
+  .how-accordion summary::after { content: '+'; font-size: 1.6rem; color: var(--purple-light); line-height: 1; font-weight: 300; flex-shrink: 0; }
+  .how-accordion[open] summary::after { content: '−'; }
+  .how-accordion-body { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .how-accordion-body .how-sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.75rem; max-width: 720px; line-height: 1.6; }
+
   /* ===== FAQ ACCORDION ===== */
   .faq-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 820px; margin: 0 auto; }
   .faq-item { background: var(--dark-3); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
@@ -237,6 +246,14 @@
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem; }
   .faq-answer p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; padding-bottom: 1.25rem; }
   .faq-item.open .faq-answer { max-height: 600px; }
+  /* "Show more questions" expander wrapping the lower half of the FAQ list */
+  .faq-more { background: transparent; border: none; padding: 0; }
+  .faq-more > summary { cursor: pointer; list-style: none; padding: 1rem 1.5rem; background: var(--dark-3); border: 1px solid var(--border); border-radius: 12px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--purple-light); display: flex; justify-content: center; align-items: center; gap: 0.5rem; transition: border-color 0.2s; }
+  .faq-more > summary:hover { border-color: rgba(139,85,246,0.4); }
+  .faq-more > summary::-webkit-details-marker { display: none; }
+  .faq-more > summary::after { content: '↓'; font-size: 1rem; transition: transform 0.2s; line-height: 1; }
+  .faq-more[open] > summary::after { transform: rotate(180deg); }
+  .faq-more-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
 
   /* ===== INDUSTRIES STRIP ===== */
   .industries-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 800px; margin: 0 auto; }
@@ -560,42 +577,6 @@
 
 <div class="glow-divider"></div>
 
-<!-- ===== HOW IT WORKS — 4 STEPS ===== -->
-<section class="section">
-  <div class="container">
-    <div style="text-align:center; max-width:780px; margin:0 auto 4rem;" class="fade-up">
-      <p class="overline">How It Works</p>
-      <h2 class="headline" style="margin: 0.75rem 0 1rem;">Four steps. <span class="gradient-text">Every call.</span> Same brain.</h2>
-      <p class="subhead" style="font-size: 1.05rem;">deskMonkey follows the same sales-floor playbook a great front-desk hire would — without the lunch breaks, sick days, or shift changes.</p>
-    </div>
-
-    <div class="process-steps">
-      <div class="process-step fade-up stagger-1">
-        <div class="process-num">1</div>
-        <h4>Identify</h4>
-        <p>Greets the caller by your business name, captures their name and callback number, confirms the digits back.</p>
-      </div>
-      <div class="process-step fade-up stagger-2">
-        <div class="process-num">2</div>
-        <h4>Screen</h4>
-        <p>One open-ended "what's going on?" Lets the customer describe the job. Detects spam and telemarketers and politely ends those calls.</p>
-      </div>
-      <div class="process-step fade-up stagger-3">
-        <div class="process-num">3</div>
-        <h4>Qualify</h4>
-        <p>Classifies urgency (emergency, same-day, standard, quote-only), captures service address, asks the trade-specific intake questions you set up.</p>
-      </div>
-      <div class="process-step fade-up stagger-4">
-        <div class="process-num">4</div>
-        <h4>Book</h4>
-        <p>Offers the next slot from your calendar, books it, sends SMS confirmation, emails you a summary. Done — before the next call rings.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="glow-divider"></div>
-
 <!-- ===== TRY IT LIVE ===== -->
 <section class="section" id="try-it-live">
   <div class="container">
@@ -723,6 +704,36 @@
     <p class="pkg-foot">
       Phone numbers, custom integrations, and call routing rules are quoted per setup. Talk to us about volume pricing if you do 5,000+ minutes a month.
     </p>
+
+    <!-- How It Works (collapsed by default) -->
+    <details class="how-accordion fade-up">
+      <summary>How it works — four steps. Every call. Same brain.</summary>
+      <div class="how-accordion-body">
+        <p class="how-sub">deskMonkey follows the same sales-floor playbook a great front-desk hire would — without the lunch breaks, sick days, or shift changes.</p>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-num">1</div>
+            <h4>Identify</h4>
+            <p>Greets the caller by your business name, captures their name and callback number, confirms the digits back.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">2</div>
+            <h4>Screen</h4>
+            <p>One open-ended "what's going on?" Lets the customer describe the job. Detects spam and telemarketers and politely ends those calls.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">3</div>
+            <h4>Qualify</h4>
+            <p>Classifies urgency (emergency, same-day, standard, quote-only), captures service address, asks the trade-specific intake questions you set up.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-num">4</div>
+            <h4>Book</h4>
+            <p>Offers the next slot from your calendar, books it, sends SMS confirmation, emails you a summary. Done — before the next call rings.</p>
+          </div>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -769,53 +780,60 @@
         <div class="faq-answer"><p>We program urgency tiers into your agent. For emergencies (gas leak, no heat in winter, water leak, downed tree, fender-bender at night) it acknowledges the urgency, captures the caller's location, and immediately texts you so you can call back in seconds.</p></div>
       </div>
 
-      <div class="faq-item fade-up stagger-2">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          Can I listen to my agent before I commit?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>Yes. We spin up a live test number you can call as part of the discovery process. Hear it answer, ask it questions, see if it sounds like you. No commitment.</p></div>
-      </div>
+      <details class="faq-more fade-up">
+        <summary>Show 6 more questions</summary>
+        <div class="faq-more-list">
 
-      <div class="faq-item fade-up stagger-3">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          Do I have to change my phone number?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>No. You keep your existing number. Setup is a 30-second call-forwarding change on your phone — we walk you through it for your specific carrier.</p></div>
-      </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              Can I listen to my agent before I commit?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>Yes. We spin up a live test number you can call as part of the discovery process. Hear it answer, ask it questions, see if it sounds like you. No commitment.</p></div>
+          </div>
 
-      <div class="faq-item fade-up stagger-1">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          Does it work with my CRM or scheduling tool?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>Native support for GoHighLevel, Cal.com, Google Calendar, Outlook, and Meta Lead Forms. HubSpot and other CRMs via webhook or API as part of onboarding. If you use something exotic, we connect it.</p></div>
-      </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              Do I have to change my phone number?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>No. You keep your existing number. Setup is a 30-second call-forwarding change on your phone — we walk you through it for your specific carrier.</p></div>
+          </div>
 
-      <div class="faq-item fade-up stagger-2">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          What if it can't handle a call?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>It transfers to a human (warm transfer — it stays on the line) or takes a message and schedules a callback. You're never just hearing "I don't know" and a dead silence.</p></div>
-      </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              Does it work with my CRM or scheduling tool?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>Native support for GoHighLevel, Cal.com, Google Calendar, Outlook, and Meta Lead Forms. HubSpot and other CRMs via webhook or API as part of onboarding. If you use something exotic, we connect it.</p></div>
+          </div>
 
-      <div class="faq-item fade-up stagger-3">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          How fast can you get me live?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>Most clients are live in 3 to 5 business days. Faster if you're ready with your services list, hours, and pricing. The bottleneck is collecting your details, not the build.</p></div>
-      </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              What if it can't handle a call?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>It transfers to a human (warm transfer — it stays on the line) or takes a message and schedules a callback. You're never just hearing "I don't know" and a dead silence.</p></div>
+          </div>
 
-      <div class="faq-item fade-up stagger-2">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-          Is this HIPAA, TCPA, and SOC 2 compliant?
-          <span class="faq-toggle-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer"><p>Yes. The underlying platform is HIPAA, SOC 2 Type II, TCPA, A2P 10DLC, and GDPR compliant out of the box. For medical and dental clients we sign a Business Associate Agreement (BAA).</p></div>
-      </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              How fast can you get me live?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>Most clients are live in 3 to 5 business days. Faster if you're ready with your services list, hours, and pricing. The bottleneck is collecting your details, not the build.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              Is this HIPAA, TCPA, and SOC 2 compliant?
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p>Yes. The underlying platform is HIPAA, SOC 2 Type II, TCPA, A2P 10DLC, and GDPR compliant out of the box. For medical and dental clients we sign a Business Associate Agreement (BAA).</p></div>
+          </div>
+
+        </div>
+      </details>
     </div>
   </div>
 </section>

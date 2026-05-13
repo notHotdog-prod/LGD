@@ -123,6 +123,14 @@
   .tab-content { display: none; } .tab-content.active { display: block; }
   .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
   .process-step { background: var(--dark-3); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 1.5rem; text-align: center; }
+  /* Collapsible "show the 4-step process" toggle */
+  .process-collapse { max-width: 1000px; margin: 0 auto; }
+  .process-collapse > summary { cursor: pointer; list-style: none; padding: 1rem 1.5rem; background: var(--dark-3); border: 1px solid var(--border); border-radius: 12px; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--purple-light); display: flex; justify-content: center; align-items: center; gap: 0.5rem; transition: border-color 0.2s; }
+  .process-collapse > summary:hover { border-color: rgba(139,85,246,0.4); }
+  .process-collapse > summary::-webkit-details-marker { display: none; }
+  .process-collapse > summary::after { content: '↓'; font-size: 1rem; transition: transform 0.2s; line-height: 1; }
+  .process-collapse[open] > summary::after { transform: rotate(180deg); }
+  .process-collapse[open] > .process-grid { margin-top: 1.5rem; }
   .process-num { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin: 0 auto 1rem; }
   .process-step h4 { font-weight: 700; margin-bottom: 0.5rem; }
   .process-step p { font-size: 0.85rem; color: var(--text-muted); }
@@ -385,28 +393,31 @@
       <p class="overline">How We Work</p>
       <h2 class="headline" style="margin: 0.75rem 0 1rem;">Your path to <span class="gradient-text">accelerated growth</span></h2>
     </div>
-    <div class="process-grid">
-      <div class="process-step fade-up stagger-1">
-        <div class="process-num">1</div>
-        <h4>Discovery Call</h4>
-        <p>30-minute deep dive into your business, goals, current marketing, and competition.</p>
+    <details class="process-collapse fade-up">
+      <summary>Show our 4-step process</summary>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <h4>Discovery Call</h4>
+          <p>30-minute deep dive into your business, goals, current marketing, and competition.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <h4>Strategy & Roadmap</h4>
+          <p>Custom 90-day growth plan with channel strategy, budget allocation, and KPI targets.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <h4>Launch & Execute</h4>
+          <p>Campaigns live within 2 weeks. AI monitoring from day one. Daily optimizations.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <h4>Optimize & Scale</h4>
+          <p>Monthly reporting, continuous testing, and strategic pivots to maximize ROI.</p>
+        </div>
       </div>
-      <div class="process-step fade-up stagger-2">
-        <div class="process-num">2</div>
-        <h4>Strategy & Roadmap</h4>
-        <p>Custom 90-day growth plan with channel strategy, budget allocation, and KPI targets.</p>
-      </div>
-      <div class="process-step fade-up stagger-3">
-        <div class="process-num">3</div>
-        <h4>Launch & Execute</h4>
-        <p>Campaigns live within 2 weeks. AI monitoring from day one. Daily optimizations.</p>
-      </div>
-      <div class="process-step fade-up" style="transition-delay:0.4s;">
-        <div class="process-num">4</div>
-        <h4>Optimize & Scale</h4>
-        <p>Monthly reporting, continuous testing, and strategic pivots to maximize ROI.</p>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
