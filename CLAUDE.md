@@ -66,6 +66,15 @@ Dashboard: https://bbgb-llc.sentry.io/
 ## Marketing Copy — No Concessions
 Never add the following to any LGD page without explicit Bryan confirmation: "30-day guarantee", "money-back", "month-to-month", "no contracts", "cancel anytime", "free trial", "no setup required". The actual deal is setup fee + 12-month commitment; the worst-case retainer refund is internal-only, not marketed. "No commitment" is OK only when scoped to the inquiry/discovery (not the deal itself).
 
+## Commit Hygiene — Atomic & Isolated Messages
+Commit messages describe **only** the files and changes in that commit's diff. Nothing else.
+
+- **Atomic commits.** One concern per commit. Don't bundle unrelated work (e.g., a logo swap + form fix + `.gitignore` housekeeping) into a single commit just because the changes happened in the same session. Split them.
+- **Message scope = diff scope.** The commit body may reference only paths/identifiers that appear in `git diff --cached` for that commit. Do not narrate anything outside the staged diff — no folder names from the working tree, no context from prior commits, no "while I was at it" mentions.
+- **`.gitignore` changes are generic.** Never enumerate ignored folder/file names in the message. Use a generic body like `Exclude local-only working folders from version control`. `.gitignore` housekeeping should be its own commit when possible.
+- **No personal-context leakage.** Folder names, filenames, or identifiers from unrelated personal/working-tree clutter must never appear in a commit message, even if they're technically in the diff (in which case the diff itself is wrong — re-scope the commit).
+- **Drafting check, not audit check.** Apply this at message-drafting time. If the diff spans unrelated concerns, stop and split before writing the message.
+
 ## What Claude Should NOT Do
 - Do not suggest multi-file architecture
 - Do not add npm dependencies or build tools
