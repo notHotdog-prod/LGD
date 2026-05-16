@@ -475,7 +475,7 @@
 <script>(function(){try{if(localStorage.getItem('lgd-theme')==='dark'){document.body.classList.remove('light-mode');}}catch(e){}})();</script>
 
 <!-- ===== TOP BANNER ===== -->
-<div class="top-banner">📞 Call or Text: <a href="tel:+17324661234">732-466-1234</a></div>
+<div class="top-banner">📞 Call or Text: <a href="tel:+17328009998">732-800-9998</a></div>
 
 <!-- ===== NAVIGATION ===== -->
 <nav>
@@ -528,7 +528,7 @@
       <div class="hero-ctas">
         <button class="btn-primary" onclick="openWidget('voice')">▶ Try deskMonkey Live</button>
         <a href="#contact" class="btn-outline">Sign Up →</a>
-        <a href="tel:+17324661234" class="btn-outline">📞 732-466-1234</a>
+        <a href="tel:+17328009998" class="btn-outline">📞 732-800-9998</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat-card">
@@ -864,7 +864,7 @@
       <p>Sign up today and we'll have deskMonkey answering your phones by the end of the week.</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
         <a href="#contact" class="btn-primary">Sign Up →</a>
-        <a href="tel:+17324661234" class="btn-outline">📞 732-466-1234</a>
+        <a href="tel:+17328009998" class="btn-outline">📞 732-800-9998</a>
         <a href="https://cal.com/letsgrowletsgo?metadata[source]=deskMonkey Landing" class="btn-outline">Book a Demo</a>
       </div>
     </div>
@@ -891,7 +891,7 @@
             <div class="contact-point-icon">📞</div>
             <div>
               <h4>Call or text anytime</h4>
-              <p><a href="tel:+17324661234" style="color:var(--purple-light);text-decoration:none;">732-466-1234</a></p>
+              <p><a href="tel:+17328009998" style="color:var(--purple-light);text-decoration:none;">732-800-9998</a></p>
             </div>
           </div>
           <div class="contact-point">
@@ -1266,13 +1266,13 @@ function toggleTheme() {
         console.error('Trillet voice error:', err);
         voiceActive = false;
         voiceBtn.classList.remove('active');
-        voiceStatus.innerHTML = 'Something went wrong. <strong>Try again,</strong> or call 732-466-1234.';
+        voiceStatus.innerHTML = 'Something went wrong. <strong>Try again,</strong> or call 732-800-9998.';
       });
       await voiceAgent.startPublicCall();
     } catch (err) {
       console.error('Trillet voice init failed:', err);
       voiceBtn.classList.remove('active');
-      voiceStatus.innerHTML = 'Demo unavailable right now. Call us at <strong>732-466-1234</strong>.';
+      voiceStatus.innerHTML = 'Demo unavailable right now. Call us at <strong>732-800-9998</strong>.';
     }
   };
 
@@ -1304,7 +1304,7 @@ function toggleTheme() {
       });
       textAgent.on('error', (err) => {
         console.error('Trillet text error:', err);
-        appendSystem('Connection error. Call us at 732-466-1234 or try again.');
+        appendSystem('Connection error. Call us at 732-800-9998 or try again.');
       });
       textAgent.on('message', (data) => {
         const text = data?.text || data?.message || data?.content;
@@ -1317,7 +1317,7 @@ function toggleTheme() {
       await textAgent.startPublicCall();
     } catch (err) {
       console.error('Trillet text init failed:', err);
-      appendSystem('Chat unavailable right now. Call us at 732-466-1234.');
+      appendSystem('Chat unavailable right now. Call us at 732-800-9998.');
     }
   }
 
@@ -1331,7 +1331,7 @@ function toggleTheme() {
       (textAgent.sendMessage || textAgent.send || textAgent.sendText)?.call(textAgent, text);
     } catch (err) {
       console.error('Trillet send failed:', err);
-      appendSystem('Failed to send. Try refreshing or call 732-466-1234.');
+      appendSystem('Failed to send. Try refreshing or call 732-800-9998.');
     }
   };
 

@@ -15,7 +15,7 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 - **API proxy:** Cloudflare Worker `kb-leads-proxy.bryan-boutin.workers.dev` for lead capture (POST /lead, POST /newsletter)
 - **CRM:** Monday.com (workspace: bryanboutins-team)
 - **Booking:** Cal.com floating button on index/ai/agency/about (`letsgrowletsgo` slug)
-- **Primary phone (display + tel):** 732-466-1234
+- **Primary phone (display + tel):** 732-800-9998
 
 ## Design System
 - Purple (#6B35D9) → magenta (#D435A0) gradient
@@ -23,7 +23,7 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 - Bold typography: DM Sans (body) + DM Serif Display (headlines)
 - CSS variables for all colors and design tokens; `body.light-mode` overrides the dark palette
 - Partner badges included in layout
-- **Top banner:** fixed `📞 Call or Text: 732-466-1234` strip above every page's nav (z-index 1001)
+- **Top banner:** fixed `📞 Call or Text: 732-800-9998` strip above every page's nav (z-index 1001)
 
 ## Lead Capture
 - Sign Up form on `index.html` and `agency.html` POSTs JSON to the Cloudflare Worker `kb-leads-proxy` (`/lead`)
