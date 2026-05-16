@@ -3,15 +3,15 @@
 ## Project Overview
 Marketing website for Lets Grow Digital, an AI-powered digital marketing agency for small businesses.
 - **Live URL:** letsgrowdigital.ai
-- **GitHub repo:** bb313x/LGD
+- **GitHub repo:** notHotdog-prod/LGD
 - **Owner:** Bryan Boutins
 - **Business partner:** Kirk (sales, marketing, biz dev) — "Keep It Simple" principle applies to all copy and UX
 
 ## Tech Stack
 - Single-file HTML/CSS/JS — no frameworks, no build tools
-- **Live pages:** `index.html` (homepage), `ai.html`, `agency.html`, `about.html`, `privacy.html`, `terms.html`, `audit/index.html`
+- **Live pages:** `index.html` (homepage), `ai-solutions.html`, `agency.html`, `about.html`, `deskmonkey.html`, `privacy.html`, `terms.html`, `audit/index.html`
 - **Stale draft (do NOT edit):** `lgd_website_v2.html` — v2 mockup left in repo for reference only
-- **Deployment:** GitHub → Hostinger manual deploy via hPanel
+- **Deployment:** GitHub → Hostinger auto-pulls from `main` on push. No manual hPanel upload. Site updates ~1-2 min after push.
 - **API proxy:** Cloudflare Worker `kb-leads-proxy.bryan-boutin.workers.dev` for lead capture (POST /lead, POST /newsletter)
 - **CRM:** Monday.com (workspace: bryanboutins-team)
 - **Booking:** Cal.com floating button on index/ai/agency/about (`letsgrowletsgo` slug)
