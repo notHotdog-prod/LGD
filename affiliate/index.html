@@ -1,0 +1,634 @@
+<!--
+  affiliate.letsgrowdigital.ai — deskMonkey Partner Program sell sheet
+  Deployment: GitHub auto-pull → Hostinger public_html/affiliate (subdomain root).
+  Styling rework aligned to the LGD design system (DM Sans + DM Serif Display,
+  purple/magenta gradient, light/dark toggle via lgd-theme localStorage key).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>deskMonkey Partner Program — Sell Sheet</title>
+<!-- Sentry error monitoring (Loader Script — Browser JS project) -->
+<script src="https://js.sentry-cdn.com/f3eece8ec557e6d8bf348c28d8bc5a24.min.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://affiliate.letsgrowdigital.ai/">
+<meta name="description" content="deskMonkey Partner Program — earn 50% upfront and 20% monthly residuals for 24 months by referring small businesses to LGD's AI receptionist.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://affiliate.letsgrowdigital.ai/">
+<meta property="og:title" content="deskMonkey Partner Program — Sell Sheet">
+<meta property="og:description" content="Sell what sells itself. 50% upfront, 20% monthly for 24 months. Sign one Monkey Business deal a month and clear ~$9,600 in year one.">
+<meta property="og:image" content="https://letsgrowdigital.ai/deskMonkey_v3-white.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="deskMonkey Partner Program — Sell Sheet">
+<meta name="twitter:description" content="Sell what sells itself. 50% upfront, 20% monthly for 24 months.">
+<meta name="twitter:image" content="https://letsgrowdigital.ai/deskMonkey_v3-white.png">
+<style>
+  :root {
+    /* LGD brand */
+    --purple: #6B35D9;
+    --purple-light: #8B55F6;
+    --purple-dark: #4A1FA8;
+    --magenta: #D435A0;
+    --magenta-light: #F055C0;
+    --gradient: linear-gradient(135deg, #6B35D9 0%, #D435A0 100%);
+    --gradient-text: linear-gradient(90deg, #8B55F6 0%, #F055C0 100%);
+
+    /* Semantic tokens — DARK default (matches site :root) */
+    --navy: var(--purple-dark);
+    --navy-deep: #22222C;
+    --banana: var(--magenta-light);
+    --banana-soft: rgba(240,85,192,0.18);
+    --cream: #0A0A0F;
+    --cream-warm: #18181F;
+    --line: rgba(255,255,255,0.08);
+    --ink: #FFFFFF;
+    --ink-soft: rgba(255,255,255,0.72);
+    --ink-muted: rgba(255,255,255,0.55);
+
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+  }
+
+  body.light-mode {
+    --navy-deep: #0A0A0F;
+    --cream: #FFFFFF;
+    --cream-warm: #F8F8FF;
+    --line: rgba(0,0,0,0.08);
+    --ink: #0A0A1A;
+    --ink-soft: rgba(10,10,26,0.7);
+    --ink-muted: rgba(10,10,26,0.45);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .display { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.02em; }
+
+  .sheet { max-width: 900px; margin: 0 auto; padding: 0; }
+
+  /* === THEME TOGGLE (matches LGD pill switch) === */
+  .theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 100;
+    background: none; border: none; padding: 0; cursor: pointer;
+    display: inline-flex; align-items: center; line-height: 1;
+  }
+  .theme-toggle-track {
+    position: relative; display: inline-flex; align-items: center; justify-content: space-between;
+    width: 56px; height: 28px; padding: 0 7px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  body.light-mode .theme-toggle-track { background: rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.18); }
+  .theme-toggle-icon { font-size: 0.8rem; line-height: 1; z-index: 1; pointer-events: none; }
+  .theme-toggle-sun { color: #fbbf24; }
+  .theme-toggle-moon { color: #c4b5fd; }
+  .theme-toggle-thumb {
+    position: absolute; top: 50%; left: 3px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    transform: translateY(-50%);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  body.light-mode .theme-toggle-thumb { transform: translate(26px, -50%); background: #1a1a1a; }
+  .theme-toggle:hover .theme-toggle-track { border-color: var(--purple-light); }
+
+  /* === HERO === */
+  .hero {
+    background: var(--gradient);
+    color: #FFFFFF;
+    padding: 56px 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🍌';
+    position: absolute;
+    top: -30px; right: -20px;
+    font-size: 220px; opacity: 0.13;
+    transform: rotate(20deg); line-height: 1;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em;
+    color: #FFFFFF; font-weight: 600;
+    margin-bottom: 22px; padding: 6px 14px;
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.32);
+    border-radius: 100px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: clamp(34px, 4.8vw, 50px);
+    line-height: 1.05; letter-spacing: -0.025em;
+    margin-bottom: 20px; max-width: 720px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 .yellow { font-style: italic; }
+  .hero-sub {
+    font-family: var(--font-sans);
+    font-size: 16px; color: rgba(255,255,255,0.92);
+    max-width: 620px; line-height: 1.55;
+    margin-bottom: 32px; font-weight: 300;
+    position: relative; z-index: 1;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+    padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.25);
+    position: relative; z-index: 1;
+  }
+  .hero-stat-num {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 40px; color: #FFFFFF;
+    line-height: 1; letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .hero-stat-num small { font-size: 20px; opacity: 0.85; }
+  .hero-stat-label {
+    font-family: var(--font-sans);
+    font-size: 11px; color: rgba(255,255,255,0.78);
+    line-height: 1.4; font-weight: 400;
+  }
+
+  /* === PRODUCT === */
+  .product {
+    padding: 44px 48px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+  .section-tag {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--magenta-light); font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .product h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 32px; letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 14px; line-height: 1.1;
+  }
+  .product p {
+    font-size: 15px; color: var(--ink-soft);
+    max-width: 740px; line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .industries { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .industry-tag {
+    font-size: 11px; padding: 6px 12px;
+    background: var(--cream-warm); color: var(--ink-soft);
+    border-radius: 100px; font-weight: 500;
+    border: 1px solid var(--line);
+  }
+  .industry-tag.featured {
+    background: var(--magenta); color: #FFFFFF;
+    font-weight: 600; border-color: transparent;
+  }
+
+  /* === TIERS === */
+  .tiers-section { padding: 44px 48px; background: var(--cream); }
+  .tiers-section h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 32px; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 10px; line-height: 1.1;
+  }
+  .tiers-lede {
+    font-size: 14px; color: var(--ink-soft);
+    max-width: 620px; margin-bottom: 24px; line-height: 1.6;
+  }
+  .tier-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; margin-top: 16px;
+  }
+  .tier {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 22px 0;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .tier:hover { border-color: var(--purple-light); transform: translateY(-2px); }
+  .tier-bananas { font-size: 18px; margin-bottom: 8px; letter-spacing: -2px; }
+  .tier-name {
+    font-family: var(--font-sans); font-weight: 600;
+    font-size: 15px; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .tier-price {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 36px; color: var(--ink);
+    letter-spacing: -0.02em; line-height: 1;
+    margin: 12px 0 6px;
+  }
+  .tier-price small {
+    font-family: var(--font-sans);
+    font-size: 13px; color: var(--ink-muted); font-weight: 500;
+  }
+  .tier-includes {
+    font-size: 11px; color: var(--ink-soft);
+    margin-bottom: 14px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.55;
+  }
+  .tier-earn {
+    background: var(--purple-dark);
+    color: #FFFFFF;
+    padding: 14px 16px;
+    margin: 0 -22px;
+    border-top: 2px solid var(--magenta-light);
+  }
+  .tier-earn-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--magenta-light); font-weight: 600; margin-bottom: 4px;
+  }
+  .tier-earn-amount {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 22px; color: #FFFFFF;
+    line-height: 1.1; letter-spacing: -0.02em;
+  }
+  .tier-earn-amount small {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 11px; color: rgba(255,255,255,0.72);
+    margin-top: 3px; font-weight: 400; letter-spacing: 0;
+  }
+
+  /* === SCENARIO === */
+  .scenario {
+    padding: 44px 48px;
+    background: var(--navy-deep);
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 55% 70% at 90% 20%, rgba(212,53,160,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .scenario > * { position: relative; z-index: 1; }
+  .scenario-eyebrow {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--magenta-light); font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .scenario h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 28px; color: #FFFFFF;
+    margin-bottom: 14px; letter-spacing: -0.02em;
+    line-height: 1.15; max-width: 640px;
+  }
+  .scenario h2 .yellow {
+    font-style: italic;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .scenario-body {
+    font-family: var(--font-sans);
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    max-width: 620px; line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .scenario-big {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 68px;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1; letter-spacing: -0.03em;
+    margin: 12px 0 8px;
+  }
+  .scenario-big small {
+    font-size: 24px; color: #FFFFFF; opacity: 0.85;
+    background: none; -webkit-text-fill-color: #FFFFFF;
+  }
+  .scenario-caption {
+    font-family: var(--font-sans);
+    font-size: 13px; color: rgba(255,255,255,0.72);
+    max-width: 580px; line-height: 1.6;
+  }
+
+  /* === BIGGER === */
+  .bigger {
+    padding: 38px 48px;
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+  }
+  .bigger h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 28px; color: var(--ink);
+    margin-bottom: 12px; letter-spacing: -0.02em;
+  }
+  .bigger p {
+    font-size: 14px; color: var(--ink-soft);
+    max-width: 720px; line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .services {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 8px; margin-top: 14px;
+  }
+  .service {
+    background: var(--cream-warm);
+    padding: 12px 14px;
+    font-size: 11px; color: var(--ink);
+    font-weight: 500; text-align: center;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+
+  /* === CTA === */
+  .cta {
+    background: var(--magenta);
+    color: #FFFFFF;
+    padding: 40px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(107,53,217,0.45) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta > * { position: relative; z-index: 1; }
+  .cta h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 34px; letter-spacing: -0.025em;
+    margin-bottom: 10px; line-height: 1.1;
+  }
+  .cta-sub {
+    font-family: var(--font-sans);
+    font-size: 14px; color: rgba(255,255,255,0.92);
+    margin-bottom: 22px;
+    max-width: 540px; margin-left: auto; margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* === BUTTONS (LGD pill style) === */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.9rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s;
+    letter-spacing: 0; cursor: pointer;
+  }
+  .btn-primary {
+    background: #FFFFFF;
+    color: var(--purple-dark);
+    border: 1px solid #FFFFFF;
+  }
+  .btn-primary:hover { opacity: 0.92; transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.7);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: #FFFFFF; transform: translateY(-2px); }
+
+  /* === FOOTER === */
+  .footer {
+    padding: 22px 48px;
+    background: var(--cream);
+    text-align: center;
+    font-size: 10px; color: var(--ink-muted);
+    border-top: 1px solid var(--line);
+    line-height: 1.6;
+  }
+  .footer strong { color: var(--ink-soft); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .hero, .product, .tiers-section, .scenario, .bigger, .cta, .footer { padding-left: 24px; padding-right: 24px; }
+    .hero { padding-top: 44px; padding-bottom: 36px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .services { grid-template-columns: repeat(2, 1fr); }
+    .scenario-big { font-size: 52px; }
+    .hero::before { font-size: 150px; }
+    .theme-toggle { top: 12px; right: 12px; }
+  }
+
+  /* === PRINT === Force light values regardless of toggle state, hide toggle. */
+  @media print {
+    @page { margin: 0.4in; }
+    body, body.light-mode {
+      --navy: #4A1FA8;
+      --navy-deep: #0A0A0F;
+      --banana: #F055C0;
+      --cream: #FFFFFF;
+      --cream-warm: #F8F8FF;
+      --line: rgba(0,0,0,0.08);
+      --ink: #0A0A1A;
+      --ink-soft: rgba(10,10,26,0.7);
+      --ink-muted: rgba(10,10,26,0.45);
+      background: #FFFFFF !important;
+      color: #0A0A1A !important;
+      font-size: 13px;
+    }
+    .theme-toggle { display: none !important; }
+    .sheet { max-width: 100%; }
+    .hero { background: var(--gradient) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 28px 32px; }
+    .scenario { background: #0A0A0F !important; color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 26px 32px; }
+    .cta { background: var(--magenta) !important; color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 26px 32px; }
+    .bigger { background: #F8F8FF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 24px 32px; }
+    .product, .tiers-section { padding: 26px 32px; }
+    .footer { padding: 14px 32px; }
+    .tier-earn { background: #4A1FA8 !important; color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tier:hover { transform: none; }
+    section, .hero, .scenario, .cta { page-break-inside: avoid; }
+    .hero { page-break-after: avoid; }
+    .product { page-break-before: avoid; }
+  }
+</style>
+</head>
+<body class="light-mode">
+<script>(function(){try{if(localStorage.getItem('lgd-theme')==='dark'){document.body.classList.remove('light-mode');}}catch(e){}})();</script>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+  <span class="theme-toggle-track">
+    <span class="theme-toggle-icon theme-toggle-sun">☀</span>
+    <span class="theme-toggle-icon theme-toggle-moon">☾</span>
+    <span class="theme-toggle-thumb"></span>
+  </span>
+</button>
+
+<div class="sheet">
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">deskMonkey Partner Program 🍌</span>
+  <h1>Sell what <span class="yellow">sells itself.</span><br>Earn on every call.</h1>
+  <p class="hero-sub">deskMonkey answers business phones 24/7, books appointments, and texts customers back instantly — in any business's brand voice. Your job is the introduction. Ours is everything after.</p>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">62<small>%</small></div>
+      <div class="hero-stat-label">of small-business calls go unanswered</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">78<small>%</small></div>
+      <div class="hero-stat-label">of buyers pick whoever responds first</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">100<small>×</small></div>
+      <div class="hero-stat-label">better conversion in first 5 min (MIT)</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">48<small>hr</small></div>
+      <div class="hero-stat-label">from signup to live on the phones</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product">
+  <div class="section-tag">What you're selling</div>
+  <h2>An AI receptionist your prospects already need.</h2>
+  <p>Every plumber, HVAC tech, roofer, and auto body shop owner you know has the same problem: their phone rings when they can't answer it. After hours. During jobs. On the other line. Every missed call is money that walked next door. deskMonkey answers in one ring — 24/7/365 — captures intake details, books the appointment, and texts a confirmation. Voice + chat (social DMs on higher tiers). Branded to the business. HIPAA &amp; SOC 2 compliant. Live in 48 hours.</p>
+
+  <div class="industries">
+    <span class="industry-tag featured">★ Auto Body</span>
+    <span class="industry-tag featured">★ Home Services</span>
+    <span class="industry-tag">Plumbing</span>
+    <span class="industry-tag">HVAC</span>
+    <span class="industry-tag">Electrical</span>
+    <span class="industry-tag">Roofing</span>
+    <span class="industry-tag">Dental</span>
+    <span class="industry-tag">Medical</span>
+    <span class="industry-tag">Med Spa</span>
+    <span class="industry-tag">Legal</span>
+  </div>
+</section>
+
+<!-- TIERS WITH COMMISSION FRAMING -->
+<section class="tiers-section">
+  <div class="section-tag">What you earn</div>
+  <h2>50% upfront. 20% every month for 24 months.</h2>
+  <p class="tiers-lede">Bounty paid within 60 days of go-live. Recurring auto-deposited monthly. Your earnings scale with the client's plan.</p>
+
+  <div class="tier-grid">
+    <div class="tier">
+      <div class="tier-bananas">🍌</div>
+      <div class="tier-name">Green Banana</div>
+      <div class="tier-price">$299<small>/mo</small></div>
+      <div class="tier-includes">250 min · Voice + Chat<br>Solo operators &amp; lower-volume shops</div>
+      <div class="tier-earn">
+        <div class="tier-earn-label">You earn per deal</div>
+        <div class="tier-earn-amount">~$1,525<small>over 2 years · $150 upfront</small></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-bananas">🍌🍌</div>
+      <div class="tier-name">Monkey Business</div>
+      <div class="tier-price">$499<small>/mo</small></div>
+      <div class="tier-includes">750 min · Voice + Chat + Social<br>The sweet spot. Most clients land here.</div>
+      <div class="tier-earn">
+        <div class="tier-earn-label">You earn per deal</div>
+        <div class="tier-earn-amount">~$2,545<small>over 2 years · $250 upfront</small></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-bananas">🍌🍌🍌</div>
+      <div class="tier-name">Top Banana</div>
+      <div class="tier-price">$999<small>/mo</small></div>
+      <div class="tier-includes">2,000 min · Voice + Chat + Social<br>High-volume &amp; multi-location operators</div>
+      <div class="tier-earn">
+        <div class="tier-earn-label">You earn per deal</div>
+        <div class="tier-earn-amount">~$5,095<small>over 2 years · $500 upfront</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIO -->
+<section class="scenario">
+  <div class="scenario-eyebrow">Realistic scenario</div>
+  <h2>One <span class="yellow">Monkey Business</span> deal a month. That's all this takes.</h2>
+  <p class="scenario-body">Sign one new Monkey Business client per month for a year. Each delivers $250 upfront plus ~$100/month in recurring. Your bank account doesn't wait — it stacks.</p>
+
+  <div class="scenario-big">$9,600<small>+</small></div>
+  <p class="scenario-caption">Earned in year one. And that's before recurring residuals mature in years two and three. Twelve active clients at $499/mo each = ~$1,200/mo in passive recurring once the cohort is fully ramped. <strong style="color: var(--banana);">Higher tiers scale this proportionally.</strong></p>
+</section>
+
+<!-- BIGGER -->
+<section class="bigger">
+  <div class="section-tag">The bigger opportunity</div>
+  <h2>deskMonkey is the wedge.</h2>
+  <p>Once a client trusts LGD with their phones, they trust us with their marketing. Every service in the LGD stack is commissionable on top of the deskMonkey base. The same auto body shop owner who signs up for Monkey Business this quarter is the SEO + Paid Media + Web client next quarter — and you earn on every line.</p>
+
+  <div class="services">
+    <div class="service">SEO &amp; GEO</div>
+    <div class="service">Paid Media / PPC</div>
+    <div class="service">Meta &amp; Social</div>
+    <div class="service">Email &amp; SMS</div>
+    <div class="service">Web Design / CRO</div>
+    <div class="service">AI Integration</div>
+    <div class="service">CRM &amp; Lead Mgmt</div>
+    <div class="service">Reputation Mgmt</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to monkey around?</h2>
+  <p class="cta-sub">15-minute call with Kirk. See the platform live, walk through the partner agreement, get your link. Pitching the same week.</p>
+  <div class="cta-buttons">
+    <a href="https://cal.com/letsgrowletsgo?metadata[source]=partner-program" class="btn btn-primary">Book a 15-min call →</a>
+    <a href="mailto:hello@letsgrowdigital.ai?subject=deskMonkey%20Partner%20Program" class="btn btn-secondary">Email us</a>
+  </div>
+</section>
+
+<div class="footer">
+  <p><strong>deskMonkey is a product of Lets Grow Digital</strong> · A DBA of GBBB Holdings LLC</p>
+  <p style="margin-top: 4px;">Commission: 50% of month 1, 20% of months 2–24. Subject to 60-day clawback and partner agreement terms. Full details in MSA.</p>
+</div>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var isLight = document.body.classList.toggle('light-mode');
+      try { localStorage.setItem('lgd-theme', isLight ? 'light' : 'dark'); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
