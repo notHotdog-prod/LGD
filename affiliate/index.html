@@ -121,12 +121,20 @@
     overflow: hidden;
   }
   .hero::before {
-    content: '🍌';
+    content: '';
     position: absolute;
-    top: -30px; right: -20px;
-    font-size: 220px; opacity: 0.13;
-    transform: rotate(20deg); line-height: 1;
+    top: -20px; right: -30px;
+    width: 280px; height: 280px;
+    background-image: url('banana.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.95;
+    transform: rotate(8deg);
     pointer-events: none;
+    z-index: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   .hero-eyebrow {
     display: inline-block;
@@ -438,7 +446,7 @@
     .tier-grid { grid-template-columns: 1fr; }
     .services { grid-template-columns: repeat(2, 1fr); }
     .scenario-big { font-size: 52px; }
-    .hero::before { font-size: 150px; }
+    .hero::before { width: 170px; height: 170px; top: -10px; right: -20px; }
     .theme-toggle { top: 12px; right: 12px; }
   }
 
