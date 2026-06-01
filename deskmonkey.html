@@ -1261,7 +1261,8 @@ function toggleTheme() {
   import { TrilletAgent } from 'https://cdn.jsdelivr.net/npm/@trillet-ai/web-sdk/+esm';
 
   const WORKSPACE_ID = '69e69b651b3de0d5cc652aeb';
-  const AGENT_ID = '69e8a7bf1b3de0d5ccd34dc1';
+  const VOICE_AGENT_ID = '69e8a7bf1b3de0d5ccd34dc1';
+  const CHAT_AGENT_ID  = '6a0892a344f79b673721aabc';
 
   const $ = (id) => document.getElementById(id);
   const bubble = $('trillet-bubble');
@@ -1336,7 +1337,7 @@ function toggleTheme() {
   async function connectChat() {
     if (activeMode === 'chat') setStatus('Connecting…', false);
     try {
-      chatAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: AGENT_ID, mode: 'text' });
+      chatAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: CHAT_AGENT_ID, mode: 'text' });
       chatAgent.on('connected', () => {
         chatConnected = true;
         if (activeMode === 'chat') setStatus('Online', true);
@@ -1354,7 +1355,7 @@ function toggleTheme() {
         stopChatPolling();
       });
       chatAgent.on('error', () => addChatMsg('Something went wrong. Try again or call 732-800-9998.', 'system'));
-      ['message', 'transcript', 'transcriptUpdate', 'response'].forEach(evt => {
+      ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
         chatAgent.on(evt, (data) => {
           hideTyping();
           const text = typeof data === 'string' ? data : data?.text || data?.content || data?.message;
@@ -1404,7 +1405,7 @@ function toggleTheme() {
 
   function addChatMsg(text, type) {
     if (!text?.trim()) return;
-    const key = type + ':' + text;
+    const key = type + ':' + text.trim();
     if (chatSeen.has(key)) return;
     chatSeen.add(key);
     const el = document.createElement('div');
@@ -1431,7 +1432,7 @@ function toggleTheme() {
     $('trillet-v-label').textContent = 'Connecting…';
     $('trillet-v-mic').disabled = true;
     try {
-      voiceAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: AGENT_ID, mode: 'voice' });
+      voiceAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: VOICE_AGENT_ID, mode: 'voice' });
       voiceAgent.on('connected', () => {
         voiceActive = true; voiceMuted = false;
         if (activeMode === 'voice') setStatus('Connected', true);
@@ -1514,7 +1515,7 @@ function toggleTheme() {
 
   function addVoiceMsg(text, type) {
     if (!text?.trim()) return;
-    const key = type + ':' + text;
+    const key = type + ':' + text.trim();
     if (voiceSeen.has(key)) return;
     voiceSeen.add(key);
     const el = document.createElement('div');
