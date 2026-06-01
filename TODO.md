@@ -3,7 +3,12 @@
 Pending work that needs an external dependency before it can ship. Maintained here so it doesn't get lost between Claude sessions.
 
 ## 1. Trillet web widget integration ✅ DONE
-**Status:** Complete (2026-05-16). Trillet's "Full Widget — Voice panel with controls and transcript" (docs.trillet.ai/documentation/web-integration/voice-agent) is deployed and rebranded across all 6 public pages: `index.html`, `ai-solutions.html`, `about.html`, `agency.html`, `deskmonkey.html`, `audit/index.html`.
+**Status:** Complete (2026-05-16). Dual-mode (chat + voice) Trillet widget is deployed and rebranded across all 6 public pages: `index.html`, `ai-solutions.html`, `about.html`, `agency.html`, `deskmonkey.html`, `audit/index.html`.
+
+**Composition:** Combines Trillet's two official Full Widgets into one tabbed panel:
+- Chat tab (default on open) — `docs.trillet.ai/documentation/web-integration/text-agent`
+- Voice tab — `docs.trillet.ai/documentation/web-integration/voice-agent`
+- Both use `TrilletAgent` (chat: `mode: 'text'`; voice: `mode: 'voice'`); same workspace+agent IDs.
 
 **Rebrand applied:**
 - Trillet's `#0066ff` → LGD `var(--gradient)` (#6B35D9 → #D435A0)
@@ -16,7 +21,10 @@ Pending work that needs an external dependency before it can ship. Maintained he
 - SDK from `cdn.jsdelivr.net/npm/@trillet-ai/web-sdk/+esm`
 - Prereqs (Bryan-side): Trillet portal Domain whitelist for `letsgrowdigital.ai`, call flow Public Access ON
 
-**deskmonkey.html cleanup:** old custom `dm-widget-*` launcher + text-chat panel + SDK module removed; `#try-it-live` collapsed from two buttons (Talk / Chat) to one Talk button that opens the floating widget.
+**Page integration:**
+- `window.trilletOpenWidget(mode)` is exposed globally so page-level CTAs can route directly to a tab.
+- deskmonkey.html: hero `▶ Try deskMonkey Live` opens to Chat; `#try-it-live` section has two buttons — `🎙️ Talk` routes to Voice tab, `💬 Chat` routes to Chat tab.
+- Prior custom `dm-widget-*` launcher on deskmonkey.html has been removed.
 
 ## 2. OG / Twitter social cards
 **Status:** Blocked on design (Canva)
