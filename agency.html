@@ -1081,13 +1081,17 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   }
 
   // Display-only filter: the SDK's transcript stream can surface internal
-  // tool-call entries (e.g. 'Using tool: end_call') as text bubbles — these
+  // tool-call entries (e.g. 'Using tool: ...', 'Tool call: ...', 'Calling tool: ...')
+  // as text bubbles — these
   // are agent plumbing, not real conversation. Strip them at the render
   // convergence point so the same guard covers event-driven, polling, voice,
   // and chat paths. Text-prefix is the durable signal across future tools
   // (end_call, booking, transfer, SMS).
   function isToolLeak(text) {
-    return (text || '').trim().toLowerCase().startsWith('using tool:');
+    const t = (text || '').trim().toLowerCase();
+    return t.startsWith('using tool:')
+        || t.startsWith('tool call:')
+        || t.startsWith('calling tool:');
   }
 
   function addChatMsg(text, type) {
