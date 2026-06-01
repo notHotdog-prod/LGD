@@ -857,7 +857,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
 
   const WORKSPACE_ID = '69e69b651b3de0d5cc652aeb';
   const VOICE_AGENT_ID = '69e8a7bf1b3de0d5ccd34dc1';
-  const CHAT_AGENT_ID  = '6a0892a344f79b673721aabc';
+  const CHAT_AGENT_ID  = '69e8a7bf1b3de0d5ccd34dc1'; // TODO: swap to a browser-chat agent ID once Trillet provides one (Telnyx-SMS flows don't accept browser SDK connections)
 
   const $ = (id) => document.getElementById(id);
   const bubble = $('trillet-bubble');
@@ -949,7 +949,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
         addChatMsg('Session ended.', 'system');
         stopChatPolling();
       });
-      chatAgent.on('error', () => addChatMsg('Something went wrong. Try again or call 732-800-9998.', 'system'));
+      chatAgent.on('error', (err) => { console.error('Trillet chat error:', err); addChatMsg('Chat error: ' + (err?.message || err?.code || 'unknown') + '. Try again or call 732-800-9998.', 'system'); });
       ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
         chatAgent.on(evt, (data) => {
           hideTyping();
@@ -964,7 +964,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
       await chatAgent.startPublicCall();
     } catch (err) {
       if (activeMode === 'chat') setStatus('Failed', false);
-      addChatMsg('Could not connect. Refresh and try again, or call 732-800-9998.', 'system');
+      console.error('Trillet chat connect failed:', err); addChatMsg('Could not connect (' + (err?.message || 'unknown') + '). Refresh and try again, or call 732-800-9998.', 'system');
     }
   }
 
@@ -1047,7 +1047,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
         stopVoicePolling();
         addVoiceMsg('Call ended', 'system');
       });
-      voiceAgent.on('error', () => { addVoiceMsg('An error occurred', 'system'); if (activeMode === 'voice') setStatus('Error', false); });
+      voiceAgent.on('error', (err) => { console.error('Trillet voice error:', err); addVoiceMsg('Voice error: ' + (err?.message || err?.code || 'unknown'), 'system'); if (activeMode === 'voice') setStatus('Error', false); });
       voiceAgent.on('assistantStartedSpeaking', () => { $('trillet-v-label').textContent = 'Agent speaking…'; });
       voiceAgent.on('assistantStoppedSpeaking', () => { $('trillet-v-label').textContent = voiceMuted ? 'Muted' : 'Listening…'; });
       ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
