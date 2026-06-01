@@ -1262,7 +1262,7 @@ function toggleTheme() {
 
   const WORKSPACE_ID = '69e69b651b3de0d5cc652aeb';
   const VOICE_AGENT_ID = '69e8a7bf1b3de0d5ccd34dc1';
-  const CHAT_AGENT_ID  = '69e8a7bf1b3de0d5ccd34dc1'; // TODO: swap to a browser-chat agent ID once Trillet provides one (Telnyx-SMS flows don't accept browser SDK connections)
+  const CHAT_AGENT_ID  = '69e8a7bf1b3de0d5ccd34dc1'; // Call Flow agent in mode:'text'. Browser SDK rejects Telnyx-SMS Message Flows; until Trillet provides a chat-flow type, both tabs route through the call flow.
 
   const $ = (id) => document.getElementById(id);
   const bubble = $('trillet-bubble');
@@ -1275,6 +1275,7 @@ function toggleTheme() {
   let activeMode = 'chat';
   let chatAgent = null;
   let chatConnected = false;
+  let chatPoll = null;
   const chatSeen = new Set();
 
   let voiceAgent = null;
@@ -1308,6 +1309,7 @@ function toggleTheme() {
     const a = chatAgent;
     chatAgent = null;
     chatConnected = false;
+    if (chatPoll) { clearInterval(chatPoll); chatPoll = null; }
     try { a?.removeAllListeners?.(); } catch (e) {}
     try { a?.off?.(); } catch (e) {}
     try { if (a?.endCall) a.endCall(); else if (a?.disconnect) a.disconnect(); else if (a?.close) a.close(); } catch (e) {}
@@ -1344,7 +1346,6 @@ function toggleTheme() {
   function switchMode(mode) {
     const prevMode = activeMode;
     activeMode = mode;
-    // Strict tear-down on every tab switch (KB recommendation).
     if (prevMode && prevMode !== mode) {
       if (prevMode === 'chat') teardownChat();
       if (prevMode === 'voice') teardownVoice();
@@ -1393,6 +1394,7 @@ function toggleTheme() {
         $('trillet-input').disabled = false;
         $('trillet-send').disabled = false;
         if (activeMode === 'chat') $('trillet-input').focus();
+        startChatPolling();
       });
       my.on('disconnected', () => {
         if (stale()) return;
@@ -1400,6 +1402,7 @@ function toggleTheme() {
         if (activeMode === 'chat') setStatus('Offline', false);
         $('trillet-input').disabled = true;
         $('trillet-send').disabled = true;
+        stopChatPolling();
         addChatMsg('Session ended.', 'system');
       });
       my.on('error', (err) => {
@@ -1407,15 +1410,20 @@ function toggleTheme() {
         console.error('Trillet chat error:', err);
         addChatMsg('Chat error: ' + (err?.message || err?.code || 'unknown') + '. Try again or call 732-800-9998.', 'system');
       });
-      // Single source of truth: 'message' event only. Avoids the double-greeting
-      // we saw when listening to multiple event channels + polling.
-      my.on('message', (data) => {
-        if (stale()) return;
-        hideTyping();
-        const text = typeof data === 'string' ? data : data?.text || data?.content || data?.message;
-        if (data?.role && data.role !== 'assistant') return;
-        if (data?.isFinal === false) return;
-        if (text) addChatMsg(text, 'assistant');
+      // Listen across event channels — call-flow agents in mode:'text' use
+      // 'transcript' / 'transcriptUpdate' with role 'agent'; chat-native
+      // agents use 'message' with role 'assistant'. We accept any role
+      // except 'user' so the bot's words always render. The dedup key
+      // (role + trimmed text) absorbs the overlap between channels.
+      ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
+        my.on(evt, (data) => {
+          if (stale()) return;
+          if (data?.isFinal === false) return;
+          if (data?.role === 'user') return;
+          hideTyping();
+          const text = typeof data === 'string' ? data : data?.text || data?.content || data?.message;
+          if (text) addChatMsg(text, 'assistant');
+        });
       });
       my.on('assistantStartedSpeaking', () => { if (!stale()) showTyping(); });
       my.on('assistantStoppedSpeaking', () => { if (!stale()) hideTyping(); });
@@ -1426,6 +1434,22 @@ function toggleTheme() {
       addChatMsg('Could not connect (' + (err?.message || 'unknown') + '). Refresh and try again, or call 732-800-9998.', 'system');
     }
   }
+
+  function startChatPolling() {
+    let last = 0;
+    chatPoll = setInterval(() => {
+      if (!chatAgent || !chatConnected) return;
+      try {
+        const ts = chatAgent.getTranscripts?.() || [];
+        for (let i = last; i < ts.length; i++) {
+          const t = ts[i];
+          if (t?.role !== 'user' && t?.text) { hideTyping(); addChatMsg(t.text, 'assistant'); }
+        }
+        last = ts.length;
+      } catch (e) {}
+    }, 500);
+  }
+  function stopChatPolling() { if (chatPoll) { clearInterval(chatPoll); chatPoll = null; } }
 
   function sendChat() {
     const input = $('trillet-input');
@@ -1509,6 +1533,7 @@ function toggleTheme() {
         my.on(evt, (data) => {
           if (stale()) return;
           if (data?.isFinal === false) return;
+          if (data?.role === 'user') return;
           const text = typeof data === 'string' ? data : data?.text || data?.content;
           const role = data?.role || 'assistant';
           if (text) addVoiceMsg(text, role);
