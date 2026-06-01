@@ -911,8 +911,19 @@ function toggleTheme() {
     } catch (e) { hideTyping(); addChatMsg('Failed to send. Try again.', 'system'); }
   }
 
+  // Display-only filter: the SDK's transcript stream can surface internal
+  // tool-call entries (e.g. 'Using tool: end_call') as text bubbles — these
+  // are agent plumbing, not real conversation. Strip them at the render
+  // convergence point so the same guard covers event-driven, polling, voice,
+  // and chat paths. Text-prefix is the durable signal across future tools
+  // (end_call, booking, transfer, SMS).
+  function isToolLeak(text) {
+    return (text || '').trim().toLowerCase().startsWith('using tool:');
+  }
+
   function addChatMsg(text, type) {
     if (!text?.trim()) return;
+    if (isToolLeak(text)) return; // hide internal tool-call events (see isToolLeak above)
     const key = type + ':' + text.trim();
     if (chatSeen.has(key)) return;
     chatSeen.add(key);
@@ -1037,6 +1048,7 @@ function toggleTheme() {
 
   function addVoiceMsg(text, type) {
     if (!text?.trim()) return;
+    if (isToolLeak(text)) return; // hide internal tool-call events (see isToolLeak above)
     const key = type + ':' + text.trim();
     if (voiceSeen.has(key)) return;
     voiceSeen.add(key);
