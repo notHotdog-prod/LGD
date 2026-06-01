@@ -1073,8 +1073,6 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   let activeMode = 'chat';
   let chatAgent = null;
   let chatConnected = false;
-  let chatStarted = false;
-  let chatPoll = null;
   const chatSeen = new Set();
 
   let voiceAgent = null;
@@ -1101,8 +1099,54 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
     }
   }
 
+  // Per Trillet KB: tear down inactive sessions on tab switch + on close.
+  // Null the agent ref BEFORE endCall so the staleness guard in connect
+  // handlers swallows any late-firing 'disconnected' events.
+  function teardownChat() {
+    const a = chatAgent;
+    chatAgent = null;
+    chatConnected = false;
+    try { a?.removeAllListeners?.(); } catch (e) {}
+    try { a?.off?.(); } catch (e) {}
+    try { if (a?.endCall) a.endCall(); else if (a?.disconnect) a.disconnect(); else if (a?.close) a.close(); } catch (e) {}
+    chatSeen.clear();
+    $('trillet-messages').innerHTML = '';
+    $('trillet-input').disabled = true;
+    $('trillet-send').disabled = true;
+    $('trillet-input').value = '';
+    hideTyping();
+  }
+
+  function teardownVoice() {
+    const a = voiceAgent;
+    voiceAgent = null;
+    voiceActive = false;
+    voiceMuted = false;
+    if (voicePoll) { clearInterval(voicePoll); voicePoll = null; }
+    try { a?.removeAllListeners?.(); } catch (e) {}
+    try { a?.off?.(); } catch (e) {}
+    try { if (a?.endCall) a.endCall(); else if (a?.disconnect) a.disconnect(); else if (a?.close) a.close(); } catch (e) {}
+    voiceSeen.clear();
+    $('trillet-v-transcript').innerHTML = '';
+    $('trillet-v-vis').classList.remove('active');
+    $('trillet-v-label').textContent = 'Tap the mic to start';
+    showVoiceIdleControls();
+  }
+
+  function teardownAll() {
+    teardownChat();
+    teardownVoice();
+    setStatus('Ready', false);
+  }
+
   function switchMode(mode) {
+    const prevMode = activeMode;
     activeMode = mode;
+    // Strict tear-down on every tab switch (KB recommendation).
+    if (prevMode && prevMode !== mode) {
+      if (prevMode === 'chat') teardownChat();
+      if (prevMode === 'voice') teardownVoice();
+    }
     tabs.forEach(t => {
       const m = t.dataset.mode === mode;
       t.classList.toggle('active', m);
@@ -1111,21 +1155,20 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
     chatBody.classList.toggle('active', mode === 'chat');
     voiceBody.classList.toggle('active', mode === 'voice');
     refreshStatusForActiveTab();
-    if (mode === 'chat' && !chatStarted) { chatStarted = true; connectChat(); }
+    if (mode === 'chat' && !chatAgent) connectChat();
   }
-  // Expose so the deskmonkey try-it-live button can route directly to voice mode
+
   window.trilletOpenWidget = function(mode) {
     panel.classList.add('open');
     switchMode(mode === 'voice' ? 'voice' : 'chat');
-    if (mode === 'chat' && !chatStarted) { chatStarted = true; connectChat(); }
   };
 
   bubble.addEventListener('click', () => {
     const willOpen = !panel.classList.contains('open');
     panel.classList.toggle('open');
-    if (willOpen && activeMode === 'chat' && !chatStarted) { chatStarted = true; connectChat(); }
+    if (willOpen && activeMode === 'chat' && !chatAgent) connectChat();
   });
-  $('trillet-close').addEventListener('click', () => panel.classList.remove('open'));
+  $('trillet-close').addEventListener('click', () => { panel.classList.remove('open'); teardownAll(); });
   tabs.forEach(t => t.addEventListener('click', () => switchMode(t.dataset.mode)));
 
   // ---------- CHAT MODE ----------
@@ -1133,59 +1176,54 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   $('trillet-send').addEventListener('click', sendChat);
 
   async function connectChat() {
+    $('trillet-messages').innerHTML = '';
+    chatSeen.clear();
     if (activeMode === 'chat') setStatus('Connecting…', false);
     try {
-      chatAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: CHAT_AGENT_ID, mode: 'text' });
-      chatAgent.on('connected', () => {
+      const my = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: CHAT_AGENT_ID, mode: 'text' });
+      chatAgent = my;
+      const stale = () => chatAgent !== my;
+
+      my.on('connected', () => {
+        if (stale()) return;
         chatConnected = true;
         if (activeMode === 'chat') setStatus('Online', true);
         $('trillet-input').disabled = false;
         $('trillet-send').disabled = false;
         if (activeMode === 'chat') $('trillet-input').focus();
-        startChatPolling();
       });
-      chatAgent.on('disconnected', () => {
+      my.on('disconnected', () => {
+        if (stale()) return;
         chatConnected = false;
         if (activeMode === 'chat') setStatus('Offline', false);
         $('trillet-input').disabled = true;
         $('trillet-send').disabled = true;
         addChatMsg('Session ended.', 'system');
-        stopChatPolling();
       });
-      chatAgent.on('error', (err) => { console.error('Trillet chat error:', err); addChatMsg('Chat error: ' + (err?.message || err?.code || 'unknown') + '. Try again or call 732-800-9998.', 'system'); });
-      ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
-        chatAgent.on(evt, (data) => {
-          hideTyping();
-          const text = typeof data === 'string' ? data : data?.text || data?.content || data?.message;
-          if (data?.role && data.role !== 'assistant') return;
-          if (data?.isFinal === false) return;
-          if (text) addChatMsg(text, 'assistant');
-        });
+      my.on('error', (err) => {
+        if (stale()) return;
+        console.error('Trillet chat error:', err);
+        addChatMsg('Chat error: ' + (err?.message || err?.code || 'unknown') + '. Try again or call 732-800-9998.', 'system');
       });
-      chatAgent.on('assistantStartedSpeaking', showTyping);
-      chatAgent.on('assistantStoppedSpeaking', hideTyping);
-      await chatAgent.startPublicCall();
+      // Single source of truth: 'message' event only. Avoids the double-greeting
+      // we saw when listening to multiple event channels + polling.
+      my.on('message', (data) => {
+        if (stale()) return;
+        hideTyping();
+        const text = typeof data === 'string' ? data : data?.text || data?.content || data?.message;
+        if (data?.role && data.role !== 'assistant') return;
+        if (data?.isFinal === false) return;
+        if (text) addChatMsg(text, 'assistant');
+      });
+      my.on('assistantStartedSpeaking', () => { if (!stale()) showTyping(); });
+      my.on('assistantStoppedSpeaking', () => { if (!stale()) hideTyping(); });
+      await my.startPublicCall();
     } catch (err) {
       if (activeMode === 'chat') setStatus('Failed', false);
-      console.error('Trillet chat connect failed:', err); addChatMsg('Could not connect (' + (err?.message || 'unknown') + '). Refresh and try again, or call 732-800-9998.', 'system');
+      console.error('Trillet chat connect failed:', err);
+      addChatMsg('Could not connect (' + (err?.message || 'unknown') + '). Refresh and try again, or call 732-800-9998.', 'system');
     }
   }
-
-  function startChatPolling() {
-    let last = 0;
-    chatPoll = setInterval(() => {
-      if (!chatAgent || !chatConnected) return;
-      try {
-        const ts = chatAgent.getTranscripts?.() || [];
-        for (let i = last; i < ts.length; i++) {
-          const t = ts[i];
-          if (t.role === 'assistant' && t.text) { hideTyping(); addChatMsg(t.text, 'assistant'); }
-        }
-        last = ts.length;
-      } catch (e) {}
-    }, 500);
-  }
-  function stopChatPolling() { if (chatPoll) { clearInterval(chatPoll); chatPoll = null; } }
 
   function sendChat() {
     const input = $('trillet-input');
@@ -1226,12 +1264,18 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   $('trillet-v-mic').addEventListener('click', () => { if (!voiceActive) connectVoice(); else toggleMute(); });
 
   async function connectVoice() {
+    $('trillet-v-transcript').innerHTML = '';
+    voiceSeen.clear();
     if (activeMode === 'voice') setStatus('Connecting…', false);
     $('trillet-v-label').textContent = 'Connecting…';
     $('trillet-v-mic').disabled = true;
     try {
-      voiceAgent = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: VOICE_AGENT_ID, mode: 'voice' });
-      voiceAgent.on('connected', () => {
+      const my = new TrilletAgent({ workspaceId: WORKSPACE_ID, agentId: VOICE_AGENT_ID, mode: 'voice' });
+      voiceAgent = my;
+      const stale = () => voiceAgent !== my;
+
+      my.on('connected', () => {
+        if (stale()) return;
         voiceActive = true; voiceMuted = false;
         if (activeMode === 'voice') setStatus('Connected', true);
         $('trillet-v-label').textContent = 'Listening…';
@@ -1241,7 +1285,8 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
         addVoiceMsg('Voice call connected', 'system');
         startVoicePolling();
       });
-      voiceAgent.on('disconnected', () => {
+      my.on('disconnected', () => {
+        if (stale()) return;
         voiceActive = false;
         if (activeMode === 'voice') setStatus('Disconnected', false);
         $('trillet-v-label').textContent = 'Call ended';
@@ -1250,18 +1295,24 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
         stopVoicePolling();
         addVoiceMsg('Call ended', 'system');
       });
-      voiceAgent.on('error', (err) => { console.error('Trillet voice error:', err); addVoiceMsg('Voice error: ' + (err?.message || err?.code || 'unknown'), 'system'); if (activeMode === 'voice') setStatus('Error', false); });
-      voiceAgent.on('assistantStartedSpeaking', () => { $('trillet-v-label').textContent = 'Agent speaking…'; });
-      voiceAgent.on('assistantStoppedSpeaking', () => { $('trillet-v-label').textContent = voiceMuted ? 'Muted' : 'Listening…'; });
+      my.on('error', (err) => {
+        if (stale()) return;
+        console.error('Trillet voice error:', err);
+        addVoiceMsg('Voice error: ' + (err?.message || err?.code || 'unknown'), 'system');
+        if (activeMode === 'voice') setStatus('Error', false);
+      });
+      my.on('assistantStartedSpeaking', () => { if (!stale()) $('trillet-v-label').textContent = 'Agent speaking…'; });
+      my.on('assistantStoppedSpeaking', () => { if (!stale()) $('trillet-v-label').textContent = voiceMuted ? 'Muted' : 'Listening…'; });
       ['message', 'transcript', 'transcriptUpdate'].forEach(evt => {
-        voiceAgent.on(evt, (data) => {
+        my.on(evt, (data) => {
+          if (stale()) return;
           if (data?.isFinal === false) return;
           const text = typeof data === 'string' ? data : data?.text || data?.content;
           const role = data?.role || 'assistant';
           if (text) addVoiceMsg(text, role);
         });
       });
-      await voiceAgent.startPublicCall();
+      await my.startPublicCall();
     } catch (err) {
       if (activeMode === 'voice') setStatus('Failed', false);
       $('trillet-v-label').textContent = 'Failed to connect';
