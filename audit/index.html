@@ -569,7 +569,7 @@ function toggleTheme() {
   </div>
 </footer>
 
-<!-- ===== TRILLET DUAL-MODE WIDGET (deskMonkey · bottom-left; Cal.com lives bottom-right) =====
+<!-- ===== TRILLET DUAL-MODE WIDGET (deskMonkey · bottom-right corner; no Cal.com button on this page) =====
      Combines Trillet's Full Widget for voice + text agents (rebranded for LGD).
      Sources: docs.trillet.ai/documentation/web-integration/voice-agent
               docs.trillet.ai/documentation/web-integration/text-agent
@@ -578,12 +578,13 @@ function toggleTheme() {
 -->
 <style>
   /* ----- bubble ----- */
-  #trillet-bubble { position: fixed; bottom: 24px; left: 24px; width: 56px; height: 56px; background: var(--gradient); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(107,53,217,0.35); border: none; z-index: 998; transition: transform 0.15s ease, box-shadow 0.15s ease; }
-  #trillet-bubble:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(107,53,217,0.5); }
-  #trillet-bubble svg { width: 24px; height: 24px; fill: #fff; }
+  #trillet-bubble { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; background: var(--gradient); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(107,53,217,0.45); border: none; z-index: 999; transition: transform 0.15s ease, box-shadow 0.15s ease; animation: trillet-bubble-pulse 2.8s ease-in-out infinite; }
+  #trillet-bubble:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 38px rgba(107,53,217,0.6); animation: none; }
+  #trillet-bubble svg { width: 30px; height: 30px; fill: #fff; }
+  @keyframes trillet-bubble-pulse { 0% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 0 rgba(212,53,160,0.45); } 70% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 14px rgba(212,53,160,0); } 100% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 0 rgba(212,53,160,0); } }
 
   /* ----- panel shell ----- */
-  #trillet-panel { position: fixed; bottom: 92px; left: 24px; width: 380px; max-width: calc(100vw - 48px); height: 560px; max-height: calc(100vh - 140px); background: var(--dark-2); border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 24px 56px rgba(0,0,0,0.45); display: none; flex-direction: column; overflow: hidden; z-index: 998; font-family: var(--font-sans); }
+  #trillet-panel { position: fixed; bottom: 100px; right: 24px; left: auto; width: 380px; max-width: calc(100vw - 48px); height: 560px; max-height: calc(100vh - 140px); background: var(--dark-2); border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 24px 56px rgba(0,0,0,0.45); display: none; flex-direction: column; overflow: hidden; z-index: 998; font-family: var(--font-sans); }
   body.light-mode #trillet-panel { box-shadow: 0 24px 56px rgba(10,10,26,0.18); }
   #trillet-panel.open { display: flex; animation: trillet-in 0.18s cubic-bezier(0.16,1,0.3,1); }
   @keyframes trillet-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -660,8 +661,8 @@ function toggleTheme() {
   .trillet-v-end svg { width: 18px; height: 18px; }
 
   @media (max-width: 480px) {
-    #trillet-bubble { bottom: 16px; left: 16px; width: 52px; height: 52px; }
-    #trillet-panel { width: calc(100vw - 32px); left: 16px; bottom: 80px; height: calc(100vh - 160px); }
+    #trillet-bubble { bottom: 16px; right: 16px; left: auto; width: 60px; height: 60px; }
+    #trillet-panel { width: calc(100vw - 32px); right: 16px; left: auto; bottom: 84px; height: calc(100vh - 160px); }
   }
 </style>
 
