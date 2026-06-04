@@ -917,7 +917,7 @@
   };
 })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", { origin: "https://cal.com" });
-Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=AI Solutions Page", buttonText: "Book A Demo", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
+Cal("floatingButton", { calLink: "letsgrowletsgo?metadata[source]=AI Solutions Page", buttonText: "Questions? Let's Talk", buttonColor: "#7c3aed", buttonTextColor: "#ffffff", buttonPosition: "bottom-right" });
 Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
 </script>
 
@@ -1018,8 +1018,8 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   }
 </style>
 
-<button id="trillet-bubble" aria-label="Open deskMonkey assistant">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+<button id="trillet-bubble" aria-label="Try deskMonkey — voice demo">
+  <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
 </button>
 
 <div id="trillet-panel" role="dialog" aria-label="deskMonkey assistant">
@@ -1035,12 +1035,12 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   </div>
 
   <div class="trillet-tabs" role="tablist">
-    <button class="trillet-tab active" data-mode="chat" role="tab" aria-selected="true">💬 Chat</button>
-    <button class="trillet-tab" data-mode="voice" role="tab" aria-selected="false">🎙️ Voice</button>
+    <button class="trillet-tab" data-mode="chat" role="tab" aria-selected="false">💬 Chat</button>
+    <button class="trillet-tab active" data-mode="voice" role="tab" aria-selected="true">🎙️ Voice</button>
   </div>
 
   <!-- Chat body -->
-  <div id="trillet-chat-body" class="trillet-body active" role="tabpanel">
+  <div id="trillet-chat-body" class="trillet-body" role="tabpanel">
     <div class="trillet-messages" id="trillet-messages"></div>
     <div class="trillet-input-area">
       <input type="text" id="trillet-input" placeholder="Type a message…" autocomplete="off" disabled>
@@ -1049,7 +1049,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   </div>
 
   <!-- Voice body -->
-  <div id="trillet-voice-body" class="trillet-body" role="tabpanel">
+  <div id="trillet-voice-body" class="trillet-body active" role="tabpanel">
     <div class="trillet-v-transcript" id="trillet-v-transcript"></div>
     <div class="trillet-v-controls">
       <div class="trillet-v-vis" id="trillet-v-vis">
@@ -1080,7 +1080,7 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   const voiceBody = $('trillet-voice-body');
 
   // ---------- shared state ----------
-  let activeMode = 'chat';
+  let activeMode = 'voice';
   let chatAgent = null;
   let chatConnected = false;
   let chatPoll = null;
