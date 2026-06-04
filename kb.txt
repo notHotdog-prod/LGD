@@ -32,7 +32,7 @@ Type:              Digital marketing agency and AI
                    solutions provider for small and
                    medium-sized businesses (SMBs)
 Founded by:        Bryan Boutin and Kirk (business partner)
-Office locations:  Bay Head, New Jersey (HQ)
+Office locations:  Point Pleasant, New Jersey (HQ)
                    Boca Raton, Florida (satellite)
 Primary markets:   New Jersey, New York City metro,
                    Florida (Tampa and Miami)
@@ -472,7 +472,7 @@ NEEDED):
 - Cancellation: 30 days notice, we return their
   call forwarding to how it was.
 - Compliance: HIPAA, SOC 2, TCPA, A2P 10DLC, GDPR.
-- Service area: U.S. domestic, English. Bay Head NJ
+- Service area: U.S. domestic, English. Point Pleasant NJ
   + Boca Raton FL offices, NJ/NYC/FL primary markets.
 
 QUESTIONS THAT NEED A DISCOVERY CALL:
