@@ -751,6 +751,10 @@ Cal("ui", { theme: "dark", styles: { branding: { brandColor: "#7c3aed" } } });
   #trillet-bubble:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 14px 38px rgba(107,53,217,0.6); animation: none; }
   #trillet-bubble svg { width: 30px; height: 30px; fill: #fff; }
   @keyframes trillet-bubble-pulse { 0% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 0 rgba(212,53,160,0.45); } 70% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 14px rgba(212,53,160,0); } 100% { box-shadow: 0 10px 30px rgba(107,53,217,0.45), 0 0 0 0 rgba(212,53,160,0); } }
+  /* ----- hover label ----- */
+  #trillet-bubble::after { content: "Talk to deskMonkey"; position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%) translateX(6px); background: var(--dark-2); color: var(--text); border: 1px solid var(--border); padding: 7px 12px; border-radius: 8px; font-family: var(--font-sans); font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transition: opacity 0.15s ease, transform 0.15s ease; }
+  #trillet-bubble:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+  @media (max-width: 480px) { #trillet-bubble::after { display: none; } }
 
   /* ----- panel shell ----- */
   #trillet-panel { position: fixed; bottom: 166px; right: 24px; left: auto; width: 380px; max-width: calc(100vw - 48px); height: 560px; max-height: calc(100vh - 200px); background: var(--dark-2); border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 24px 56px rgba(0,0,0,0.45); display: none; flex-direction: column; overflow: hidden; z-index: 998; font-family: var(--font-sans); }
