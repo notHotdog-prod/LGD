@@ -27,7 +27,7 @@
 
   /* HEADER */
   .header { text-align:center; margin-bottom:20px; }
-  .logo-img { height:50px; width:auto; margin-bottom:8px; }
+  .logo-img { height:66px; width:auto; display:block; }
   .by-line { font-size:11px; color:var(--text-dim); letter-spacing:0.02em; }
   .badge { display:inline-flex; align-items:center; gap:7px; margin-top:12px; padding:5px 14px; background:rgba(107,53,217,0.15); border:1px solid rgba(139,85,246,0.3); border-radius:100px; font-size:11px; font-weight:600; color:var(--purple-light); }
   .badge .dot { width:6px; height:6px; border-radius:50%; background:var(--magenta-light); }
@@ -90,13 +90,44 @@
   .footer { text-align:center; font-size:12px; color:var(--text-muted); padding-top:18px; border-top:1px solid var(--border); }
   .footer a { color:var(--purple-light); text-decoration:none; }
   .footer .fine { font-size:10px; color:var(--text-dim); margin-top:8px; line-height:1.5; }
+
+  /* LIGHT / B&W MODE */
+  body.light-mode {
+    --dark:#FFFFFF; --dark-2:#F4F4FB; --dark-3:#EDEDF6; --dark-4:#E4E4EE;
+    --border:rgba(10,10,26,0.10);
+    --text:#0A0A1A; --text-muted:rgba(10,10,26,0.62); --text-dim:rgba(10,10,26,0.42);
+  }
+
+  /* LOGO CARD — keeps the dark-navy wordmark legible on the dark page */
+  .logo-card { display:inline-block; background:#fff; border-radius:18px; padding:14px 26px; margin-bottom:10px; box-shadow:0 10px 30px rgba(107,53,217,0.20); }
+  body.light-mode .logo-card { background:transparent; box-shadow:none; padding:0; }
+
+  /* THEME TOGGLE */
+  .theme-toggle { position:fixed; top:16px; right:16px; z-index:50; background:none; border:none; padding:0; cursor:pointer; display:inline-flex; align-items:center; }
+  .theme-toggle-track { position:relative; display:inline-flex; align-items:center; justify-content:space-between; width:56px; height:28px; padding:0 7px; border-radius:999px; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20); box-sizing:border-box; transition:background .3s,border-color .3s; }
+  body.light-mode .theme-toggle-track { background:rgba(10,10,26,0.08); border-color:rgba(10,10,26,0.18); }
+  .theme-toggle-icon { font-size:13px; line-height:1; z-index:1; }
+  .theme-toggle-sun { color:#fbbf24; }
+  .theme-toggle-moon { color:#c4b5fd; }
+  .theme-toggle-thumb { position:absolute; top:50%; left:3px; width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.35); transform:translate(26px,-50%); transition:transform .3s ease,background .3s ease; }
+  body.light-mode .theme-toggle-thumb { transform:translate(0,-50%); background:#1a1a1a; }
 </style>
 </head>
 <body>
+<script>(function(){try{if(localStorage.getItem('lgd-theme')==='light'){document.body.classList.add('light-mode');}}catch(e){}})();</script>
+
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" role="switch" aria-checked="false">
+  <span class="theme-toggle-track">
+    <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
+    <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+    <span class="theme-toggle-thumb" aria-hidden="true"></span>
+  </span>
+</button>
+
 <div class="page">
 
   <div class="header">
-    <img src="deskMonkey_v3-white.png" alt="deskMonkey" class="logo-img">
+    <span class="logo-card"><img src="deskMonkey_v3-white.png" alt="deskMonkey" class="logo-img"></span>
     <div class="by-line">a product of Lets Grow Digital</div>
     <div class="badge"><span class="dot"></span>✦ 24/7 AI Receptionist · Live in 48 hours · 🍌</div>
   </div>
@@ -163,5 +194,14 @@
   </div>
 
 </div>
+
+<script>
+  function toggleTheme(){
+    document.body.classList.toggle('light-mode');
+    var isLight=document.body.classList.contains('light-mode');
+    try{localStorage.setItem('lgd-theme',isLight?'light':'dark');}catch(e){}
+    var t=document.getElementById('theme-toggle'); if(t) t.setAttribute('aria-checked',String(isLight));
+  }
+</script>
 </body>
 </html>
