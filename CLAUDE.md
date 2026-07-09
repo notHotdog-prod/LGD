@@ -30,13 +30,6 @@ Marketing website for Lets Grow Digital, an AI-powered digital marketing agency 
 - Newsletter form in footer POSTs to `/newsletter`
 - **API token is NEVER in client-side code** — always in Worker environment
 
-## Deployment Workflow
-1. Edit the relevant live page(s) locally (`index.html`, `deskmonkey.html`, etc.)
-2. Commit and push to `main` on GitHub
-3. **Hostinger auto-pulls from Git** — site updates within a minute or two of push. No manual hPanel upload.
-4. Hard-refresh (Ctrl+Shift+R) to bust browser cache and confirm
-5. Cloudflare Worker handles lead/newsletter submissions independently of deploy
-
 ## Coding Conventions
 - Single-file architecture is intentional — do not split into separate CSS/JS files
 - Mobile-responsive by default
@@ -48,20 +41,6 @@ See `TODO.md` in this repo for pending items that are blocked on external depend
 
 ## Pre-Push Routine
 Before pushing changes that touch any of: HTML form code, `cloudflare-worker.js`, anything user-facing JS, or anything handling input — run `/security-review` first. Catches XSS, exposed secrets, auth issues, injection. Skipping is fine for trivial copy edits, but err on the side of running it.
-
-## Error Monitoring (Sentry)
-Two layers:
-
-**Frontend (browser JS):** Sentry Loader Script in `<head>` of every page. Errors real visitors hit are captured automatically.
-- Project: `letsgrowdigital-frontend-1`
-- Public DSN: `https://f3eece8ec557e6d8bf348c28d8bc5a24@o4511377116168192.ingest.us.sentry.io/4511377133076480` (safe client-side)
-- Test event: open Dev Tools console on any LGD page → run `myUndefinedFunction();`
-
-**Worker (kb-leads-proxy):** Direct-fetch Sentry reporter inside `cloudflare-worker.js` — no `@sentry/cloudflare` SDK, no build step. Posts to envelope endpoint when caught errors hit (Monday network fail or Monday API rejection). Errors tagged with `site` (lgd/lgc/lgp/imb123) for cross-brand filtering.
-- Project: `kb-leads-proxy-worker`
-- Requires `SENTRY_DSN` secret in CF dashboard (Settings → Variables and Secrets). If unset, Worker still runs; errors just aren't reported.
-
-Dashboard: https://bbgb-llc.sentry.io/
 
 ## Marketing Copy — No Concessions
 Never add the following to any LGD page without explicit Bryan confirmation: "30-day guarantee", "money-back", "month-to-month", "no contracts", "cancel anytime", "free trial", "no setup required". The actual deal is setup fee + 12-month commitment; the worst-case retainer refund is internal-only, not marketed. "No commitment" is OK only when scoped to the inquiry/discovery (not the deal itself).
